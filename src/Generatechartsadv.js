@@ -1,4 +1,5 @@
 "use strict";
+// Version 1.0.3
 var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
         if (ar || !(i in from)) {
@@ -10,7 +11,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
 };
 exports.__esModule = true;
 var countup_js_1 = require("countup.js");
-var Generatechartsadv = /** @class */ (function () {
+globalThis.Generatechartsadv = /** @class */ (function () {
     function Generatechartsadv(array, className) {
         this.arrayAdv = array;
         this.chartCard = __spreadArray([], document.querySelectorAll(".".concat(className)), true);
