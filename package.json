@@ -1,0 +1,25 @@
+{
+  "name": "charts-library-adv",
+  "version": "1.0.0",
+  "description": "",
+  "source": "src/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel",
+    "build": "parcel build",
+    "test_start": "parcel src/index.js",
+    "test_build": "parcel build src/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.8.0",
+    "parcel": "^2.7.0"
+  },
+  "dependencies": {
+    "@parcel/transformer-typescript-tsc": "^2.8.0",
+    "@parcel/validator-typescript": "^2.8.0",
+    "@types/countup.js": "^2.0.4",
+    "countup.js": "^2.3.2"
+  }
+}
