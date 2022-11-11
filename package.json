@@ -1,6 +1,6 @@
 {
   "name": "charts-library-adv",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Internal Library to animate charts",
   "repository": {    
     "type": "git",    
@@ -12,6 +12,7 @@
     "start": "parcel",
     "build": "parcel build",
     "test_start": "parcel src/index.js",
+    "build_css": "mkdir -p dist && sass src/scss/styles.scss dist/style.css",
     "build_library": "parcel build src/Generatechartsadv.js"
   },
   "author": "",
