@@ -1,4 +1,4 @@
-const advert: any = [
+const advert: any = 
   {
     result: 'ok',
     valueLabels: ['%', '%', '%', '%', '%', '%', '%'],
@@ -15,41 +15,7 @@ const advert: any = [
       'TOUR VIRTUALES',
       'GLOBAL',
     ],
-  },
-  {
-    result: 'ok',
-    valueLabels: ['%', '%', '%', '%', '%', '%', '%'],
-    realValues: [20, 100, 45, 98, 100, 0, 95],
-    percValues: [20, 100, 45, 98, 100, 0, 95],
-    type: 'advertising',
-    valueColors: ['green', 'green', 'green', 'green', 'green', 'red', 'red'],
-    labels: [
-      'FOTOS',
-      'PLANO',
-      'DESCRIPCION',
-      'CERT. ENERG.',
-      'SERVICOS',
-      'TOUR VIRTUALES',
-      'GLOBAL',
-    ],
-  },
-  {
-    result: 'ok',
-    valueLabels: ['%', '%', '%', '%', '%', '%', '%'],
-    realValues: [34, 100, 100, 98, 10, 0, 95],
-    percValues: [34, 100, 100, 98, 10, 0, 95],
-    type: 'advertising',
-    valueColors: ['green', 'green', 'green', 'green', 'green', 'red', 'orange'],
-    labels: [
-      'FOTOS',
-      'PLANO',
-      'DESCRIPCION',
-      'CERT. ENERG.',
-      'SERVICOS',
-      'TOUR VIRTUALES',
-      'GLOBAL',
-    ],
-  },
-]
+  }
+
 
 export default advert
