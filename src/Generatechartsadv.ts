@@ -10,7 +10,7 @@ interface ArrayAdv {
   labels: string[]
 }
 
-class Generatechartsadv {
+globalThis.Generatechartsadv = class Generatechartsadv {
   arrayAdv: ArrayAdv[];
   chartCard: Element[];
   typedCard: Element[];

@@ -1085,7 +1085,7 @@ exports.default = gmb;
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _countupJs = require("countup.js");
-class Generatechartsadv {
+globalThis.Generatechartsadv = class Generatechartsadv1 {
     constructor(array, className){
         this.arrayAdv = array;
         this.chartCard = [
@@ -1126,7 +1126,7 @@ class Generatechartsadv {
             this.textValue.classList.add(`${this.arrayAdv[index].valueColors[indexRow]}-text`);
         });
     }
-}
+};
 exports.default = Generatechartsadv // const generateCharts = array => {
  //   if (array?.length > 0) { 
  //     let chartCard = [...document.querySelectorAll('.chart-card')]
