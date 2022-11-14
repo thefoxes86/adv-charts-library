@@ -10,9 +10,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel",
-    "build": "parcel build --dist-dir example/dist",
-    "build_css": "mkdir -p dist && sass example/scss/styles.scss dist/style.css",
-    "build_library": "yarn build_css && tsc src/Generatechartsadv.ts || npm run build src/Generatechartsadv.js"
+    "build_css": "sass example/scss/styles.scss dist/style.css",
+    "build": "rm -fr dist && tsc src/Generatechartsadv.ts && parcel build src/Generatechartsadv.js && yarn build_css",
+    "prepublishOnly": "p package.json dist",
+    "build_parcel": "parcel build --dist-dir example/dist"
   },
   "author": "",
   "license": "ISC",
