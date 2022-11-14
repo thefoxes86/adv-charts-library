@@ -1,14 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
 
-
 body {
     background-color: azure;
 }
-.chart-card {
+
+.chart-card[data-type*="homepage"], .chart-card[data-type*="advertising"], .chart-card[data-type*="gmb-reviews"] {
     font-family: 'Montserrat', sans-serif;
     position: relative;
     margin: 10px;
-    background-color: white;
+    background-color: #fdfdfd;
     width: 100%;
     height: auto;
     min-height: 100px;
@@ -16,10 +16,13 @@ body {
     display: flex;
     flex-direction: column;
 
+
     .chart-card__header {
+        overflow: hidden;
         margin-top: 0;
         width: 100%;
         height: auto;
+        position: relative;
         min-height: 30px;
         border-radius: 20px;
         display: flex;
@@ -72,6 +75,7 @@ body {
         }
     }
 
+
     .red {
         background-color: red;
     }
@@ -109,6 +113,7 @@ body {
             & .bar {
                 width: 30%;
                 text-align: right;
+                position: relative;
 
                 & .bar__background {
                     display: block;
@@ -171,12 +176,107 @@ body {
     }
 }
 
-.active {
-    & .circle-chart__circle {
-        animation: circle-chart-fill 1s reverse; 
+.loading {
+    .chart-card__header::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        animation: 1s loading-pulse alternate;
+        animation-iteration-count: infinite;
+        z-index: 9999;
     }
- 
+    .chart-card__content .content__row .bar::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        animation: 1s loading-pulse alternate;
+        animation-iteration-count: infinite;
+        z-index: 9999;
+    }
 }
+
+.chart-card[data-type*="type-4"] {
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+    margin: 10px;
+    background-color: #fdfdfd;
+    width: 100%;
+    height: auto;
+    min-height: 100px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+
+    .chart-card__content {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        
+        & .content__row {
+            margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.2rem;
+
+            & .text {
+                width: 50%;
+                font-weight: 400;
+                
+                padding: 0px 20px;
+            }
+
+
+            & .bar {
+                width: 30%;
+                text-align: right;
+                position: relative;
+
+                & .bar__background {
+                    display: block;
+                    position: relative;
+                    width: 100%;
+                    height: 4px;
+                    background-color: #efefef;
+
+                    & .bar__content {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        height: 4px;
+                        width: 0;
+                        transition: all 1s ease-out;
+                    }
+                    
+                }
+            }
+
+            & .perc {
+                width: 20%;
+            }
+            .red-text {
+                color: red;
+            }
+            .green-text {
+                color: green;
+            }
+            .yellow-text {
+                color: yellow;
+            }
+            .orange-text { 
+                color: orange;
+            }
+        }
+    }
+}
+
 
 .circle-chart {
     width: 70px;
@@ -189,7 +289,8 @@ body {
     transform: rotate(-90deg); /* 2, 3 */
     transform-origin: center; /* 4 */
     stroke-width: 2px;
-    stroke: white
+    stroke: white;
+    transition: all 1s ease-out;
   }
   .circle-chart__circle_perc {
     position: absolute;
@@ -203,6 +304,7 @@ body {
     to { width: 30%; }
   }
 
+
   
   @keyframes circle-chart-fill {
     to { stroke-dasharray: 0 200; }
@@ -212,5 +314,14 @@ body {
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  @keyframes loading-pulse {
+    from {
+        background-color: #a1a1a1;
+    }
+    to {
+        background-color: #efefef;
     }
   }

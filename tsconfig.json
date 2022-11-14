@@ -4,5 +4,6 @@
       "target": "es2021",
       "strict": true,
       "useUnknownInCatchVariables": false,
+      "moduleResolution": "node",
     }
   }

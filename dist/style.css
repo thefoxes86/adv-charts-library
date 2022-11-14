@@ -3,11 +3,11 @@ body {
   background-color: azure;
 }
 
-.chart-card {
+.chart-card[data-type*=homepage], .chart-card[data-type*=advertising], .chart-card[data-type*=gmb-reviews] {
   font-family: "Montserrat", sans-serif;
   position: relative;
   margin: 10px;
-  background-color: white;
+  background-color: #fdfdfd;
   width: 100%;
   height: auto;
   min-height: 100px;
@@ -15,10 +15,12 @@ body {
   display: flex;
   flex-direction: column;
 }
-.chart-card .chart-card__header {
+.chart-card[data-type*=homepage] .chart-card__header, .chart-card[data-type*=advertising] .chart-card__header, .chart-card[data-type*=gmb-reviews] .chart-card__header {
+  overflow: hidden;
   margin-top: 0;
   width: 100%;
   height: auto;
+  position: relative;
   min-height: 30px;
   border-radius: 20px;
   display: flex;
@@ -29,7 +31,7 @@ body {
   background-color: #a1a1a1;
   transition: 0.5s all ease-out;
 }
-.chart-card .chart-card__header .chart-card__header__title {
+.chart-card[data-type*=homepage] .chart-card__header .chart-card__header__title, .chart-card[data-type*=advertising] .chart-card__header .chart-card__header__title, .chart-card[data-type*=gmb-reviews] .chart-card__header .chart-card__header__title {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -37,12 +39,12 @@ body {
   gap: 15px;
   color: white;
 }
-.chart-card .chart-card__header .chart-card__header__title h3 {
+.chart-card[data-type*=homepage] .chart-card__header .chart-card__header__title h3, .chart-card[data-type*=advertising] .chart-card__header .chart-card__header__title h3, .chart-card[data-type*=gmb-reviews] .chart-card__header .chart-card__header__title h3 {
   margin: 0;
   font-size: 1.3rem;
   font-weight: 700;
 }
-.chart-card .chart-card__header .chart-card__header__title span {
+.chart-card[data-type*=homepage] .chart-card__header .chart-card__header__title span, .chart-card[data-type*=advertising] .chart-card__header .chart-card__header__title span, .chart-card[data-type*=gmb-reviews] .chart-card__header .chart-card__header__title span {
   background-color: white;
   border-radius: 10px;
   color: black;
@@ -50,7 +52,7 @@ body {
   font-size: 0.7rem;
   font-weight: 400;
 }
-.chart-card .chart-card__header .chart-card__header__round {
+.chart-card[data-type*=homepage] .chart-card__header .chart-card__header__round, .chart-card[data-type*=advertising] .chart-card__header .chart-card__header__round, .chart-card[data-type*=gmb-reviews] .chart-card__header .chart-card__header__round {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -58,7 +60,7 @@ body {
   gap: 10px;
   color: white;
 }
-.chart-card .chart-card__header .chart-card__header__round span {
+.chart-card[data-type*=homepage] .chart-card__header .chart-card__header__round span, .chart-card[data-type*=advertising] .chart-card__header .chart-card__header__round span, .chart-card[data-type*=gmb-reviews] .chart-card__header .chart-card__header__round span {
   color: white;
   font-size: 1.2rem;
   font-weight: 400;
@@ -66,24 +68,24 @@ body {
   justify-content: center;
   align-items: center;
 }
-.chart-card .red {
+.chart-card[data-type*=homepage] .red, .chart-card[data-type*=advertising] .red, .chart-card[data-type*=gmb-reviews] .red {
   background-color: red;
 }
-.chart-card .green {
+.chart-card[data-type*=homepage] .green, .chart-card[data-type*=advertising] .green, .chart-card[data-type*=gmb-reviews] .green {
   background-color: green;
 }
-.chart-card .yellow {
+.chart-card[data-type*=homepage] .yellow, .chart-card[data-type*=advertising] .yellow, .chart-card[data-type*=gmb-reviews] .yellow {
   background-color: yellow;
 }
-.chart-card .orange {
+.chart-card[data-type*=homepage] .orange, .chart-card[data-type*=advertising] .orange, .chart-card[data-type*=gmb-reviews] .orange {
   background-color: orange;
 }
-.chart-card .chart-card__content {
+.chart-card[data-type*=homepage] .chart-card__content, .chart-card[data-type*=advertising] .chart-card__content, .chart-card[data-type*=gmb-reviews] .chart-card__content {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
-.chart-card .chart-card__content .content__row {
+.chart-card[data-type*=homepage] .chart-card__content .content__row, .chart-card[data-type*=advertising] .chart-card__content .content__row, .chart-card[data-type*=gmb-reviews] .chart-card__content .content__row {
   margin: 10px 0;
   display: flex;
   justify-content: space-between;
@@ -91,23 +93,24 @@ body {
   gap: 15px;
   font-size: 1.2rem;
 }
-.chart-card .chart-card__content .content__row .text {
+.chart-card[data-type*=homepage] .chart-card__content .content__row .text, .chart-card[data-type*=advertising] .chart-card__content .content__row .text, .chart-card[data-type*=gmb-reviews] .chart-card__content .content__row .text {
   width: 50%;
   font-weight: 400;
   padding: 0px 20px;
 }
-.chart-card .chart-card__content .content__row .bar {
+.chart-card[data-type*=homepage] .chart-card__content .content__row .bar, .chart-card[data-type*=advertising] .chart-card__content .content__row .bar, .chart-card[data-type*=gmb-reviews] .chart-card__content .content__row .bar {
   width: 30%;
   text-align: right;
+  position: relative;
 }
-.chart-card .chart-card__content .content__row .bar .bar__background {
+.chart-card[data-type*=homepage] .chart-card__content .content__row .bar .bar__background, .chart-card[data-type*=advertising] .chart-card__content .content__row .bar .bar__background, .chart-card[data-type*=gmb-reviews] .chart-card__content .content__row .bar .bar__background {
   display: block;
   position: relative;
   width: 100%;
   height: 4px;
   background-color: #efefef;
 }
-.chart-card .chart-card__content .content__row .bar .bar__background .bar__content {
+.chart-card[data-type*=homepage] .chart-card__content .content__row .bar .bar__background .bar__content, .chart-card[data-type*=advertising] .chart-card__content .content__row .bar .bar__background .bar__content, .chart-card[data-type*=gmb-reviews] .chart-card__content .content__row .bar .bar__background .bar__content {
   position: absolute;
   top: 0;
   left: 0;
@@ -115,22 +118,22 @@ body {
   width: 0;
   transition: all 1s ease-out;
 }
-.chart-card .chart-card__content .content__row .perc {
+.chart-card[data-type*=homepage] .chart-card__content .content__row .perc, .chart-card[data-type*=advertising] .chart-card__content .content__row .perc, .chart-card[data-type*=gmb-reviews] .chart-card__content .content__row .perc {
   width: 20%;
 }
-.chart-card .chart-card__content .content__row .red-text {
+.chart-card[data-type*=homepage] .chart-card__content .content__row .red-text, .chart-card[data-type*=advertising] .chart-card__content .content__row .red-text, .chart-card[data-type*=gmb-reviews] .chart-card__content .content__row .red-text {
   color: red;
 }
-.chart-card .chart-card__content .content__row .green-text {
+.chart-card[data-type*=homepage] .chart-card__content .content__row .green-text, .chart-card[data-type*=advertising] .chart-card__content .content__row .green-text, .chart-card[data-type*=gmb-reviews] .chart-card__content .content__row .green-text {
   color: green;
 }
-.chart-card .chart-card__content .content__row .yellow-text {
+.chart-card[data-type*=homepage] .chart-card__content .content__row .yellow-text, .chart-card[data-type*=advertising] .chart-card__content .content__row .yellow-text, .chart-card[data-type*=gmb-reviews] .chart-card__content .content__row .yellow-text {
   color: yellow;
 }
-.chart-card .chart-card__content .content__row .orange-text {
+.chart-card[data-type*=homepage] .chart-card__content .content__row .orange-text, .chart-card[data-type*=advertising] .chart-card__content .content__row .orange-text, .chart-card[data-type*=gmb-reviews] .chart-card__content .content__row .orange-text {
   color: orange;
 }
-.chart-card .chart-card__footer {
+.chart-card[data-type*=homepage] .chart-card__footer, .chart-card[data-type*=advertising] .chart-card__footer, .chart-card[data-type*=gmb-reviews] .chart-card__footer {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -138,7 +141,7 @@ body {
   margin: 0 10px;
   border-top: grey dashed 1px;
 }
-.chart-card .chart-card__footer button {
+.chart-card[data-type*=homepage] .chart-card__footer button, .chart-card[data-type*=advertising] .chart-card__footer button, .chart-card[data-type*=gmb-reviews] .chart-card__footer button {
   background-color: red;
   outline: 0;
   border: 0;
@@ -147,12 +150,97 @@ body {
   font-size: 0.8rem;
   padding: 6px 15px;
 }
-.chart-card .chart-card__footer button:hover {
+.chart-card[data-type*=homepage] .chart-card__footer button:hover, .chart-card[data-type*=advertising] .chart-card__footer button:hover, .chart-card[data-type*=gmb-reviews] .chart-card__footer button:hover {
   background-color: black;
 }
 
-.active .circle-chart__circle {
-  animation: circle-chart-fill 1s reverse;
+.loading .chart-card__header::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  animation: 1s loading-pulse alternate;
+  animation-iteration-count: infinite;
+  z-index: 9999;
+}
+.loading .chart-card__content .content__row .bar::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  animation: 1s loading-pulse alternate;
+  animation-iteration-count: infinite;
+  z-index: 9999;
+}
+
+.chart-card[data-type*=type-4] {
+  font-family: "Montserrat", sans-serif;
+  position: relative;
+  margin: 10px;
+  background-color: #fdfdfd;
+  width: 100%;
+  height: auto;
+  min-height: 100px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.chart-card[data-type*=type-4] .chart-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.chart-card[data-type*=type-4] .chart-card__content .content__row {
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  font-size: 1.2rem;
+}
+.chart-card[data-type*=type-4] .chart-card__content .content__row .text {
+  width: 50%;
+  font-weight: 400;
+  padding: 0px 20px;
+}
+.chart-card[data-type*=type-4] .chart-card__content .content__row .bar {
+  width: 30%;
+  text-align: right;
+  position: relative;
+}
+.chart-card[data-type*=type-4] .chart-card__content .content__row .bar .bar__background {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 4px;
+  background-color: #efefef;
+}
+.chart-card[data-type*=type-4] .chart-card__content .content__row .bar .bar__background .bar__content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: 0;
+  transition: all 1s ease-out;
+}
+.chart-card[data-type*=type-4] .chart-card__content .content__row .perc {
+  width: 20%;
+}
+.chart-card[data-type*=type-4] .chart-card__content .content__row .red-text {
+  color: red;
+}
+.chart-card[data-type*=type-4] .chart-card__content .content__row .green-text {
+  color: green;
+}
+.chart-card[data-type*=type-4] .chart-card__content .content__row .yellow-text {
+  color: yellow;
+}
+.chart-card[data-type*=type-4] .chart-card__content .content__row .orange-text {
+  color: orange;
 }
 
 .circle-chart {
@@ -169,6 +257,7 @@ body {
   transform-origin: center; /* 4 */
   stroke-width: 2px;
   stroke: white;
+  transition: all 1s ease-out;
 }
 
 .circle-chart__circle_perc {
@@ -193,6 +282,14 @@ body {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+@keyframes loading-pulse {
+  from {
+    background-color: #a1a1a1;
+  }
+  to {
+    background-color: #efefef;
   }
 }
 

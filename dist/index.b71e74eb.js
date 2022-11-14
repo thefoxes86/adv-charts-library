@@ -541,29 +541,33 @@ var _home = require("./api/home");
 var _homeDefault = parcelHelpers.interopDefault(_home);
 var _gmb = require("./api/gmb");
 var _gmbDefault = parcelHelpers.interopDefault(_gmb);
+var _type4 = require("./api/type4");
+var _type4Default = parcelHelpers.interopDefault(_type4);
 var _generatechartsadv = require("./Generatechartsadv");
 var _generatechartsadvDefault = parcelHelpers.interopDefault(_generatechartsadv);
 window.addEventListener("DOMContentLoaded", ()=>{
-    const chartAdvert = new (0, _generatechartsadvDefault.default)("chart-card");
-    const chartHome = new (0, _generatechartsadvDefault.default)("chart-card");
-    const chartGmb = new (0, _generatechartsadvDefault.default)("chart-card");
+    const chart = new (0, _generatechartsadvDefault.default)();
     setTimeout(()=>{
         // result
-        chartAdvert.init((0, _advertDefault.default));
+        chart.init((0, _advertDefault.default));
     }, 1000);
     setTimeout(()=>{
         // result
-        chartAdvert.init((0, _advert2Default.default));
+        chart.reload((0, _advert2Default.default));
     }, 4000);
     setTimeout(()=>{
-        chartHome.init((0, _homeDefault.default));
+        chart.init((0, _homeDefault.default));
     }, 2000);
     setTimeout(()=>{
-        chartGmb.init((0, _gmbDefault.default));
+        chart.init((0, _gmbDefault.default));
     }, 3000);
+    setTimeout(()=>{
+        // result
+        chart.reload((0, _type4Default.default));
+    }, 4000);
 });
 
-},{"./api/advert":"axN5u","./api/home":"jQFBD","./api/gmb":"aB3WZ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./api/advert2":"5rsb5","./Generatechartsadv":"7WdTZ"}],"axN5u":[function(require,module,exports) {
+},{"./api/advert":"axN5u","./api/advert2":"5rsb5","./api/home":"jQFBD","./api/gmb":"aB3WZ","./Generatechartsadv":"7WdTZ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./api/type4":"aE8n5"}],"axN5u":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 const advert = {
@@ -647,7 +651,61 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"jQFBD":[function(require,module,exports) {
+},{}],"5rsb5":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+const advert = {
+    result: "ok",
+    valueLabels: [
+        "%",
+        "%",
+        "%",
+        "%",
+        "%",
+        "%",
+        "%"
+    ],
+    realValues: [
+        100,
+        100,
+        30,
+        56,
+        73,
+        40,
+        45
+    ],
+    percValues: [
+        100,
+        100,
+        30,
+        56,
+        73,
+        40,
+        45
+    ],
+    type: "advertising",
+    valueColors: [
+        "green",
+        "green",
+        "green",
+        "green",
+        "green",
+        "red",
+        "green"
+    ],
+    labels: [
+        "FOTOS",
+        "PLANO",
+        "DESCRIPCION",
+        "CERT. ENERG.",
+        "SERVICOS",
+        "TOUR VIRTUALES",
+        "GLOBAL"
+    ]
+};
+exports.default = advert;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jQFBD":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 const home = {
@@ -740,89 +798,48 @@ const gmb = {
 };
 exports.default = gmb;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5rsb5":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-const advert = {
-    result: "ok",
-    valueLabels: [
-        "%",
-        "%",
-        "%",
-        "%",
-        "%",
-        "%",
-        "%"
-    ],
-    realValues: [
-        100,
-        100,
-        30,
-        70,
-        100,
-        0,
-        95
-    ],
-    percValues: [
-        100,
-        100,
-        30,
-        70,
-        100,
-        0,
-        95
-    ],
-    type: "advertising",
-    valueColors: [
-        "green",
-        "green",
-        "green",
-        "green",
-        "green",
-        "red",
-        "green"
-    ],
-    labels: [
-        "FOTOS",
-        "PLANO",
-        "DESCRIPCION",
-        "CERT. ENERG.",
-        "SERVICOS",
-        "TOUR VIRTUALES",
-        "GLOBAL"
-    ]
-};
-exports.default = advert;
-
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7WdTZ":[function(require,module,exports) {
 // Version 1.0.4
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _countupJs = require("countup.js");
 class Generatechartsadv {
-    constructor(className){
+    constructor(){
         this.chartCard = [
-            ...document.querySelectorAll(`.${className}`)
+            ...document.querySelectorAll(`.chart-card`)
         ];
+        this.update = false;
+        this.setLoading = true;
     }
-    init(array) {
-        this.arrayAdv = array;
-        this.typedCard = this.chartCard.filter((elem)=>elem.dataset["type"] === array.type);
+    loading(loading, el) {
+        this.setLoading = loading;
+        el.classList.contains("loading") && el.classList.remove("loading");
+    }
+    init(obj) {
+        this.objAdv = obj;
+        this.typedCard = this.chartCard.filter((elem)=>elem.dataset["type"] === obj.type);
         this.iterateMainElement(this.typedCard);
+    }
+    reload(obj) {
+        this.update = true;
+        this.init(obj);
     }
     iterateMainElement(cards) {
         cards.forEach((el, index)=>{
             this.header = el.querySelector(".chart-card__header");
+            this.loading(false, el);
             this.circle = el.querySelector(".circle-chart__circle");
-            this.header.classList.add(this.arrayAdv.valueColors[this.arrayAdv.valueColors.length - 1]);
-            this.circle.style["stroke-dasharray"] = `${this.arrayAdv.percValues[this.arrayAdv.percValues.length - 1]} 100`;
-            let previousPercValue = document.getElementById(`mainValuePerc-${this.arrayAdv.type}-${index}`);
-            let value = `${this.arrayAdv.realValues[this.arrayAdv.realValues.length - 1]}${this.arrayAdv.valueLabels[this.arrayAdv.valueLabels.length - 1]}`;
+            let status = this.objAdv.percValues[this.objAdv.percValues.length - 1] >= 0 && this.objAdv.percValues[this.objAdv.percValues.length - 1] < 33 ? "red" : this.objAdv.percValues[this.objAdv.percValues.length - 1] >= 33 && this.objAdv.percValues[this.objAdv.percValues.length - 1] < 66 ? "orange" : "green";
+            this.header.classList.add(status);
+            this.circle.style["stroke-dasharray"] = `${this.objAdv.percValues[this.objAdv.percValues.length - 1]} 100`;
+            let previousPercValue = document.getElementById(`mainValuePerc-${this.objAdv.type}-${index}`);
+            let value = `${this.objAdv.realValues[this.objAdv.realValues.length - 1]}${this.objAdv.valueLabels[this.objAdv.valueLabels.length - 1]}`;
             if (previousPercValue?.innerHTML !== value) {
-                this.percValue = new (0, _countupJs.CountUp)(`mainValuePerc-${this.arrayAdv.type}-${index}`, this.arrayAdv.realValues[this.arrayAdv.realValues.length - 1], {
-                    suffix: this.arrayAdv.valueLabels[this.arrayAdv.valueLabels.length - 1]
+                this.percValue = new (0, _countupJs.CountUp)(`mainValuePerc-${this.objAdv.type}-${index}`, this.objAdv.realValues[this.objAdv.realValues.length - 1], {
+                    suffix: this.objAdv.valueLabels[this.objAdv.valueLabels.length - 1]
                 });
-                this.percValue.start();
+                if (this.update) this.percValue.update(this.objAdv.realValues[this.objAdv.realValues.length - 1]);
+                else this.percValue.start();
             }
             this.contentRow = [
                 ...el.querySelectorAll(".content__row")
@@ -834,20 +851,29 @@ class Generatechartsadv {
     iterateRow(contentRow, index) {
         contentRow.forEach((row, indexRow)=>{
             this.barContent = row.querySelector(".bar__content");
-            this.barContent.classList.add(this.arrayAdv.valueColors[indexRow]);
-            this.barContent.style.width = `${this.arrayAdv.percValues[indexRow]}%`;
-            let previousValue = document.getElementById(`perc-value-${this.arrayAdv.type}-${index}-row-${indexRow}`);
-            if (previousValue?.innerHTML !== `${this.arrayAdv.realValues[indexRow]}${this.arrayAdv.valueLabels[indexRow]}`) {
-                this.percValueText = new (0, _countupJs.CountUp)(`perc-value-${this.arrayAdv.type}-${index}-row-${indexRow}`, this.arrayAdv.realValues[indexRow], {
-                    suffix: this.arrayAdv.valueLabels[indexRow]
+            let status = this.objAdv.percValues[indexRow] >= 0 && this.objAdv.percValues[indexRow] < 33 ? "red" : this.objAdv.percValues[indexRow] >= 33 && this.objAdv.percValues[indexRow] < 66 ? "orange" : "green";
+            this.barContent.classList.contains("red") && this.barContent.classList.remove("red");
+            this.barContent.classList.contains("orange") && this.barContent.classList.remove("orange");
+            this.barContent.classList.contains("green") && this.barContent.classList.remove("green");
+            this.barContent.classList.add(status);
+            this.barContent.style.width = `${this.objAdv.percValues[indexRow]}%`;
+            let previousValue = document.getElementById(`perc-value-${this.objAdv.type}-${index}-row-${indexRow}`);
+            if (previousValue?.innerHTML !== `${this.objAdv.realValues[indexRow]}${this.objAdv.valueLabels[indexRow]}`) {
+                this.percValueText = new (0, _countupJs.CountUp)(`perc-value-${this.objAdv.type}-${index}-row-${indexRow}`, this.objAdv.realValues[indexRow], {
+                    suffix: this.objAdv.valueLabels[indexRow]
                 });
-                this.percValueText.start();
+                if (this.update) this.percValueText.update(this.objAdv.realValues[indexRow]);
+                else this.percValueText.start();
             }
-            this.textValue = document.getElementById(`perc-value-${this.arrayAdv.type}-${index}-row-${indexRow}`);
-            this.textValue.classList.add(`${this.arrayAdv.valueColors[indexRow]}-text`);
+            this.textValue = document.getElementById(`perc-value-${this.objAdv.type}-${index}-row-${indexRow}`);
+            this.textValue.classList.contains("red-text") && this.textValue.classList.remove("red-text");
+            this.textValue.classList.contains("orange-text") && this.textValue.classList.remove("orange-text");
+            this.textValue.classList.contains("green-text") && this.textValue.classList.remove("green-text");
+            this.textValue.classList.add(`${status}-text`);
         });
     }
 }
+var globalThis;
 exports.default = Generatechartsadv;
 
 },{"countup.js":"dyWzm","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dyWzm":[function(require,module,exports) {
@@ -944,6 +970,40 @@ var __assign = undefined && undefined.__assign || function() {
         this.startTime = null, this.duration = 1e3 * Number(this.options.duration), this.remaining = this.duration;
     }, t;
 }();
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aE8n5":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+const type4 = {
+    result: "ok",
+    valueLabels: [
+        "/55",
+        "/45",
+        "/23"
+    ],
+    realValues: [
+        55,
+        32,
+        16
+    ],
+    percValues: [
+        100,
+        67,
+        47
+    ],
+    type: "type4",
+    valueColors: [
+        "green",
+        "green",
+        "red"
+    ],
+    labels: [
+        "Satisfaccion",
+        "Numero rese\xf1as",
+        "Respondidas"
+    ]
+};
+exports.default = type4;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["iJYvl","h7u1C"], "h7u1C", "parcelRequired657")
 

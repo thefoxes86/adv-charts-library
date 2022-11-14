@@ -2,8 +2,8 @@ const advert: any =
   {
     result: 'ok',
     valueLabels: ['%', '%', '%', '%', '%', '%', '%'],
-    realValues: [100, 100, 30, 70, 100, 0, 95],
-    percValues: [100, 100, 30, 70, 100, 0, 95],
+    realValues: [100, 100, 30, 56, 73, 40, 45],
+    percValues: [100, 100, 30, 56, 73, 40, 45],
     type: 'advertising',
     valueColors: ['green', 'green', 'green', 'green', 'green', 'red', 'green'],
     labels: [

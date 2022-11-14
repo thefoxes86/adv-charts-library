@@ -1,11 +1,11 @@
 {
   "name": "charts-library-adv",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Internal Library to animate charts",
-  "repository": {    
-    "type": "git",    
-    "url": "git+https://github.com/thefoxes86/adv-charts-library.git "  
-  },  
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thefoxes86/adv-charts-library.git "
+  },
   "source": "src/index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -25,6 +25,7 @@
     "@parcel/transformer-typescript-tsc": "^2.8.0",
     "@parcel/validator-typescript": "^2.8.0",
     "@types/countup.js": "^2.0.4",
+    "@types/node": "^18.11.9",
     "countup.js": "^2.3.2"
   }
 }

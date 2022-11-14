@@ -2,25 +2,30 @@ import advert from './api/advert'
 import advert2 from './api/advert2'
 import home from './api/home'
 import gmb from './api/gmb'
+import type4 from './api/type4'
 import Generatechartsadv from './Generatechartsadv'
 
 window.addEventListener('DOMContentLoaded', () => {
-  const chartAdvert = new Generatechartsadv('chart-card');
-  const chartHome = new Generatechartsadv( 'chart-card');
-  const chartGmb = new Generatechartsadv( 'chart-card');
+  const chart = new Generatechartsadv();
   setTimeout(() => {
     // result
-    chartAdvert.init(advert)
+    chart.init(advert)
   }, 1000)
+
 
   setTimeout(() => {
     // result
-    chartAdvert.init(advert2)
+    chart.reload(advert2)
   }, 4000)
   setTimeout(() => {
-    chartHome.init(home)
+    chart.init(home)
   }, 2000)
   setTimeout(() => {
-    chartGmb.init(gmb)
+    chart.init(gmb)
   }, 3000)
+
+  setTimeout(() => {
+    // result
+    chart.reload(type4)
+  }, 4000)
 })
