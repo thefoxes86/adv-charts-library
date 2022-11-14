@@ -13,7 +13,7 @@ exports.__esModule = true;
 var countup_js_1 = require("countup.js");
 var Generatechartsadv = /** @class */ (function () {
     function Generatechartsadv() {
-        this.chartCard = __spreadArray([], document.querySelectorAll(".chart-card"), true);
+        this.chartCard = document.querySelectorAll(".chart-card");
         this.update = false;
         this.setLoading = true;
     }

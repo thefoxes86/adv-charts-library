@@ -1,5 +1,3 @@
-// Version 1.0.4
-
 import { CountUp } from 'countup.js'
 
 interface ObjAdv {
@@ -13,7 +11,7 @@ interface ObjAdv {
 }
 class Generatechartsadv {
   objAdv!: ObjAdv;
-  chartCard: Element[];
+  chartCard: NodeListOf<Element>;
   typedCard!: Element[];
   header!: Element;
   circle!: HTMLInputElement | HTMLBaseElement | any;
@@ -26,7 +24,7 @@ class Generatechartsadv {
   setLoading: boolean;
 
   constructor(){
-    this.chartCard =  [...document.querySelectorAll(`.chart-card`)]
+    this.chartCard =  document.querySelectorAll(`.chart-card`)
     this.update = false
     this.setLoading = true
   }
@@ -38,7 +36,7 @@ class Generatechartsadv {
 
   init(obj: ObjAdv){
     this.objAdv = obj;
-    this.typedCard = this.chartCard.filter(
+    this.typedCard = (this.chartCard as any | Element[]).filter(
       (elem: any)  => elem.dataset['type'] === obj.type
     ) 
 
@@ -75,7 +73,7 @@ class Generatechartsadv {
       if (previousPercValue?.innerHTML !== value) {
         this.percValue = new CountUp(
           `mainValuePerc-${this.objAdv.type}-${index}`,
-          this.objAdv.realValues[this.objAdv.realValues.length - 1],
+          this.objAdv.realValues[this.objAdv.realValues.length - 1] as number,
           {
             suffix:
             this.objAdv.valueLabels[this.objAdv.valueLabels.length - 1],
@@ -113,7 +111,7 @@ class Generatechartsadv {
 
         this.percValueText = new CountUp(
           `perc-value-${this.objAdv.type}-${index}-row-${indexRow}`,
-          this.objAdv.realValues[indexRow],
+          this.objAdv.realValues[indexRow] as number,
           {
             suffix: this.objAdv.valueLabels[indexRow],
           }
