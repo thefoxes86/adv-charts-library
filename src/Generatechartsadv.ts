@@ -11,7 +11,7 @@ interface ObjAdv {
 }
 class Generatechartsadv {
   objAdv!: ObjAdv;
-  chartCard: NodeListOf<Element>;
+  chartCard: Element[];
   typedCard!: Element[];
   header!: Element;
   circle!: HTMLInputElement | HTMLBaseElement | any;
@@ -24,7 +24,8 @@ class Generatechartsadv {
   setLoading: boolean;
 
   constructor(){
-    this.chartCard =  document.querySelectorAll(`.chart-card`)
+    // @ts-ignore
+    this.chartCard =  [...document.querySelectorAll(`.chart-card`)] 
     this.update = false
     this.setLoading = true
   }
@@ -137,7 +138,7 @@ class Generatechartsadv {
       })
     }
   }
-
+ 
   
   
   

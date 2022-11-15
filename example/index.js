@@ -3,7 +3,7 @@ import advert2 from './api/advert2'
 import home from './api/home'
 import gmb from './api/gmb'
 import type4 from './api/type4'
-// import Generatechartsadv from '../src/Generatechartsadv.ts'
+import Generatechartsadv from '../src/Generatechartsadv.ts'
 
 window.addEventListener('DOMContentLoaded', () => {
   const chart = new Generatechartsadv()
