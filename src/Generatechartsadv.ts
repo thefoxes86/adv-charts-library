@@ -64,6 +64,7 @@ class Generatechartsadv {
         status
       )
 
+      console.log('TEST', `${this.objAdv.percValues[this.objAdv.percValues.length - 1]}`)
       this.circle.style['stroke-dasharray'] = `${
         this.objAdv.percValues[this.objAdv.percValues.length - 1]
       } 100`

@@ -38,6 +38,7 @@ var Generatechartsadv = /** @class */ (function () {
             _this.circle = el.querySelector('.circle-chart__circle');
             var status = _this.objAdv.percValues[_this.objAdv.percValues.length - 1] >= 0 && _this.objAdv.percValues[_this.objAdv.percValues.length - 1] < 33 ? 'red' : _this.objAdv.percValues[_this.objAdv.percValues.length - 1] >= 33 && _this.objAdv.percValues[_this.objAdv.percValues.length - 1] < 66 ? 'orange' : 'green';
             _this.header.classList.add(status);
+            console.log('TEST', "".concat(_this.objAdv.percValues[_this.objAdv.percValues.length - 1]));
             _this.circle.style['stroke-dasharray'] = "".concat(_this.objAdv.percValues[_this.objAdv.percValues.length - 1], " 100");
             var previousPercValue = document.getElementById("mainValuePerc-".concat(_this.objAdv.type, "-").concat(index));
             var value = "".concat(_this.objAdv.realValues[_this.objAdv.realValues.length - 1]).concat(_this.objAdv.valueLabels[_this.objAdv.valueLabels.length - 1]);
