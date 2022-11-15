@@ -138,9 +138,9 @@ class Generatechartsadv {
     }
   }
 
-  if (process.env.NODE_ENV !== 'development') {
-    var globalThis: any;
-    globalThis.Generatechartsadv = Generatechartsadv
-  } 
+  
+  var globalThis: any;
+  globalThis.Generatechartsadv = Generatechartsadv
+  
 
   export default Generatechartsadv
