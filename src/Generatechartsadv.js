@@ -87,8 +87,6 @@ var Generatechartsadv = /** @class */ (function () {
     };
     return Generatechartsadv;
 }());
-if (process.env.NODE_ENV !== 'development') {
-    var globalThis;
-    globalThis.Generatechartsadv = Generatechartsadv;
-}
+var globalThis;
+globalThis.Generatechartsadv = Generatechartsadv;
 exports["default"] = Generatechartsadv;
