@@ -139,8 +139,10 @@ class Generatechartsadv {
   }
 
   
-  var globalThis: any;
+  
+  
+  
+  // @ts-ignore
   globalThis.Generatechartsadv = Generatechartsadv
   
-
   export default Generatechartsadv

@@ -11,7 +11,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel",
     "build_css": "sass example/scss/styles.scss dist/style.css",
-    "build": "rm -fr dist && tsc src/Generatechartsadv.ts && parcel build src/Generatechartsadv.js && yarn build_css",
+    "build": "rm -fr ./dist && tsc src/Generatechartsadv.ts && parcel build src/Generatechartsadv.js && yarn build_css",
     "prepublishOnly": "cp package.json dist",
     "build_parcel": "parcel build --dist-dir example/dist"
   },

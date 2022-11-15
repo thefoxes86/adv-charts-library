@@ -87,6 +87,6 @@ var Generatechartsadv = /** @class */ (function () {
     };
     return Generatechartsadv;
 }());
-var globalThis;
+// @ts-ignore
 globalThis.Generatechartsadv = Generatechartsadv;
 exports["default"] = Generatechartsadv;
