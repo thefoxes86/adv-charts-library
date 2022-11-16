@@ -2,8 +2,10 @@ import advert from './api/advert'
 import advert2 from './api/advert2'
 import home from './api/home'
 import gmb from './api/gmb'
-import type4 from './api/type4'
+import header from './api/header'
+import header2 from './api/header2'
 import Generatechartsadv from '../src/Generatechartsadv.ts'
+import headerReload from './api/header-reload'
 
 window.addEventListener('DOMContentLoaded', () => {
   const chart = new Generatechartsadv()
@@ -25,6 +27,15 @@ window.addEventListener('DOMContentLoaded', () => {
 
   setTimeout(() => {
     // result
-    chart.reload(type4)
+    chart.init(header)
+  }, 1000)
+
+  setTimeout(() => {
+    chart.reload(headerReload)
   }, 4000)
+
+  setTimeout(() => {
+    // result
+    chart.init(header2)
+  }, 5000)
 })

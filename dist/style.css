@@ -152,6 +152,21 @@ body {
   animation-iteration-count: infinite;
   z-index: 9999;
 }
+.loading .bullet::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  animation: 1s loading-pulse alternate;
+  animation-iteration-count: infinite;
+  z-index: 9999;
+}
+.loading .circle-chart__background {
+  animation: 1s loading-pulse-stroke alternate;
+  animation-iteration-count: infinite;
+}
 
 .chart-card[data-format*=type2] {
   font-family: "Montserrat", sans-serif;
@@ -172,6 +187,9 @@ body {
 }
 .chart-card[data-format*=type2] .chart-card__content .content__row:nth-child(1) {
   margin-top: 10px;
+}
+.chart-card[data-format*=type2] .chart-card__content .content__row:last-child {
+  border-bottom: none;
 }
 .chart-card[data-format*=type2] .chart-card__content .content__row {
   margin: 0px 10px;
@@ -202,14 +220,21 @@ body {
   min-width: 100px;
   height: 70px;
 }
-.chart-card[data-format*=type2] .chart-card__content .content__row .circle-chart__circle_perc {
-  width: 70px;
-  height: 70px;
+.chart-card[data-format*=type2] .chart-card__content .content__row .circle__result {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 70px;
-  border: 5px solid lightgray;
+}
+.chart-card[data-format*=type2] .chart-card__content .content__row .circle__result .circle-chart__background {
+  stroke: #efefef;
+  stroke-width: 3px;
+}
+.chart-card[data-format*=type2] .chart-card__content .content__row .circle__result .circle-chart__circle {
+  transform-origin: center;
+  stroke-width: 3px;
+  stroke: #efefef;
+  transition: all 1s ease-out;
+  transform: rotate(-90deg);
 }
 .chart-card[data-format*=type2] .chart-card__content .content__row .bar {
   width: 30%;
@@ -303,7 +328,36 @@ body {
   border-color: green !important;
 }
 
+.row__title {
+  font-size: 34px;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+.bullet {
+  display: inline-block;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  background-color: #efefef;
+  border-radius: 100%;
+  overflow: hidden;
+}
+.bullet .overlay__full {
+  height: inherit;
+  width: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: width 0.2s ease-out;
+}
+
+.perc__title {
+  font-size: 28px;
+}
+
 .circle-chart {
+  overflow: visible;
   width: 70px;
   height: 70px;
 }
@@ -350,6 +404,14 @@ body {
   }
   to {
     background-color: #efefef;
+  }
+}
+@keyframes loading-pulse-stroke {
+  from {
+    stroke: #a1a1a1;
+  }
+  to {
+    stroke: #efefef;
   }
 }
 

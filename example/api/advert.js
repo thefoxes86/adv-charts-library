@@ -15,6 +15,7 @@ const advert = {
     'GLOBAL',
   ],
   valueRangeColors: [74, 84],
+  format: 'type1',
 }
 
 export default advert

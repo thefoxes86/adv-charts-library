@@ -13,6 +13,7 @@ const gmb = {
     'Global',
   ],
   valueRangeColors: [44, 84],
+  format: 'type1',
 }
 
 export default gmb
