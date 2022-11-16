@@ -8,6 +8,7 @@ interface ObjAdv {
   type: string
   valueColors: string[]
   labels: string[]
+  valueRangeColors: number[]
 }
 class Generatechartsadv {
   objAdv!: ObjAdv;
@@ -57,14 +58,16 @@ class Generatechartsadv {
 
       this.circle = el.querySelector('.circle-chart__circle')
 
-      let status = this.objAdv.percValues[this.objAdv.percValues.length - 1] >= 0 && this.objAdv.percValues[this.objAdv.percValues.length - 1] < 33 ? 'red' : this.objAdv.percValues[this.objAdv.percValues.length - 1] >= 33 && this.objAdv.percValues[this.objAdv.percValues.length - 1] < 66 ? 'orange' : 'green'
+      let status = this.objAdv.percValues[this.objAdv.percValues.length - 1] >= 0 && this.objAdv.percValues[this.objAdv.percValues.length - 1] < this.objAdv.valueRangeColors[0] ? 'red' : this.objAdv.percValues[this.objAdv.percValues.length - 1] >= this.objAdv.valueRangeColors[0] && this.objAdv.percValues[this.objAdv.percValues.length - 1] < this.objAdv.valueRangeColors[1] ? 'orange' : 'green'
 
+      this.header.classList.contains('red') && this.header.classList.remove('red')
+      this.header.classList.contains('orange') && this.header.classList.remove('orange')
+      this.header.classList.contains('green') && this.header.classList.remove('green')
 
       this.header.classList.add(
         status
       )
 
-      console.log('TEST', `${this.objAdv.percValues[this.objAdv.percValues.length - 1]}`, this.objAdv.percValues.length, this.objAdv.percValues)
       this.circle.style['stroke-dasharray'] = `${
         this.objAdv.percValues[this.objAdv.percValues.length - 1]
       } 100`
@@ -99,7 +102,7 @@ class Generatechartsadv {
   iterateRow(contentRow: Element[], index: number){
     contentRow.forEach((row, indexRow) => {
       this.barContent = row.querySelector('.bar__content')
-      let status = this.objAdv.percValues[indexRow] >= 0 && this.objAdv.percValues[indexRow] < 33 ? 'red' : this.objAdv.percValues[indexRow] >= 33 && this.objAdv.percValues[indexRow] < 66 ? 'orange' : 'green'
+      let status = this.objAdv.percValues[indexRow] >= 0 && this.objAdv.percValues[indexRow] < this.objAdv.valueRangeColors[0] ? 'red' : this.objAdv.percValues[indexRow] >= this.objAdv.valueRangeColors[0] && this.objAdv.percValues[indexRow] < this.objAdv.valueRangeColors[1] ? 'orange' : 'green'
       
       this.barContent.classList.contains('red') && this.barContent.classList.remove('red')
       this.barContent.classList.contains('orange') && this.barContent.classList.remove('orange')

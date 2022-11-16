@@ -14,6 +14,7 @@ const advert = {
     'TOUR VIRTUALES',
     'GLOBAL',
   ],
+  valueRangeColors: [74, 84],
 }
 
 export default advert

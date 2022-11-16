@@ -3,7 +3,7 @@ body {
   background-color: azure;
 }
 
-.chart-card[data-type*="homepage"], .chart-card[data-type*="advertising"], .chart-card[data-type*="gmb-reviews"] {
+.chart-card[data-format*="type1"] {
   width: 100%;
   height: auto;
   min-height: 100px;
@@ -16,7 +16,7 @@ body {
   position: relative;
 }
 
-.chart-card[data-type*="homepage"] .chart-card__header, .chart-card[data-type*="advertising"] .chart-card__header, .chart-card[data-type*="gmb-reviews"] .chart-card__header {
+.chart-card[data-format*="type1"] .chart-card__header {
   width: 100%;
   height: auto;
   min-height: 30px;
@@ -33,7 +33,7 @@ body {
   overflow: hidden;
 }
 
-.chart-card[data-type*="homepage"] .chart-card__header .chart-card__header__title, .chart-card[data-type*="advertising"] .chart-card__header .chart-card__header__title, .chart-card[data-type*="gmb-reviews"] .chart-card__header .chart-card__header__title {
+.chart-card[data-format*="type1"] .chart-card__header .chart-card__header__title {
   color: #fff;
   flex-direction: column;
   justify-content: center;
@@ -42,13 +42,13 @@ body {
   display: flex;
 }
 
-.chart-card[data-type*="homepage"] .chart-card__header .chart-card__header__title h3, .chart-card[data-type*="advertising"] .chart-card__header .chart-card__header__title h3, .chart-card[data-type*="gmb-reviews"] .chart-card__header .chart-card__header__title h3 {
+.chart-card[data-format*="type1"] .chart-card__header .chart-card__header__title h3 {
   margin: 0;
   font-size: 20px;
   font-weight: 700;
 }
 
-.chart-card[data-type*="homepage"] .chart-card__header .chart-card__header__title span, .chart-card[data-type*="advertising"] .chart-card__header .chart-card__header__title span, .chart-card[data-type*="gmb-reviews"] .chart-card__header .chart-card__header__title span {
+.chart-card[data-format*="type1"] .chart-card__header .chart-card__header__title span {
   color: #000;
   background-color: #fff;
   border-radius: 10px;
@@ -57,7 +57,7 @@ body {
   font-weight: 400;
 }
 
-.chart-card[data-type*="homepage"] .chart-card__header .chart-card__header__round, .chart-card[data-type*="advertising"] .chart-card__header .chart-card__header__round, .chart-card[data-type*="gmb-reviews"] .chart-card__header .chart-card__header__round {
+.chart-card[data-format*="type1"] .chart-card__header .chart-card__header__round {
   color: #fff;
   flex-direction: column;
   justify-content: center;
@@ -66,7 +66,7 @@ body {
   display: flex;
 }
 
-.chart-card[data-type*="homepage"] .chart-card__header .chart-card__header__round span, .chart-card[data-type*="advertising"] .chart-card__header .chart-card__header__round span, .chart-card[data-type*="gmb-reviews"] .chart-card__header .chart-card__header__round span {
+.chart-card[data-format*="type1"] .chart-card__header .chart-card__header__round span {
   color: #fff;
   justify-content: center;
   align-items: center;
@@ -75,29 +75,13 @@ body {
   display: flex;
 }
 
-.chart-card[data-type*="homepage"] .red, .chart-card[data-type*="advertising"] .red, .chart-card[data-type*="gmb-reviews"] .red {
-  background-color: red;
-}
-
-.chart-card[data-type*="homepage"] .green, .chart-card[data-type*="advertising"] .green, .chart-card[data-type*="gmb-reviews"] .green {
-  background-color: green;
-}
-
-.chart-card[data-type*="homepage"] .yellow, .chart-card[data-type*="advertising"] .yellow, .chart-card[data-type*="gmb-reviews"] .yellow {
-  background-color: #ff0;
-}
-
-.chart-card[data-type*="homepage"] .orange, .chart-card[data-type*="advertising"] .orange, .chart-card[data-type*="gmb-reviews"] .orange {
-  background-color: orange;
-}
-
-.chart-card[data-type*="homepage"] .chart-card__content, .chart-card[data-type*="advertising"] .chart-card__content, .chart-card[data-type*="gmb-reviews"] .chart-card__content {
+.chart-card[data-format*="type1"] .chart-card__content {
   flex-direction: column;
   gap: 5px;
   display: flex;
 }
 
-.chart-card[data-type*="homepage"] .chart-card__content .content__row, .chart-card[data-type*="advertising"] .chart-card__content .content__row, .chart-card[data-type*="gmb-reviews"] .chart-card__content .content__row {
+.chart-card[data-format*="type1"] .chart-card__content .content__row {
   justify-content: space-between;
   align-items: center;
   gap: 15px;
@@ -106,19 +90,19 @@ body {
   display: flex;
 }
 
-.chart-card[data-type*="homepage"] .chart-card__content .content__row .text, .chart-card[data-type*="advertising"] .chart-card__content .content__row .text, .chart-card[data-type*="gmb-reviews"] .chart-card__content .content__row .text {
+.chart-card[data-format*="type1"] .chart-card__content .content__row .text {
   width: 50%;
   padding: 0 20px;
   font-weight: 400;
 }
 
-.chart-card[data-type*="homepage"] .chart-card__content .content__row .bar, .chart-card[data-type*="advertising"] .chart-card__content .content__row .bar, .chart-card[data-type*="gmb-reviews"] .chart-card__content .content__row .bar {
+.chart-card[data-format*="type1"] .chart-card__content .content__row .bar {
   width: 30%;
   text-align: right;
   position: relative;
 }
 
-.chart-card[data-type*="homepage"] .chart-card__content .content__row .bar .bar__background, .chart-card[data-type*="advertising"] .chart-card__content .content__row .bar .bar__background, .chart-card[data-type*="gmb-reviews"] .chart-card__content .content__row .bar .bar__background {
+.chart-card[data-format*="type1"] .chart-card__content .content__row .bar .bar__background {
   width: 100%;
   height: 4px;
   background-color: #efefef;
@@ -126,7 +110,7 @@ body {
   position: relative;
 }
 
-.chart-card[data-type*="homepage"] .chart-card__content .content__row .bar .bar__background .bar__content, .chart-card[data-type*="advertising"] .chart-card__content .content__row .bar .bar__background .bar__content, .chart-card[data-type*="gmb-reviews"] .chart-card__content .content__row .bar .bar__background .bar__content {
+.chart-card[data-format*="type1"] .chart-card__content .content__row .bar .bar__background .bar__content {
   height: 4px;
   width: 0;
   transition: all 1s ease-out;
@@ -135,27 +119,11 @@ body {
   left: 0;
 }
 
-.chart-card[data-type*="homepage"] .chart-card__content .content__row .perc, .chart-card[data-type*="advertising"] .chart-card__content .content__row .perc, .chart-card[data-type*="gmb-reviews"] .chart-card__content .content__row .perc {
+.chart-card[data-format*="type1"] .chart-card__content .content__row .perc {
   width: 20%;
 }
 
-.chart-card[data-type*="homepage"] .chart-card__content .content__row .red-text, .chart-card[data-type*="advertising"] .chart-card__content .content__row .red-text, .chart-card[data-type*="gmb-reviews"] .chart-card__content .content__row .red-text {
-  color: red;
-}
-
-.chart-card[data-type*="homepage"] .chart-card__content .content__row .green-text, .chart-card[data-type*="advertising"] .chart-card__content .content__row .green-text, .chart-card[data-type*="gmb-reviews"] .chart-card__content .content__row .green-text {
-  color: green;
-}
-
-.chart-card[data-type*="homepage"] .chart-card__content .content__row .yellow-text, .chart-card[data-type*="advertising"] .chart-card__content .content__row .yellow-text, .chart-card[data-type*="gmb-reviews"] .chart-card__content .content__row .yellow-text {
-  color: #ff0;
-}
-
-.chart-card[data-type*="homepage"] .chart-card__content .content__row .orange-text, .chart-card[data-type*="advertising"] .chart-card__content .content__row .orange-text, .chart-card[data-type*="gmb-reviews"] .chart-card__content .content__row .orange-text {
-  color: orange;
-}
-
-.chart-card[data-type*="homepage"] .chart-card__footer, .chart-card[data-type*="advertising"] .chart-card__footer, .chart-card[data-type*="gmb-reviews"] .chart-card__footer {
+.chart-card[data-format*="type1"] .chart-card__footer {
   height: 80px;
   border-top: 1px dashed gray;
   justify-content: center;
@@ -164,7 +132,7 @@ body {
   display: flex;
 }
 
-.chart-card[data-type*="homepage"] .chart-card__footer button, .chart-card[data-type*="advertising"] .chart-card__footer button, .chart-card[data-type*="gmb-reviews"] .chart-card__footer button {
+.chart-card[data-format*="type1"] .chart-card__footer button {
   color: #fff;
   background-color: red;
   border: 0;
@@ -174,7 +142,7 @@ body {
   font-size: 12px;
 }
 
-.chart-card[data-type*="homepage"] .chart-card__footer button:hover, .chart-card[data-type*="advertising"] .chart-card__footer button:hover, .chart-card[data-type*="gmb-reviews"] .chart-card__footer button:hover {
+.chart-card[data-format*="type1"] .chart-card__footer button:hover {
   background-color: #000;
 }
 
@@ -189,7 +157,7 @@ body {
   left: 0;
 }
 
-.chart-card[data-type*="type-4"] {
+.chart-card[data-format*="type2"] {
   width: 100%;
   height: auto;
   min-height: 100px;
@@ -202,34 +170,67 @@ body {
   position: relative;
 }
 
-.chart-card[data-type*="type-4"] .chart-card__content {
+.chart-card[data-format*="type2"] .chart-card__content {
   flex-direction: column;
   gap: 5px;
   display: flex;
 }
 
-.chart-card[data-type*="type-4"] .chart-card__content .content__row {
+.chart-card[data-format*="type2"] .chart-card__content .content__row:nth-child(1) {
+  margin-top: 10px;
+}
+
+.chart-card[data-format*="type2"] .chart-card__content .content__row {
+  border-bottom: 1px dashed gray;
   justify-content: space-between;
   align-items: center;
   gap: 15px;
-  margin: 10px 0;
+  margin: 0 10px;
+  padding: 10px 0;
   font-size: 19px;
   display: flex;
 }
 
-.chart-card[data-type*="type-4"] .chart-card__content .content__row .text {
-  width: 50%;
-  padding: 0 20px;
+.chart-card[data-format*="type2"] .chart-card__content .content__row .content__title {
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 10px;
+  display: flex;
+}
+
+.chart-card[data-format*="type2"] .chart-card__content .content__row .content__title .text {
+  text-align: left;
   font-weight: 400;
 }
 
-.chart-card[data-type*="type-4"] .chart-card__content .content__row .bar {
+.chart-card[data-format*="type2"] .chart-card__content .content__row .content__title .subtitile {
+  font-size: 14px;
+}
+
+.chart-card[data-format*="type2"] .chart-card__content .content__row .chart-card__content {
+  min-width: 100px;
+  height: 70px;
+}
+
+.chart-card[data-format*="type2"] .chart-card__content .content__row .circle-chart__circle_perc {
+  width: 70px;
+  height: 70px;
+  border: 5px solid #d3d3d3;
+  border-radius: 70px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.chart-card[data-format*="type2"] .chart-card__content .content__row .bar {
   width: 30%;
   text-align: right;
   position: relative;
 }
 
-.chart-card[data-type*="type-4"] .chart-card__content .content__row .bar .bar__background {
+.chart-card[data-format*="type2"] .chart-card__content .content__row .bar .bar__background {
   width: 100%;
   height: 4px;
   background-color: #efefef;
@@ -237,7 +238,7 @@ body {
   position: relative;
 }
 
-.chart-card[data-type*="type-4"] .chart-card__content .content__row .bar .bar__background .bar__content {
+.chart-card[data-format*="type2"] .chart-card__content .content__row .bar .bar__background .bar__content {
   height: 4px;
   width: 0;
   transition: all 1s ease-out;
@@ -246,24 +247,79 @@ body {
   left: 0;
 }
 
-.chart-card[data-type*="type-4"] .chart-card__content .content__row .perc {
+.chart-card[data-format*="type2"] .chart-card__content .content__row .perc {
   width: 20%;
 }
 
-.chart-card[data-type*="type-4"] .chart-card__content .content__row .red-text {
-  color: red;
+.chart-card[data-format*="type2"] .chart-card__footer {
+  height: 80px;
+  border-top: 1px dashed gray;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px;
+  display: flex;
 }
 
-.chart-card[data-type*="type-4"] .chart-card__content .content__row .green-text {
-  color: green;
+.chart-card[data-format*="type2"] .chart-card__footer button {
+  color: #fff;
+  background-color: red;
+  border: 0;
+  border-radius: 20px;
+  outline: 0;
+  padding: 6px 15px;
+  font-size: 12px;
 }
 
-.chart-card[data-type*="type-4"] .chart-card__content .content__row .yellow-text {
-  color: #ff0;
+.chart-card[data-format*="type2"] .chart-card__footer button:hover {
+  background-color: #000;
 }
 
-.chart-card[data-type*="type-4"] .chart-card__content .content__row .orange-text {
-  color: orange;
+.red {
+  background-color: red !important;
+}
+
+.green {
+  background-color: green !important;
+}
+
+.yellow {
+  background-color: #ff0 !important;
+}
+
+.orange {
+  background-color: orange !important;
+}
+
+.red-text {
+  color: red !important;
+}
+
+.green-text {
+  color: green !important;
+}
+
+.yellow-text {
+  color: #ff0 !important;
+}
+
+.orange-text {
+  color: orange !important;
+}
+
+.border-red {
+  border-color: red !important;
+}
+
+.border-yellow {
+  border-color: #ff0 !important;
+}
+
+.border-orange {
+  border-color: orange !important;
+}
+
+.border-green {
+  border-color: green !important;
 }
 
 .circle-chart {

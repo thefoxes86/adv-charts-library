@@ -36,9 +36,11 @@ var Generatechartsadv = /** @class */ (function () {
             _this.header = el.querySelector('.chart-card__header');
             _this.loading(false, el);
             _this.circle = el.querySelector('.circle-chart__circle');
-            var status = _this.objAdv.percValues[_this.objAdv.percValues.length - 1] >= 0 && _this.objAdv.percValues[_this.objAdv.percValues.length - 1] < 33 ? 'red' : _this.objAdv.percValues[_this.objAdv.percValues.length - 1] >= 33 && _this.objAdv.percValues[_this.objAdv.percValues.length - 1] < 66 ? 'orange' : 'green';
+            var status = _this.objAdv.percValues[_this.objAdv.percValues.length - 1] >= 0 && _this.objAdv.percValues[_this.objAdv.percValues.length - 1] < _this.objAdv.valueRangeColors[0] ? 'red' : _this.objAdv.percValues[_this.objAdv.percValues.length - 1] >= _this.objAdv.valueRangeColors[0] && _this.objAdv.percValues[_this.objAdv.percValues.length - 1] < _this.objAdv.valueRangeColors[1] ? 'orange' : 'green';
+            _this.header.classList.contains('red') && _this.header.classList.remove('red');
+            _this.header.classList.contains('orange') && _this.header.classList.remove('orange');
+            _this.header.classList.contains('green') && _this.header.classList.remove('green');
             _this.header.classList.add(status);
-            console.log('TEST', "".concat(_this.objAdv.percValues[_this.objAdv.percValues.length - 1]), _this.objAdv.percValues.length, _this.objAdv.percValues);
             _this.circle.style['stroke-dasharray'] = "".concat(_this.objAdv.percValues[_this.objAdv.percValues.length - 1], " 100");
             var previousPercValue = document.getElementById("mainValuePerc-".concat(_this.objAdv.type, "-").concat(index));
             var value = "".concat(_this.objAdv.realValues[_this.objAdv.realValues.length - 1]).concat(_this.objAdv.valueLabels[_this.objAdv.valueLabels.length - 1]);
@@ -62,7 +64,7 @@ var Generatechartsadv = /** @class */ (function () {
         var _this = this;
         contentRow.forEach(function (row, indexRow) {
             _this.barContent = row.querySelector('.bar__content');
-            var status = _this.objAdv.percValues[indexRow] >= 0 && _this.objAdv.percValues[indexRow] < 33 ? 'red' : _this.objAdv.percValues[indexRow] >= 33 && _this.objAdv.percValues[indexRow] < 66 ? 'orange' : 'green';
+            var status = _this.objAdv.percValues[indexRow] >= 0 && _this.objAdv.percValues[indexRow] < _this.objAdv.valueRangeColors[0] ? 'red' : _this.objAdv.percValues[indexRow] >= _this.objAdv.valueRangeColors[0] && _this.objAdv.percValues[indexRow] < _this.objAdv.valueRangeColors[1] ? 'orange' : 'green';
             _this.barContent.classList.contains('red') && _this.barContent.classList.remove('red');
             _this.barContent.classList.contains('orange') && _this.barContent.classList.remove('orange');
             _this.barContent.classList.contains('green') && _this.barContent.classList.remove('green');

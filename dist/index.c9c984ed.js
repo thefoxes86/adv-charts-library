@@ -617,6 +617,10 @@ const advert = {
         "SERVICOS",
         "TOUR VIRTUALES",
         "GLOBAL"
+    ],
+    valueRangeColors: [
+        74,
+        84
     ]
 };
 exports.default = advert;
@@ -701,6 +705,10 @@ const advert = {
         "SERVICOS",
         "TOUR VIRTUALES",
         "GLOBAL"
+    ],
+    valueRangeColors: [
+        74,
+        84
     ]
 };
 exports.default = advert;
@@ -750,6 +758,10 @@ const home = {
         "NOTICIAS",
         "EQUIPO",
         "GLOBAL"
+    ],
+    valueRangeColors: [
+        74,
+        84
     ]
 };
 exports.default = home;
@@ -794,6 +806,10 @@ const gmb = {
         "Respondidas",
         "Tiempo de respuesta",
         "Global"
+    ],
+    valueRangeColors: [
+        44,
+        84
     ]
 };
 exports.default = gmb;
@@ -828,6 +844,10 @@ const type4 = {
         "Satisfaccion",
         "Numero rese\xf1as",
         "Respondidas"
+    ],
+    valueRangeColors: [
+        74,
+        84
     ]
 };
 exports.default = type4;
@@ -863,9 +883,11 @@ class Generatechartsadv {
             this.header = el.querySelector(".chart-card__header");
             this.loading(false, el);
             this.circle = el.querySelector(".circle-chart__circle");
-            let status = this.objAdv.percValues[this.objAdv.percValues.length - 1] >= 0 && this.objAdv.percValues[this.objAdv.percValues.length - 1] < 33 ? "red" : this.objAdv.percValues[this.objAdv.percValues.length - 1] >= 33 && this.objAdv.percValues[this.objAdv.percValues.length - 1] < 66 ? "orange" : "green";
+            let status = this.objAdv.percValues[this.objAdv.percValues.length - 1] >= 0 && this.objAdv.percValues[this.objAdv.percValues.length - 1] < this.objAdv.valueRangeColors[0] ? "red" : this.objAdv.percValues[this.objAdv.percValues.length - 1] >= this.objAdv.valueRangeColors[0] && this.objAdv.percValues[this.objAdv.percValues.length - 1] < this.objAdv.valueRangeColors[1] ? "orange" : "green";
+            this.header.classList.contains("red") && this.header.classList.remove("red");
+            this.header.classList.contains("orange") && this.header.classList.remove("orange");
+            this.header.classList.contains("green") && this.header.classList.remove("green");
             this.header.classList.add(status);
-            console.log("TEST", `${this.objAdv.percValues[this.objAdv.percValues.length - 1]}`, this.objAdv.percValues.length, this.objAdv.percValues);
             this.circle.style["stroke-dasharray"] = `${this.objAdv.percValues[this.objAdv.percValues.length - 1]} 100`;
             let previousPercValue = document.getElementById(`mainValuePerc-${this.objAdv.type}-${index}`);
             let value = `${this.objAdv.realValues[this.objAdv.realValues.length - 1]}${this.objAdv.valueLabels[this.objAdv.valueLabels.length - 1]}`;
@@ -886,7 +908,7 @@ class Generatechartsadv {
     iterateRow(contentRow, index) {
         contentRow.forEach((row, indexRow)=>{
             this.barContent = row.querySelector(".bar__content");
-            let status = this.objAdv.percValues[indexRow] >= 0 && this.objAdv.percValues[indexRow] < 33 ? "red" : this.objAdv.percValues[indexRow] >= 33 && this.objAdv.percValues[indexRow] < 66 ? "orange" : "green";
+            let status = this.objAdv.percValues[indexRow] >= 0 && this.objAdv.percValues[indexRow] < this.objAdv.valueRangeColors[0] ? "red" : this.objAdv.percValues[indexRow] >= this.objAdv.valueRangeColors[0] && this.objAdv.percValues[indexRow] < this.objAdv.valueRangeColors[1] ? "orange" : "green";
             this.barContent.classList.contains("red") && this.barContent.classList.remove("red");
             this.barContent.classList.contains("orange") && this.barContent.classList.remove("orange");
             this.barContent.classList.contains("green") && this.barContent.classList.remove("green");

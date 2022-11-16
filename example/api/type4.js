@@ -6,6 +6,7 @@ const type4 = {
   type: 'type4',
   valueColors: ['green', 'green', 'red'],
   labels: ['Satisfaccion', 'Numero reseñas', 'Respondidas'],
+  valueRangeColors: [74, 84],
 }
 
 export default type4

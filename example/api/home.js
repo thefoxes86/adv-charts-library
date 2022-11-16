@@ -13,6 +13,7 @@ const home = {
     'EQUIPO',
     'GLOBAL',
   ],
+  valueRangeColors: [74, 84],
 }
 
 export default home

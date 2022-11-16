@@ -12,6 +12,7 @@ const gmb = {
     'Tiempo de respuesta',
     'Global',
   ],
+  valueRangeColors: [44, 84],
 }
 
 export default gmb

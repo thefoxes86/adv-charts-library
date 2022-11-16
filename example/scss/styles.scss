@@ -4,7 +4,7 @@ body {
     background-color: azure;
 }
 
-.chart-card[data-type*="homepage"], .chart-card[data-type*="advertising"], .chart-card[data-type*="gmb-reviews"] {
+.chart-card[data-format*="type1"] {
     font-family: 'Montserrat', sans-serif;
     position: relative;
     margin: 10px;
@@ -76,19 +76,6 @@ body {
     }
 
 
-    .red {
-        background-color: red;
-    }
-    .green {
-        background-color: green;
-    }
-    .yellow {
-        background-color: yellow;
-    }
-    .orange {
-        background-color: orange;
-    }
-
     .chart-card__content {
         display: flex;
         flex-direction: column;
@@ -136,18 +123,6 @@ body {
 
             & .perc {
                 width: 20%;
-            }
-            .red-text {
-                color: red;
-            }
-            .green-text {
-                color: green;
-            }
-            .yellow-text {
-                color: yellow;
-            }
-            .orange-text { 
-                color: orange;
             }
         }
     }
@@ -201,7 +176,7 @@ body {
     }
 }
 
-.chart-card[data-type*="type-4"] {
+.chart-card[data-format*="type2"] {
     font-family: 'Montserrat', sans-serif;
     position: relative;
     margin: 10px;
@@ -217,20 +192,54 @@ body {
         display: flex;
         flex-direction: column;
         gap: 5px;
+
+        & .content__row:nth-child(1) {
+            margin-top: 10px;
+        } 
         
         & .content__row {
-            margin: 10px 0;
+            margin: 0px 10px;
+            padding: 10px 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
             gap: 15px;
             font-size: 19px;
+            border-bottom: grey dashed 1px;
 
-            & .text {
-                width: 50%;
-                font-weight: 400;
+            & .content__title {
+                display: flex;
                 
-                padding: 0px 20px;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: center;
+                width: 100%;
+                padding: 0px 10px;
+                
+                & .text {
+                    font-weight: 400;
+                    text-align: left;
+                  
+                }
+                
+                & .subtitile {
+                    font-size: 14px;
+                }
+            }
+
+            & .chart-card__content {
+                min-width: 100px;
+                height: 70px;
+            }
+
+            & .circle-chart__circle_perc {
+                width: 70px;
+                height: 70px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 70px;
+                border: 5px solid lightgray;
             }
 
 
@@ -261,20 +270,72 @@ body {
             & .perc {
                 width: 20%;
             }
-            .red-text {
-                color: red;
-            }
-            .green-text {
-                color: green;
-            }
-            .yellow-text {
-                color: yellow;
-            }
-            .orange-text { 
-                color: orange;
+        }
+    }
+    .chart-card__footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 80px;
+        margin: 0 10px;
+        border-top: grey dashed 1px;
+
+        & button {
+            background-color: red;
+            outline: 0;
+            border: 0;
+            border-radius: 20px;
+            color: white;
+            font-size: 12px;
+            padding: 6px 15px;
+
+            &:hover {
+                background-color: black;
             }
         }
     }
+}
+
+.red {
+    background-color: red !important;
+}
+.green {
+    background-color: green !important;
+}
+.yellow {
+    background-color: yellow !important;
+}
+.orange {
+    background-color: orange !important;
+}
+
+.red-text {
+    color: red !important;
+}
+.green-text {
+    color: green !important;
+}
+.yellow-text {
+    color: yellow !important;
+}
+.orange-text { 
+    color: orange !important;
+}
+
+.border-red {
+    border-color: red !important;
+}
+
+.border-yellow {
+    border-color: yellow !important;
+}
+
+.border-orange {
+    border-color: orange !important;
+}
+
+.border-green {
+    border-color: green !important;
 }
 
 
