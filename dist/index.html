@@ -17,14 +17,45 @@
   </head>
   <body>
     <div class="container">
+      <div class="row chart-card row__header" data-format="type2" data-type="header-summary">
+        <div class="col-12">
+          <div class="row d-flex align-items-end">
+            <div class="col-2">
+              <h3 class="row__title">Summary</h3>
+            </div>
+            <div class="col-3 col__bullet" id="col-bullet-0">
+              <span data-perc="20" class="bullet">
+                <span class="overlay__full"></span>
+              </span>
+              <span data-perc="40" class="bullet">
+                <span class="overlay__full"></span>
+              </span>
+              <span data-perc="60" class="bullet">
+                <span class="overlay__full"></span>
+              </span>
+              <span data-perc="80" class="bullet">
+                <span class="overlay__full"></span>
+              </span>
+              <span data-perc="100" class="bullet">
+                <span class="overlay__full"></span>
+              </span>
+            </div>
+            <div class="col text-left">
+              <span class="perc__title" id="perc-title-header-summary">
+                0%
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="row">
         <div class="col-4">
-          <div class="chart-card loading" data-format="type1" data-type="advertising">
+          <div class="chart-card dv-lightgreen-bg loading" data-format="type1" data-type="advertising">
             <!-- Card Header BEGIN -->
             <div class="chart-card__header">
               <div class="chart-card__header__title">
                 <h3>Calidad Encargo</h3>
-                <span>criterios de qualidad</span>
+                <button>criterios de qualidad</button>
               </div>
               <div class="chart-card__header__round">
                 <span>
@@ -99,7 +130,7 @@
             <!-- Card Content END -->
             <!-- Card Footer BEGIN -->
             <div class="chart-card__footer">
-              <button>Goes here !!!</button>
+              <button disabled="">Goes here disabled !!!</button>
             </div>
             <!-- Card Footer END -->
           </div>
@@ -111,7 +142,7 @@
             <div class="chart-card__header">
               <div class="chart-card__header__title">
                 <h3>Calidad Encargo</h3>
-                <span>criterios de qualidad</span>
+                <button>criterios de qualidad</button>
               </div>
               <div class="chart-card__header__round">
                 <span>
@@ -189,7 +220,7 @@
             <div class="chart-card__header">
               <div class="chart-card__header__title">
                 <h3>Calidad Encargo</h3>
-                <span>criterios de qualidad</span>
+                <button>criterios de qualidad</button>
               </div>
               <div class="chart-card__header__round">
                 <span>
@@ -261,7 +292,7 @@
           </div>
         </div>
       </div>
-      <div class="row" data-format="type2" data-type="header">
+      <div class="row loading" data-format="type2" data-type="header">
         <div class="col-12">
           <div class="row d-flex align-items-end">
             <div class="col-2">
@@ -364,6 +395,7 @@
           </div>
         </div>
       </div>
+
       <div class="row loading" data-format="type2" data-type="header2">
         <div class="col-12">
           <div class="row d-flex align-items-end">
@@ -467,6 +499,7 @@
           </div>
         </div>
       </div>
+      
     </div>
   </body>
 </html>

@@ -1,4 +1,5 @@
 import { CountUp } from 'countup.js'
+import animateBullets from './utils/animateBullets'
 
 interface ObjAdv {
   result: string
@@ -17,19 +18,27 @@ class Generatechartsadv {
   typedCard!: Element[];
   header!: Element;
   circle!: HTMLInputElement | HTMLBaseElement | any;
-  percValue!: any;
+  percValue!: [];
   contentRow!: Element[];
   barContent!: Element | any;
-  percValueText: any;
+  percValueText: [];
   textValue: any;
   update: boolean;
   setLoading: boolean;
+  titlePercValue!: [];
+  precValueHeaderTitleValue: number | null;
+  bullet!: any;
+  rowType!: any;
 
   constructor(){
     // @ts-ignore
     this.chartCard =  [...document.querySelectorAll(`.chart-card`)] 
     this.update = false
     this.setLoading = true
+    this.percValueText = []
+    this.percValue= []
+    this.titlePercValue = []
+    this.precValueHeaderTitleValue = null
   }
 
   loading(loading: boolean, el?: HTMLElement | any){
@@ -42,7 +51,6 @@ class Generatechartsadv {
     this.typedCard = (this.chartCard as any | Element[]).filter(
       (elem: any)  => elem.dataset['type'] === obj.type
     ) 
-
     this.iterateMainElement(this.typedCard)
   }
 
@@ -53,14 +61,16 @@ class Generatechartsadv {
 
   iterateMainElement(cards: Element[]){
     cards.forEach((el:any, index:number)=>{
+      
       this.header = el.querySelector('.chart-card__header')
       this.loading(false, el)
 
       let status = this.objAdv.percValues[this.objAdv.percValues.length - 1] >= 0 && this.objAdv.percValues[this.objAdv.percValues.length - 1] < this.objAdv.valueRangeColors[0] ? 'red' : this.objAdv.percValues[this.objAdv.percValues.length - 1] >= this.objAdv.valueRangeColors[0] && this.objAdv.percValues[this.objAdv.percValues.length - 1] < this.objAdv.valueRangeColors[1] ? 'orange' : 'green'
+      
+      // HEADER TYPE 1
       if (this.objAdv.format === 'type1') {
         
         this.circle = el.querySelector('.circle-chart__circle')
-        
         
         if (this.header) {
           
@@ -68,9 +78,7 @@ class Generatechartsadv {
           this.header.classList.contains('orange') && this.header.classList.remove('orange')
           this.header.classList.contains('green') && this.header.classList.remove('green')
           
-          this.header.classList.add(
-            status
-            )
+          this.header.classList.add(status)
           }
           
           this.circle.style['stroke-dasharray'] = `${
@@ -80,92 +88,91 @@ class Generatechartsadv {
           let previousPercValue = document.getElementById(`mainValuePerc-${this.objAdv.type}-${index}`)
           let value = `${this.objAdv.realValues[this.objAdv.realValues.length -1]}${this.objAdv.valueLabels[this.objAdv.valueLabels.length - 1]}`
           
+          
+          
           if (previousPercValue?.innerHTML !== value) {
-            this.percValue = new CountUp(
-              `mainValuePerc-${this.objAdv.type}-${index}`,
-              this.objAdv.realValues[this.objAdv.realValues.length - 1] as number,
-              {
-                suffix:
-                this.objAdv.valueLabels[this.objAdv.valueLabels.length - 1],
-              }
-              )
-              if (this.update) { 
-                this.percValue.update(this.objAdv.realValues[this.objAdv.realValues.length - 1])
+            
+            if (this.update) { 
+              // @ts-ignore
+              let updateCound: {id: string, data: any} = this.percValue.find((element:{id: string, data: any})  => element.id === this.objAdv.type)
+
+              updateCound?.data?.update(this.objAdv.realValues[this.objAdv.realValues.length - 1])
+
+              this.update = false
+          
+                
               } else {
-                this.percValue.start()
+                let checkDecimals = (this.objAdv.realValues[this.objAdv.realValues.length - 1] as number - Math.floor(this.objAdv.realValues[this.objAdv.realValues.length - 1] as number)) !== 0
+                let initTitleCount = new CountUp(
+                  `mainValuePerc-${this.objAdv.type}-${index}`,
+                  this.objAdv.realValues[this.objAdv.realValues.length - 1] as number,
+                  {
+                    suffix:
+                    this.objAdv.valueLabels[this.objAdv.valueLabels.length - 1],
+                    decimalPlaces: checkDecimals ? 1 : 0 ,
+                    decimal: '.'
+                  }
+                  )
+                  // @ts-ignore
+                  this.percValue.push({id: this.objAdv.type ,data: initTitleCount})
+               
+                initTitleCount.start()
               }
             } 
           }
-
+      // HEADER TYPE 2
       if (this.objAdv.format === 'type2') {
-        let rowType: any = document.querySelector(`[data-type=${this.objAdv.type}]`)
-        let bullet: any = rowType.querySelectorAll('.overlay__full')
+        this.rowType = document.querySelector(`[data-type=${this.objAdv.type}]`)
+        this.bullet = this.rowType.querySelectorAll('.overlay__full')
         let valuePerc = this.objAdv.percValues[this.objAdv.percValues.length - 1] as number
 
-        this.loading(false, rowType)
+
+        this.loading(false, this.rowType)
 
           
-          bullet.forEach((el: any)=>{
+          this.bullet.forEach((el: any)=>{
             el.style.background = `${status}`
           })
-          if (valuePerc > 0 && valuePerc <20) {
-            bullet[0].style.width = `${(valuePerc / 2) * 10}%`
-          } 
-          if (valuePerc >= 20 && valuePerc <40) {
-            bullet[0].style.width = '100%'
-            setTimeout(()=>{
-              bullet[1].style.width = `${((valuePerc - 20) / 2) * 10}%`
-            }, 200)
-          } 
-          if (valuePerc >= 40 && valuePerc <60) {
-            bullet[0].style.width = `100%`
-            setTimeout(()=>{
-              bullet[1].style.width = `100%`
-            },200)
-            setTimeout(()=>{
-              bullet[2].style.width = `${((valuePerc - 40) / 2) * 10}%`
-            }, 400)
-          } 
-          if (valuePerc >= 60 && valuePerc <80) {
-            bullet[0].style.width = `100%`
-            setTimeout(()=>{
-              bullet[1].style.width = `100%`
-            },200)
-            setTimeout(()=>{
-              bullet[2].style.width = `100%`
-            },400)
-            setTimeout(()=>{
-              bullet[3].style.width = `${((valuePerc - 60) / 2) * 10}%`
-            }, 600)
-          } 
-          if (valuePerc >= 80) {
-            bullet[0].style.width = `100%`
-            setTimeout(()=>{
-              bullet[1].style.width = `100%`
-            },200)
-            setTimeout(()=>{
-              bullet[2].style.width = `100%`
-            },400)
-            setTimeout(()=>{
-              bullet[3].style.width = `100%`
-            },600)
-            setTimeout(()=>{
-              bullet[4].style.width = `${((valuePerc - 80) / 2) * 10}%`
-            }, 800)
-          } 
 
-          // bul.style.background = status 
-          // bul.style.width = `${this.objAdv.percValues[this.objAdv.percValues.length - 1]}%` 
-      
+          // if (this.update) {
+          //   // @ts-ignore
+          //   animateBullets(this.bullet, valuePerc, this.precValueHeaderTitleValue)
+          // } else {
+          //   this.precValueHeaderTitleValue = valuePerc
+          // }
+          animateBullets(this.bullet, valuePerc)
         
-        let titlePercValue = new CountUp(
-          `perc-title-${this.objAdv.type}`,
-          this.objAdv.realValues[this.objAdv.realValues.length - 1] as number,
-          {
-            suffix: this.objAdv.valueLabels[this.objAdv.realValues.length - 1],
+        
+          console.log('ID', `perc-title-${this.objAdv.type}`, this.update)
+          if (this.update) { 
+
+             // @ts-ignore
+             let updateCound: {id: string, data: any} = this.titlePercValue.find((element:{id: string, data: any})  => element.id === this.objAdv.type)
+
+             updateCound?.data?.update(this.objAdv.realValues[this.objAdv.realValues.length - 1])
+
+             this.update = false
+         
+            
+          } else {
+            let checkDecimals = (this.objAdv.realValues[this.objAdv.realValues.length - 1] as number - Math.floor(this.objAdv.realValues[this.objAdv.realValues.length - 1] as number)) !== 0
+            let initTitleCount = new CountUp(
+              `perc-title-${this.objAdv.type}`,
+              this.objAdv.realValues[this.objAdv.realValues.length - 1] as number,
+              {
+                suffix: this.objAdv.valueLabels[this.objAdv.valueLabels.length - 1],
+                decimalPlaces: checkDecimals ? 1 : 0 ,
+                    decimal: '.'
+              }
+              )
+              // @ts-ignore
+              this.titlePercValue.push({id: this.objAdv.type ,data: initTitleCount})
+              
+           
+            initTitleCount.start()
+            
           }
-          )
-          titlePercValue.start()
+          
 
 
       }
@@ -181,7 +188,7 @@ class Generatechartsadv {
   iterateRow(contentRow: Element[], index: number){
     contentRow.forEach((row, indexRow) => {
       let status = this.objAdv.percValues[indexRow] >= 0 && this.objAdv.percValues[indexRow] < this.objAdv.valueRangeColors[0] ? 'red' : this.objAdv.percValues[indexRow] >= this.objAdv.valueRangeColors[0] && this.objAdv.percValues[indexRow] < this.objAdv.valueRangeColors[1] ? 'orange' : 'green'
-
+      // ROW TYPE 1
       if (this.objAdv.format === 'type1') {
         this.barContent = row.querySelector('.bar__content')
         if (this.barContent) {
@@ -194,7 +201,7 @@ class Generatechartsadv {
         }
       }
       
-
+      // ROW TYPE 2
       if (this.objAdv.format === 'type2') {
         let circleResult = row.querySelectorAll('.circle-chart__circle')
         
@@ -212,19 +219,33 @@ class Generatechartsadv {
 
         if (previousValue?.innerHTML !==  `${this.objAdv.realValues[indexRow]}${this.objAdv.valueLabels[indexRow]}`) {
 
-          this.percValueText = new CountUp(
-            `perc-value-${this.objAdv.type}-${index}-row-${indexRow}`,
-            this.objAdv.realValues[indexRow] as number,
-            {
-              suffix: this.objAdv.valueLabels[indexRow],
-            }
-            )
+        
             if (this.update) {
-              this.percValueText.update(this.objAdv.realValues[indexRow])
+              // @ts-ignore
+              let updateCount: {id: string, data: any} =  this.percValueText.find((element: {id: string, data: any})=> element.id === `${this.objAdv.type}-${indexRow}`)
+              
+              updateCount?.data?.update(this.objAdv.realValues[indexRow])
+              
             } else {
-              this.percValueText.start()
+              
+                let checkDecimals = (this.objAdv.realValues[indexRow] as number - Math.floor(this.objAdv.realValues[indexRow] as number)) !== 0
+                let initCountJs = new CountUp(
+                  `perc-value-${this.objAdv.type}-${index}-row-${indexRow}`,
+                  this.objAdv.realValues[indexRow] as number,
+                  {
+                    suffix: this.objAdv.valueLabels[indexRow],
+                    decimalPlaces: checkDecimals ? 1 : 0 ,
+                    decimal: '.'
+                  }
+                  )
+                  // @ts-ignore
+                  this.percValueText.push({id: `${this.objAdv.type}-${indexRow}` ,data:initCountJs})
+                
+                initCountJs.start()
+       
             }
           }
+          
 
 
       this.textValue = document.getElementById(

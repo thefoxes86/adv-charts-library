@@ -1,8 +1,8 @@
 const header2 = {
   result: 'ok',
   valueLabels: ['/55', '/45', '/23', '%'],
-  realValues: [22, 12, 99, 70],
-  percValues: [50, 10, 99, 70],
+  realValues: [22, 12, 99, 90],
+  percValues: [50, 10, 99, 90],
   type: 'header2',
   valueColors: ['green', 'green', 'red'],
   labels: ['Satisfaccion', 'Numero reseñas', 'Respondidas'],

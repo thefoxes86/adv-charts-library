@@ -541,6 +541,8 @@ var _home = require("./api/home");
 var _homeDefault = parcelHelpers.interopDefault(_home);
 var _gmb = require("./api/gmb");
 var _gmbDefault = parcelHelpers.interopDefault(_gmb);
+var _gmb2 = require("./api/gmb2");
+var _gmb2Default = parcelHelpers.interopDefault(_gmb2);
 var _header = require("./api/header");
 var _headerDefault = parcelHelpers.interopDefault(_header);
 var _header2 = require("./api/header2");
@@ -549,6 +551,8 @@ var _generatechartsadvTs = require("../src/Generatechartsadv.ts");
 var _generatechartsadvTsDefault = parcelHelpers.interopDefault(_generatechartsadvTs);
 var _headerReload = require("./api/header-reload");
 var _headerReloadDefault = parcelHelpers.interopDefault(_headerReload);
+var _headerSummary = require("./api/headerSummary");
+var _headerSummaryDefault = parcelHelpers.interopDefault(_headerSummary);
 window.addEventListener("DOMContentLoaded", ()=>{
     const chart = new (0, _generatechartsadvTsDefault.default)();
     setTimeout(()=>{
@@ -567,6 +571,7 @@ window.addEventListener("DOMContentLoaded", ()=>{
     }, 3000);
     setTimeout(()=>{
         // result
+        chart.init((0, _headerSummaryDefault.default));
         chart.init((0, _headerDefault.default));
     }, 1000);
     setTimeout(()=>{
@@ -575,10 +580,11 @@ window.addEventListener("DOMContentLoaded", ()=>{
     setTimeout(()=>{
         // result
         chart.init((0, _header2Default.default));
+        chart.reload((0, _gmb2Default.default));
     }, 5000);
 });
 
-},{"./api/advert":"4FESA","./api/advert2":"fdmO0","./api/home":"eyNb7","./api/gmb":"1xfqy","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../src/Generatechartsadv.ts":"7WdTZ","./api/header":"7JNwt","./api/header2":"9LjPJ","./api/header-reload":"hMg6y"}],"4FESA":[function(require,module,exports) {
+},{"./api/advert":"4FESA","./api/advert2":"fdmO0","./api/home":"eyNb7","./api/gmb":"1xfqy","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../src/Generatechartsadv.ts":"7WdTZ","./api/header":"7JNwt","./api/header2":"9LjPJ","./api/header-reload":"hMg6y","./api/headerSummary":"97ey7","./api/gmb2":"hUuRo"}],"4FESA":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 const advert = {
@@ -796,7 +802,7 @@ const gmb = {
         4.7,
         61.0,
         16.0,
-        0.01,
+        0.1,
         80.0
     ],
     percValues: [
@@ -833,6 +839,8 @@ exports.default = gmb;
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _countupJs = require("countup.js");
+var _animateBullets = require("./utils/animateBullets");
+var _animateBulletsDefault = parcelHelpers.interopDefault(_animateBullets);
 class Generatechartsadv {
     constructor(){
         // @ts-ignore
@@ -841,6 +849,10 @@ class Generatechartsadv {
         ];
         this.update = false;
         this.setLoading = true;
+        this.percValueText = [];
+        this.percValue = [];
+        this.titlePercValue = [];
+        this.precValueHeaderTitleValue = null;
     }
     loading(loading, el) {
         this.setLoading = loading;
@@ -860,6 +872,7 @@ class Generatechartsadv {
             this.header = el.querySelector(".chart-card__header");
             this.loading(false, el);
             let status = this.objAdv.percValues[this.objAdv.percValues.length - 1] >= 0 && this.objAdv.percValues[this.objAdv.percValues.length - 1] < this.objAdv.valueRangeColors[0] ? "red" : this.objAdv.percValues[this.objAdv.percValues.length - 1] >= this.objAdv.valueRangeColors[0] && this.objAdv.percValues[this.objAdv.percValues.length - 1] < this.objAdv.valueRangeColors[1] ? "orange" : "green";
+            // HEADER TYPE 1
             if (this.objAdv.format === "type1") {
                 this.circle = el.querySelector(".circle-chart__circle");
                 if (this.header) {
@@ -872,70 +885,63 @@ class Generatechartsadv {
                 let previousPercValue = document.getElementById(`mainValuePerc-${this.objAdv.type}-${index}`);
                 let value = `${this.objAdv.realValues[this.objAdv.realValues.length - 1]}${this.objAdv.valueLabels[this.objAdv.valueLabels.length - 1]}`;
                 if (previousPercValue?.innerHTML !== value) {
-                    this.percValue = new (0, _countupJs.CountUp)(`mainValuePerc-${this.objAdv.type}-${index}`, this.objAdv.realValues[this.objAdv.realValues.length - 1], {
-                        suffix: this.objAdv.valueLabels[this.objAdv.valueLabels.length - 1]
-                    });
-                    if (this.update) this.percValue.update(this.objAdv.realValues[this.objAdv.realValues.length - 1]);
-                    else this.percValue.start();
+                    if (this.update) {
+                        // @ts-ignore
+                        let updateCound = this.percValue.find((element)=>element.id === this.objAdv.type);
+                        updateCound?.data?.update(this.objAdv.realValues[this.objAdv.realValues.length - 1]);
+                        this.update = false;
+                    } else {
+                        let checkDecimals = this.objAdv.realValues[this.objAdv.realValues.length - 1] - Math.floor(this.objAdv.realValues[this.objAdv.realValues.length - 1]) !== 0;
+                        let initTitleCount = new (0, _countupJs.CountUp)(`mainValuePerc-${this.objAdv.type}-${index}`, this.objAdv.realValues[this.objAdv.realValues.length - 1], {
+                            suffix: this.objAdv.valueLabels[this.objAdv.valueLabels.length - 1],
+                            decimalPlaces: checkDecimals ? 1 : 0,
+                            decimal: "."
+                        });
+                        // @ts-ignore
+                        this.percValue.push({
+                            id: this.objAdv.type,
+                            data: initTitleCount
+                        });
+                        initTitleCount.start();
+                    }
                 }
             }
+            // HEADER TYPE 2
             if (this.objAdv.format === "type2") {
-                let rowType = document.querySelector(`[data-type=${this.objAdv.type}]`);
-                let bullet = rowType.querySelectorAll(".overlay__full");
+                this.rowType = document.querySelector(`[data-type=${this.objAdv.type}]`);
+                this.bullet = this.rowType.querySelectorAll(".overlay__full");
                 let valuePerc = this.objAdv.percValues[this.objAdv.percValues.length - 1];
-                this.loading(false, rowType);
-                bullet.forEach((el)=>{
+                this.loading(false, this.rowType);
+                this.bullet.forEach((el)=>{
                     el.style.background = `${status}`;
                 });
-                if (valuePerc > 0 && valuePerc < 20) bullet[0].style.width = `${valuePerc / 2 * 10}%`;
-                if (valuePerc >= 20 && valuePerc < 40) {
-                    bullet[0].style.width = "100%";
-                    setTimeout(()=>{
-                        bullet[1].style.width = `${(valuePerc - 20) / 2 * 10}%`;
-                    }, 200);
+                // if (this.update) {
+                //   // @ts-ignore
+                //   animateBullets(this.bullet, valuePerc, this.precValueHeaderTitleValue)
+                // } else {
+                //   this.precValueHeaderTitleValue = valuePerc
+                // }
+                (0, _animateBulletsDefault.default)(this.bullet, valuePerc);
+                console.log("ID", `perc-title-${this.objAdv.type}`, this.update);
+                if (this.update) {
+                    // @ts-ignore
+                    let updateCound1 = this.titlePercValue.find((element)=>element.id === this.objAdv.type);
+                    updateCound1?.data?.update(this.objAdv.realValues[this.objAdv.realValues.length - 1]);
+                    this.update = false;
+                } else {
+                    let checkDecimals1 = this.objAdv.realValues[this.objAdv.realValues.length - 1] - Math.floor(this.objAdv.realValues[this.objAdv.realValues.length - 1]) !== 0;
+                    let initTitleCount1 = new (0, _countupJs.CountUp)(`perc-title-${this.objAdv.type}`, this.objAdv.realValues[this.objAdv.realValues.length - 1], {
+                        suffix: this.objAdv.valueLabels[this.objAdv.valueLabels.length - 1],
+                        decimalPlaces: checkDecimals1 ? 1 : 0,
+                        decimal: "."
+                    });
+                    // @ts-ignore
+                    this.titlePercValue.push({
+                        id: this.objAdv.type,
+                        data: initTitleCount1
+                    });
+                    initTitleCount1.start();
                 }
-                if (valuePerc >= 40 && valuePerc < 60) {
-                    bullet[0].style.width = `100%`;
-                    setTimeout(()=>{
-                        bullet[1].style.width = `100%`;
-                    }, 200);
-                    setTimeout(()=>{
-                        bullet[2].style.width = `${(valuePerc - 40) / 2 * 10}%`;
-                    }, 400);
-                }
-                if (valuePerc >= 60 && valuePerc < 80) {
-                    bullet[0].style.width = `100%`;
-                    setTimeout(()=>{
-                        bullet[1].style.width = `100%`;
-                    }, 200);
-                    setTimeout(()=>{
-                        bullet[2].style.width = `100%`;
-                    }, 400);
-                    setTimeout(()=>{
-                        bullet[3].style.width = `${(valuePerc - 60) / 2 * 10}%`;
-                    }, 600);
-                }
-                if (valuePerc >= 80) {
-                    bullet[0].style.width = `100%`;
-                    setTimeout(()=>{
-                        bullet[1].style.width = `100%`;
-                    }, 200);
-                    setTimeout(()=>{
-                        bullet[2].style.width = `100%`;
-                    }, 400);
-                    setTimeout(()=>{
-                        bullet[3].style.width = `100%`;
-                    }, 600);
-                    setTimeout(()=>{
-                        bullet[4].style.width = `${(valuePerc - 80) / 2 * 10}%`;
-                    }, 800);
-                }
-                // bul.style.background = status 
-                // bul.style.width = `${this.objAdv.percValues[this.objAdv.percValues.length - 1]}%` 
-                let titlePercValue = new (0, _countupJs.CountUp)(`perc-title-${this.objAdv.type}`, this.objAdv.realValues[this.objAdv.realValues.length - 1], {
-                    suffix: this.objAdv.valueLabels[this.objAdv.realValues.length - 1]
-                });
-                titlePercValue.start();
             }
             this.contentRow = [
                 ...el.querySelectorAll(".content__row")
@@ -947,6 +953,7 @@ class Generatechartsadv {
     iterateRow(contentRow, index) {
         contentRow.forEach((row, indexRow)=>{
             let status = this.objAdv.percValues[indexRow] >= 0 && this.objAdv.percValues[indexRow] < this.objAdv.valueRangeColors[0] ? "red" : this.objAdv.percValues[indexRow] >= this.objAdv.valueRangeColors[0] && this.objAdv.percValues[indexRow] < this.objAdv.valueRangeColors[1] ? "orange" : "green";
+            // ROW TYPE 1
             if (this.objAdv.format === "type1") {
                 this.barContent = row.querySelector(".bar__content");
                 if (this.barContent) {
@@ -957,6 +964,7 @@ class Generatechartsadv {
                     this.barContent.style.width = `${this.objAdv.percValues[indexRow]}%`;
                 }
             }
+            // ROW TYPE 2
             if (this.objAdv.format === "type2") {
                 let circleResult = row.querySelectorAll(".circle-chart__circle");
                 circleResult.forEach((circle)=>{
@@ -968,11 +976,24 @@ class Generatechartsadv {
             }
             let previousValue = document.getElementById(`perc-value-${this.objAdv.type}-${index}-row-${indexRow}`);
             if (previousValue?.innerHTML !== `${this.objAdv.realValues[indexRow]}${this.objAdv.valueLabels[indexRow]}`) {
-                this.percValueText = new (0, _countupJs.CountUp)(`perc-value-${this.objAdv.type}-${index}-row-${indexRow}`, this.objAdv.realValues[indexRow], {
-                    suffix: this.objAdv.valueLabels[indexRow]
-                });
-                if (this.update) this.percValueText.update(this.objAdv.realValues[indexRow]);
-                else this.percValueText.start();
+                if (this.update) {
+                    // @ts-ignore
+                    let updateCount = this.percValueText.find((element)=>element.id === `${this.objAdv.type}-${indexRow}`);
+                    updateCount?.data?.update(this.objAdv.realValues[indexRow]);
+                } else {
+                    let checkDecimals = this.objAdv.realValues[indexRow] - Math.floor(this.objAdv.realValues[indexRow]) !== 0;
+                    let initCountJs = new (0, _countupJs.CountUp)(`perc-value-${this.objAdv.type}-${index}-row-${indexRow}`, this.objAdv.realValues[indexRow], {
+                        suffix: this.objAdv.valueLabels[indexRow],
+                        decimalPlaces: checkDecimals ? 1 : 0,
+                        decimal: "."
+                    });
+                    // @ts-ignore
+                    this.percValueText.push({
+                        id: `${this.objAdv.type}-${indexRow}`,
+                        data: initCountJs
+                    });
+                    initCountJs.start();
+                }
             }
             this.textValue = document.getElementById(`perc-value-${this.objAdv.type}-${index}-row-${indexRow}`);
             if (this.textValue) {
@@ -988,7 +1009,7 @@ class Generatechartsadv {
 globalThis.Generatechartsadv = Generatechartsadv;
 exports.default = Generatechartsadv;
 
-},{"countup.js":"dyWzm","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dyWzm":[function(require,module,exports) {
+},{"countup.js":"dyWzm","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./utils/animateBullets":"4kQ0K"}],"dyWzm":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "CountUp", ()=>CountUp);
@@ -1083,6 +1104,56 @@ var __assign = undefined && undefined.__assign || function() {
     }, t;
 }();
 
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4kQ0K":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+const animateBullets = (bullet, valuePerc, precValue)=>{
+    if (valuePerc > 0 && valuePerc < 20) bullet[0].style.width = `${valuePerc / 2 * 10}%`;
+    if (valuePerc >= 20 && valuePerc < 40) {
+        bullet[0].style.width = "100%";
+        setTimeout(()=>{
+            bullet[1].style.width = `${(valuePerc - 20) / 2 * 10}%`;
+        }, 200);
+    }
+    if (valuePerc >= 40 && valuePerc < 60) {
+        bullet[0].style.width = `100%`;
+        setTimeout(()=>{
+            bullet[1].style.width = `100%`;
+        }, 200);
+        setTimeout(()=>{
+            bullet[2].style.width = `${(valuePerc - 40) / 2 * 10}%`;
+        }, 400);
+    }
+    if (valuePerc >= 60 && valuePerc < 80) {
+        bullet[0].style.width = `100%`;
+        setTimeout(()=>{
+            bullet[1].style.width = `100%`;
+        }, 200);
+        setTimeout(()=>{
+            bullet[2].style.width = `100%`;
+        }, 400);
+        setTimeout(()=>{
+            bullet[3].style.width = `${(valuePerc - 60) / 2 * 10}%`;
+        }, 600);
+    }
+    if (valuePerc >= 80) {
+        bullet[0].style.width = `100%`;
+        setTimeout(()=>{
+            bullet[1].style.width = `100%`;
+        }, 200);
+        setTimeout(()=>{
+            bullet[2].style.width = `100%`;
+        }, 400);
+        setTimeout(()=>{
+            bullet[3].style.width = `100%`;
+        }, 600);
+        setTimeout(()=>{
+            bullet[4].style.width = `${(valuePerc - 80) / 2 * 10}%`;
+        }, 800);
+    }
+};
+exports.default = animateBullets;
+
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7JNwt":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
@@ -1098,13 +1169,13 @@ const header = {
         55,
         32,
         16,
-        95
+        70
     ],
     percValues: [
         100,
         67,
         47,
-        95
+        70
     ],
     type: "header",
     valueColors: [
@@ -1140,13 +1211,13 @@ const header2 = {
         22,
         12,
         99,
-        70
+        90
     ],
     percValues: [
         50,
         10,
         99,
-        70
+        90
     ],
     type: "header2",
     valueColors: [
@@ -1208,6 +1279,77 @@ const headerReload = {
     format: "type2"
 };
 exports.default = headerReload;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"97ey7":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+const headerSummary = {
+    percValues: [
+        30
+    ],
+    realValues: [
+        30
+    ],
+    valueLabels: [
+        "%"
+    ],
+    type: "header-summary",
+    valueRangeColors: [
+        74,
+        84
+    ],
+    format: "type2"
+};
+exports.default = headerSummary;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hUuRo":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+const gmb2 = {
+    result: "ok",
+    valueLabels: [
+        "",
+        "",
+        "%",
+        " days",
+        "%"
+    ],
+    realValues: [
+        4.7,
+        61.0,
+        16.0,
+        0.01,
+        90
+    ],
+    percValues: [
+        94,
+        100,
+        16,
+        100,
+        90
+    ],
+    type: "gmb-reviews",
+    valueColors: [
+        "green",
+        "green",
+        "red",
+        "green",
+        "orange"
+    ],
+    labels: [
+        "Satisfaccion",
+        "Numero rese\xf1as",
+        "Respondidas",
+        "Tiempo de respuesta",
+        "Global"
+    ],
+    valueRangeColors: [
+        44,
+        84
+    ],
+    format: "type1"
+};
+exports.default = gmb2;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["2bKuS","fj5J1"], "fj5J1", "parcelRequired657")
 
