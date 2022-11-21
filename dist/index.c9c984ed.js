@@ -555,6 +555,8 @@ var _headerSummary = require("./api/headerSummary");
 var _headerSummaryDefault = parcelHelpers.interopDefault(_headerSummary);
 window.addEventListener("DOMContentLoaded", ()=>{
     const chart = new (0, _generatechartsadvTsDefault.default)();
+    const type2 = new (0, _generatechartsadvTsDefault.default)();
+    const type2_copy = new (0, _generatechartsadvTsDefault.default)();
     setTimeout(()=>{
         // result
         chart.init((0, _advertDefault.default));
@@ -572,14 +574,14 @@ window.addEventListener("DOMContentLoaded", ()=>{
     setTimeout(()=>{
         // result
         chart.init((0, _headerSummaryDefault.default));
-        chart.init((0, _headerDefault.default));
+        type2.init((0, _headerDefault.default));
     }, 1000);
     setTimeout(()=>{
         chart.reload((0, _headerReloadDefault.default));
     }, 4000);
     setTimeout(()=>{
         // result
-        chart.init((0, _header2Default.default));
+        type2_copy.init((0, _header2Default.default));
         chart.reload((0, _gmb2Default.default));
     }, 5000);
 });
@@ -862,10 +864,12 @@ class Generatechartsadv {
     init(obj) {
         this.objAdv = obj;
         this.typedCard = this.chartCard.filter((elem)=>elem.dataset["type"] === obj.type);
+        console.log("init", this.update);
         this.iterateMainElement(this.typedCard);
     }
     reload(obj) {
         this.update = true;
+        console.log("reload", this.update);
         this.init(obj);
     }
     iterateMainElement(cards) {
@@ -890,7 +894,6 @@ class Generatechartsadv {
                         // @ts-ignore
                         let updateCound = this.percValue.find((element)=>element.id === this.objAdv.type);
                         updateCound?.data?.update(this.objAdv.realValues[this.objAdv.realValues.length - 1]);
-                        this.update = false;
                     } else {
                         let checkDecimals = this.objAdv.realValues[this.objAdv.realValues.length - 1] - Math.floor(this.objAdv.realValues[this.objAdv.realValues.length - 1]) !== 0;
                         let initTitleCount = new (0, _countupJs.CountUp)(`mainValuePerc-${this.objAdv.type}-${index}`, this.objAdv.realValues[this.objAdv.realValues.length - 1], {
@@ -924,10 +927,8 @@ class Generatechartsadv {
                 // }
                 (0, _animateBulletsDefault.default)(this.bullet, valuePerc);
                 if (this.update) {
-                    // @ts-ignore
                     let updateCound1 = this.titlePercValue.find((element)=>element.id === this.objAdv.type);
                     updateCound1?.data?.update(this.objAdv.realValues[this.objAdv.realValues.length - 1]);
-                    this.update = false;
                 } else {
                     let checkDecimals1 = this.objAdv.realValues[this.objAdv.realValues.length - 1] - Math.floor(this.objAdv.realValues[this.objAdv.realValues.length - 1]) !== 0;
                     let initTitleCount1 = new (0, _countupJs.CountUp)(`perc-title-${this.objAdv.type}`, this.objAdv.realValues[this.objAdv.realValues.length - 1], {
@@ -983,8 +984,8 @@ class Generatechartsadv {
             }
             let previousValue = document.getElementById(`perc-value-${this.objAdv.type}-${index}-row-${indexRow}`);
             if (previousValue?.innerHTML !== `${this.objAdv.realValues[indexRow]}${this.objAdv.valueLabels[indexRow]}`) {
+                console.log("update", this.update);
                 if (this.update) {
-                    // @ts-ignore
                     let updateCount = this.percValueText.find((element)=>element.id === `${this.objAdv.type}-${indexRow}`);
                     updateCount?.data?.update(this.objAdv.realValues[indexRow]);
                 } else {

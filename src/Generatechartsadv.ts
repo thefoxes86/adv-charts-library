@@ -53,11 +53,13 @@ class Generatechartsadv {
     this.typedCard = (this.chartCard as any | Element[]).filter(
       (elem: any)  => elem.dataset['type'] === obj.type
     ) 
+    console.log('init', this.update)
     this.iterateMainElement(this.typedCard)
   }
 
   reload(obj: ObjAdv) {
     this.update = true;
+    console.log('reload', this.update)
     this.init(obj);
   }
 
@@ -100,7 +102,7 @@ class Generatechartsadv {
 
               updateCound?.data?.update(this.objAdv.realValues[this.objAdv.realValues.length - 1])
 
-              this.update = false
+            
           
                 
               } else {
@@ -148,12 +150,12 @@ class Generatechartsadv {
   
           if (this.update) { 
 
-             // @ts-ignore
-             let updateCound: {id: string, data: any} = this.titlePercValue.find((element:{id: string, data: any})  => element.id === this.objAdv.type)
+             
+             let updateCound: {id: string, data: any} = this.titlePercValue.find((element:{id: string, data: any})  => element.id === this.objAdv.type) as any
 
              updateCound?.data?.update(this.objAdv.realValues[this.objAdv.realValues.length - 1])
 
-             this.update = false
+             
          
             
           } else {
@@ -233,11 +235,13 @@ class Generatechartsadv {
         if (previousValue?.innerHTML !==  `${this.objAdv.realValues[indexRow]}${this.objAdv.valueLabels[indexRow]}`) {
 
         
+          console.log('update', this.update)
             if (this.update) {
-              // @ts-ignore
-              let updateCount: {id: string, data: any} =  this.percValueText.find((element: {id: string, data: any})=> element.id === `${this.objAdv.type}-${indexRow}`)
+              let updateCount: {id: string, data: any} =  this.percValueText.find((element: {id: string, data: any})=> element.id === `${this.objAdv.type}-${indexRow}`) as any
               
               updateCount?.data?.update(this.objAdv.realValues[indexRow])
+
+              
               
             } else {
               

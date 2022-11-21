@@ -11,6 +11,8 @@ import headerSummary from './api/headerSummary'
 
 window.addEventListener('DOMContentLoaded', () => {
   const chart = new Generatechartsadv()
+  const type2 = new Generatechartsadv()
+  const type2_copy = new Generatechartsadv()
   setTimeout(() => {
     // result
     chart.init(advert)
@@ -31,7 +33,7 @@ window.addEventListener('DOMContentLoaded', () => {
   setTimeout(() => {
     // result
     chart.init(headerSummary)
-    chart.init(header)
+    type2.init(header)
   }, 1000)
 
   setTimeout(() => {
@@ -40,7 +42,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   setTimeout(() => {
     // result
-    chart.init(header2)
+    type2_copy.init(header2)
     chart.reload(gmb2)
   }, 5000)
 })
