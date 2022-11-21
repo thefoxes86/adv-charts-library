@@ -1,10 +1,10 @@
 const advert = {
   result: 'ok',
   valueLabels: ['%', '%', '%', '%', '%', '%', '%'],
-  realValues: [100, 100, 100, 70, 100, 0, 95],
-  percValues: [100, 100, 100, 70, 100, 0, 95],
+  realValues: [100, 100, 100, 70, 100, 100, 95],
+  percValues: [100, 100, 100, 70, 100, 100, 95],
   type: 'advertising',
-  valueColors: ['green', 'green', 'green', 'green', 'green', 'red', 'green'],
+  valueColors: ['green', 'orange', 'green', 'orange', 'green', 'red', 'green'],
   labels: [
     'FOTOS',
     'PLANO',
@@ -16,6 +16,7 @@ const advert = {
   ],
   valueRangeColors: [74, 84],
   format: 'type1',
+  overrideDefaultColors: true,
 }
 
 export default advert

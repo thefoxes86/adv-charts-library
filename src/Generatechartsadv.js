@@ -90,7 +90,6 @@ var Generatechartsadv = /** @class */ (function () {
                 //   this.precValueHeaderTitleValue = valuePerc
                 // }
                 (0, animateBullets_1["default"])(_this.bullet, valuePerc);
-                console.log('ID', "perc-title-".concat(_this.objAdv.type), _this.update);
                 if (_this.update) {
                     // @ts-ignore
                     var updateCound = _this.titlePercValue.find(function (element) { return element.id === _this.objAdv.type; });
@@ -108,6 +107,13 @@ var Generatechartsadv = /** @class */ (function () {
                     _this.titlePercValue.push({ id: _this.objAdv.type, data: initTitleCount });
                     initTitleCount.start();
                 }
+                _this.headerTextValue = document.getElementById("perc-title-".concat(_this.objAdv.type));
+                if (_this.headerTextValue) {
+                    _this.headerTextValue.classList.contains('red-text') && _this.headerTextValue.classList.remove('red-text');
+                    _this.headerTextValue.classList.contains('orange-text') && _this.headerTextValue.classList.remove('orange-text');
+                    _this.headerTextValue.classList.contains('green-text') && _this.headerTextValue.classList.remove('green-text');
+                    _this.headerTextValue.classList.add("".concat(status, "-text"));
+                }
             }
             _this.contentRow = __spreadArray([], el.querySelectorAll('.content__row'), true);
             _this.iterateRow(_this.contentRow, index);
@@ -118,7 +124,7 @@ var Generatechartsadv = /** @class */ (function () {
         var _this = this;
         contentRow.forEach(function (row, indexRow) {
             var _a;
-            var status = _this.objAdv.percValues[indexRow] >= 0 && _this.objAdv.percValues[indexRow] < _this.objAdv.valueRangeColors[0] ? 'red' : _this.objAdv.percValues[indexRow] >= _this.objAdv.valueRangeColors[0] && _this.objAdv.percValues[indexRow] < _this.objAdv.valueRangeColors[1] ? 'orange' : 'green';
+            var status = _this.objAdv.overrideDefaultColors ? _this.objAdv.valueColors[indexRow] : _this.objAdv.percValues[indexRow] >= 0 && _this.objAdv.percValues[indexRow] < _this.objAdv.valueRangeColors[0] ? 'red' : _this.objAdv.percValues[indexRow] >= _this.objAdv.valueRangeColors[0] && _this.objAdv.percValues[indexRow] < _this.objAdv.valueRangeColors[1] ? 'orange' : 'green';
             // ROW TYPE 1
             if (_this.objAdv.format === 'type1') {
                 _this.barContent = row.querySelector('.bar__content');

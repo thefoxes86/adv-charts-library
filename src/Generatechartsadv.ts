@@ -11,6 +11,7 @@ interface ObjAdv {
   labels: string[]
   valueRangeColors: number[]
   format: string
+  overrideDefaultColors: boolean
 }
 class Generatechartsadv {
   objAdv!: ObjAdv;
@@ -29,6 +30,7 @@ class Generatechartsadv {
   precValueHeaderTitleValue: number | null;
   bullet!: any;
   rowType!: any;
+  headerTextValue!: HTMLElement;
 
   constructor(){
     // @ts-ignore
@@ -64,7 +66,7 @@ class Generatechartsadv {
       
       this.header = el.querySelector('.chart-card__header')
       this.loading(false, el)
-
+      
       let status = this.objAdv.percValues[this.objAdv.percValues.length - 1] >= 0 && this.objAdv.percValues[this.objAdv.percValues.length - 1] < this.objAdv.valueRangeColors[0] ? 'red' : this.objAdv.percValues[this.objAdv.percValues.length - 1] >= this.objAdv.valueRangeColors[0] && this.objAdv.percValues[this.objAdv.percValues.length - 1] < this.objAdv.valueRangeColors[1] ? 'orange' : 'green'
       
       // HEADER TYPE 1
@@ -143,7 +145,7 @@ class Generatechartsadv {
           animateBullets(this.bullet, valuePerc)
         
         
-          console.log('ID', `perc-title-${this.objAdv.type}`, this.update)
+  
           if (this.update) { 
 
              // @ts-ignore
@@ -172,6 +174,17 @@ class Generatechartsadv {
             initTitleCount.start()
             
           }
+          this.headerTextValue = document.getElementById(
+            `perc-title-${this.objAdv.type}`
+            ) as HTMLElement
+            if (this.headerTextValue) {
+    
+              this.headerTextValue.classList.contains('red-text') && this.headerTextValue.classList.remove('red-text')
+              this.headerTextValue.classList.contains('orange-text') && this.headerTextValue.classList.remove('orange-text')
+              this.headerTextValue.classList.contains('green-text') && this.headerTextValue.classList.remove('green-text')
+              
+              this.headerTextValue.classList.add(`${status}-text`)
+            }
           
 
 
@@ -187,7 +200,7 @@ class Generatechartsadv {
 
   iterateRow(contentRow: Element[], index: number){
     contentRow.forEach((row, indexRow) => {
-      let status = this.objAdv.percValues[indexRow] >= 0 && this.objAdv.percValues[indexRow] < this.objAdv.valueRangeColors[0] ? 'red' : this.objAdv.percValues[indexRow] >= this.objAdv.valueRangeColors[0] && this.objAdv.percValues[indexRow] < this.objAdv.valueRangeColors[1] ? 'orange' : 'green'
+      let status = this.objAdv.overrideDefaultColors ? this.objAdv.valueColors[indexRow] : this.objAdv.percValues[indexRow] >= 0 && this.objAdv.percValues[indexRow] < this.objAdv.valueRangeColors[0] ? 'red' : this.objAdv.percValues[indexRow] >= this.objAdv.valueRangeColors[0] && this.objAdv.percValues[indexRow] < this.objAdv.valueRangeColors[1] ? 'orange' : 'green' 
       // ROW TYPE 1
       if (this.objAdv.format === 'type1') {
         this.barContent = row.querySelector('.bar__content')

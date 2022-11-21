@@ -1,10 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap");
 body {
   background-color: azure;
 }
 
+.d-inline-flex {
+  display: inline-flex !important;
+  gap: 10px;
+}
+
 .row__header {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Lato" !important;
   position: relative;
   margin: 10px;
   background-color: transparent !important;
@@ -17,7 +21,7 @@ body {
 }
 
 .chart-card[data-format*=type1] {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Lato";
   position: relative;
   margin: 10px;
   background-color: #f0f0f0;
@@ -67,6 +71,10 @@ body {
   outline: none;
   border: 0;
 }
+.chart-card[data-format*=type1] .chart-card__header .chart-card__header__title button a {
+  color: black;
+  text-decoration: none;
+}
 .chart-card[data-format*=type1] .chart-card__header .chart-card__header__title button:hover {
   background-color: #e2e2e2;
 }
@@ -81,7 +89,7 @@ body {
 .chart-card[data-format*=type1] .chart-card__header .chart-card__header__round span {
   color: white;
   font-size: 19px;
-  font-weight: 400;
+  font-weight: 500;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -91,13 +99,19 @@ body {
   flex-direction: column;
   gap: 5px;
 }
+.chart-card[data-format*=type1] .chart-card__content .content__row:nth-child(1) {
+  margin-top: 10px;
+}
+.chart-card[data-format*=type1] .chart-card__content .content__row:last-child {
+  margin-bottom: 10px;
+}
 .chart-card[data-format*=type1] .chart-card__content .content__row {
-  margin: 10px 0;
+  margin: 5px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 15px;
-  font-size: 18px;
+  font-size: 14px;
 }
 .chart-card[data-format*=type1] .chart-card__content .content__row .text {
   width: 50%;
@@ -137,7 +151,7 @@ body {
   border-top: grey dashed 1px;
 }
 .chart-card[data-format*=type1] .chart-card__footer button {
-  background-color: black;
+  background-color: #78829b;
   outline: 0;
   border: 0;
   border-radius: 20px;
@@ -146,7 +160,7 @@ body {
   padding: 6px 15px;
 }
 .chart-card[data-format*=type1] .chart-card__footer button:hover {
-  background-color: black;
+  background-color: green;
 }
 
 button:disabled {
@@ -193,10 +207,10 @@ button:disabled {
 }
 
 .chart-card[data-format*=type2] {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Lato";
   position: relative;
   margin: 10px;
-  background-color: #fdfdfd;
+  background-color: #f0f0f0;
   width: 100%;
   height: auto;
   min-height: 100px;
@@ -224,6 +238,7 @@ button:disabled {
   gap: 15px;
   font-size: 19px;
   border-bottom: grey dashed 1px;
+  font-size: 18px !important;
 }
 .chart-card[data-format*=type2] .chart-card__content .content__row .content__title {
   display: flex;
@@ -250,7 +265,7 @@ button:disabled {
   justify-content: center;
 }
 .chart-card[data-format*=type2] .chart-card__content .content__row .circle__result .circle-chart__background {
-  stroke: #efefef;
+  stroke: white;
   stroke-width: 3px;
 }
 .chart-card[data-format*=type2] .chart-card__content .content__row .circle__result .circle-chart__circle {
@@ -390,6 +405,24 @@ button:disabled {
   left: 0;
   top: 0;
   transition: width 0.2s ease-out;
+}
+
+.button__modal {
+  background-color: white;
+  border: 1px solid #78829b;
+  border-radius: 10px;
+  color: black;
+  padding: 2px 10px;
+  font-size: 11px;
+  font-weight: 400;
+  outline: none;
+}
+.button__modal a {
+  color: black;
+  text-decoration: none;
+}
+.button__modal:hover {
+  background-color: #e2e2e2;
 }
 
 .perc__title {

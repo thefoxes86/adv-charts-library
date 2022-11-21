@@ -3,6 +3,10 @@
 body {
     background-color: azure;
 }
+.d-inline-flex {
+    display: inline-flex !important;
+    gap: 10px;
+}
 .row__header {
     font-family: "Lato" !important;
     position: relative;
@@ -67,6 +71,11 @@ body {
                 outline: none;
                 border: 0;
 
+                & a {
+                    color: black;
+                    text-decoration: none;
+                }
+
                 &:hover {
                     background-color: #e2e2e2;
                 }
@@ -112,7 +121,7 @@ body {
             justify-content: space-between;
             align-items: center;
             gap: 15px;
-            font-size: 18px;
+            font-size: 14px;
 
             & .text {
                 width: 50%;
@@ -161,7 +170,7 @@ body {
         border-top: grey dashed 1px;
 
         & button {
-            background-color: black;
+            background-color: #78829b;
             outline: 0;
             border: 0;
             border-radius: 20px;
@@ -170,7 +179,7 @@ body {
             padding: 6px 15px;
 
             &:hover {
-                background-color: black;
+                background-color: green;
             }
         }
     }
@@ -227,7 +236,7 @@ button:disabled {
     font-family: 'Lato';
     position: relative;
     margin: 10px;
-    background-color: #fdfdfd;
+    background-color: #f0f0f0;
     width: 100%;
     height: auto;
     min-height: 100px;
@@ -257,7 +266,7 @@ button:disabled {
             gap: 15px;
             font-size: 19px;
             border-bottom: grey dashed 1px;
-            font-size: 14px !important;
+            font-size: 18px !important;
 
             & .content__title {
                 display: flex;
@@ -290,7 +299,7 @@ button:disabled {
                 justify-content: center;
                 
                 & .circle-chart__background {
-                    stroke: #efefef;
+                    stroke: white;
                     stroke-width: 3px;
                 }
                 
@@ -436,6 +445,27 @@ button:disabled {
         transition: width 0.2s ease-out;
     }
 }
+
+.button__modal {
+    background-color: white;
+    border: 1px solid #78829b;
+    border-radius: 10px;
+    color: black;
+    padding: 2px 10px;
+    font-size: 11px;
+    font-weight: 400;
+    outline: none;
+
+    & a {
+        color: black;
+        text-decoration: none;
+    }
+
+    &:hover {
+        background-color: #e2e2e2;
+    }
+}
+
 
 // .bullet:nth-child(1) .overlay__full {
 //     transition-delay: 0;
