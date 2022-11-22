@@ -1,6 +1,6 @@
 const headerSummary = {
-  percValues: [30],
-  realValues: [30],
+  percValues: [1],
+  realValues: [1],
   valueLabels: ['%'],
   type: 'header-summary',
   valueRangeColors: [74, 84],

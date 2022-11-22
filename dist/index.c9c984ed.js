@@ -553,6 +553,8 @@ var _headerReload = require("./api/header-reload");
 var _headerReloadDefault = parcelHelpers.interopDefault(_headerReload);
 var _headerSummary = require("./api/headerSummary");
 var _headerSummaryDefault = parcelHelpers.interopDefault(_headerSummary);
+var _headerSummary2 = require("./api/headerSummary2");
+var _headerSummary2Default = parcelHelpers.interopDefault(_headerSummary2);
 window.addEventListener("DOMContentLoaded", ()=>{
     const chart = new (0, _generatechartsadvTsDefault.default)();
     const type2 = new (0, _generatechartsadvTsDefault.default)();
@@ -577,7 +579,7 @@ window.addEventListener("DOMContentLoaded", ()=>{
         type2.init((0, _headerDefault.default));
     }, 1000);
     setTimeout(()=>{
-        chart.reload((0, _headerReloadDefault.default));
+        chart.reload((0, _headerSummary2Default.default));
     }, 4000);
     setTimeout(()=>{
         // result
@@ -586,7 +588,7 @@ window.addEventListener("DOMContentLoaded", ()=>{
     }, 5000);
 });
 
-},{"./api/advert":"4FESA","./api/advert2":"fdmO0","./api/home":"eyNb7","./api/gmb":"1xfqy","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../src/Generatechartsadv.ts":"7WdTZ","./api/header":"7JNwt","./api/header2":"9LjPJ","./api/header-reload":"hMg6y","./api/headerSummary":"97ey7","./api/gmb2":"hUuRo"}],"4FESA":[function(require,module,exports) {
+},{"./api/advert":"4FESA","./api/advert2":"fdmO0","./api/home":"eyNb7","./api/gmb":"1xfqy","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../src/Generatechartsadv.ts":"7WdTZ","./api/header":"7JNwt","./api/header2":"9LjPJ","./api/header-reload":"hMg6y","./api/headerSummary":"97ey7","./api/gmb2":"hUuRo","./api/headerSummary2":"lN0fn"}],"4FESA":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 const advert = {
@@ -856,6 +858,7 @@ class Generatechartsadv {
         this.percValue = [];
         this.titlePercValue = [];
         this.precValueHeaderTitleValue = null;
+        this.previousValue = null;
     }
     loading(loading, el) {
         this.setLoading = loading;
@@ -864,12 +867,10 @@ class Generatechartsadv {
     init(obj) {
         this.objAdv = obj;
         this.typedCard = this.chartCard.filter((elem)=>elem.dataset["type"] === obj.type);
-        console.log("init", this.update);
         this.iterateMainElement(this.typedCard);
     }
     reload(obj) {
         this.update = true;
-        console.log("reload", this.update);
         this.init(obj);
     }
     iterateMainElement(cards) {
@@ -915,17 +916,12 @@ class Generatechartsadv {
                 this.rowType = document.querySelector(`[data-type=${this.objAdv.type}]`);
                 this.bullet = this.rowType.querySelectorAll(".overlay__full");
                 let valuePerc = this.objAdv.percValues[this.objAdv.percValues.length - 1];
+                this.previousValue = this.previousValue === null ? this.objAdv.percValues[this.objAdv.percValues.length - 1] : this.previousValue;
                 this.loading(false, this.rowType);
                 this.bullet.forEach((el)=>{
                     el.style.background = `${status}`;
                 });
-                // if (this.update) {
-                //   // @ts-ignore
-                //   animateBullets(this.bullet, valuePerc, this.precValueHeaderTitleValue)
-                // } else {
-                //   this.precValueHeaderTitleValue = valuePerc
-                // }
-                (0, _animateBulletsDefault.default)(this.bullet, valuePerc);
+                (0, _animateBulletsDefault.default)(this.bullet, valuePerc, this.previousValue);
                 if (this.update) {
                     let updateCound1 = this.titlePercValue.find((element)=>element.id === this.objAdv.type);
                     updateCound1?.data?.update(this.objAdv.realValues[this.objAdv.realValues.length - 1]);
@@ -984,7 +980,6 @@ class Generatechartsadv {
             }
             let previousValue = document.getElementById(`perc-value-${this.objAdv.type}-${index}-row-${indexRow}`);
             if (previousValue?.innerHTML !== `${this.objAdv.realValues[indexRow]}${this.objAdv.valueLabels[indexRow]}`) {
-                console.log("update", this.update);
                 if (this.update) {
                     let updateCount = this.percValueText.find((element)=>element.id === `${this.objAdv.type}-${indexRow}`);
                     updateCount?.data?.update(this.objAdv.realValues[indexRow]);
@@ -1115,52 +1110,83 @@ var __assign = undefined && undefined.__assign || function() {
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4kQ0K":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-const animateBullets = (bullet, valuePerc, precValue)=>{
-    if (valuePerc > 0 && valuePerc < 20) bullet[0].style.width = `${valuePerc / 2 * 10}%`;
-    if (valuePerc >= 20 && valuePerc < 40) {
-        bullet[0].style.width = "100%";
-        setTimeout(()=>{
-            bullet[1].style.width = `${(valuePerc - 20) / 2 * 10}%`;
-        }, 200);
-    }
-    if (valuePerc >= 40 && valuePerc < 60) {
-        bullet[0].style.width = `100%`;
-        setTimeout(()=>{
-            bullet[1].style.width = `100%`;
-        }, 200);
-        setTimeout(()=>{
-            bullet[2].style.width = `${(valuePerc - 40) / 2 * 10}%`;
-        }, 400);
-    }
-    if (valuePerc >= 60 && valuePerc < 80) {
-        bullet[0].style.width = `100%`;
-        setTimeout(()=>{
-            bullet[1].style.width = `100%`;
-        }, 200);
-        setTimeout(()=>{
-            bullet[2].style.width = `100%`;
-        }, 400);
-        setTimeout(()=>{
-            bullet[3].style.width = `${(valuePerc - 60) / 2 * 10}%`;
-        }, 600);
-    }
-    if (valuePerc >= 80) {
-        bullet[0].style.width = `100%`;
-        setTimeout(()=>{
-            bullet[1].style.width = `100%`;
-        }, 200);
-        setTimeout(()=>{
-            bullet[2].style.width = `100%`;
-        }, 400);
-        setTimeout(()=>{
-            bullet[3].style.width = `100%`;
-        }, 600);
-        setTimeout(()=>{
-            bullet[4].style.width = `${(valuePerc - 80) / 2 * 10}%`;
-        }, 800);
+const animateBullets = (bullet, valuePerc, previousValue = 0)=>{
+    if (previousValue > valuePerc) {
+        console.info("DIFF", previousValue, valuePerc);
+        // DECRESCE
+        if (previousValue >= 0 && previousValue <= 20 && valuePerc >= 0 && valuePerc < 20) loopBulletsAnimation(1, 1, bullet, valuePerc);
+        if (previousValue >= 20 && previousValue <= 40 && valuePerc >= 0 && valuePerc < 20) loopBulletsAnimation(2, 1, bullet, valuePerc);
+        if (previousValue >= 20 && previousValue <= 40 && valuePerc >= 20 && valuePerc < 40) loopBulletsAnimation(2, 2, bullet, valuePerc);
+        if (previousValue >= 40 && previousValue <= 60 && valuePerc >= 0 && valuePerc < 20) loopBulletsAnimation(3, 1, bullet, valuePerc);
+        if (previousValue >= 40 && previousValue <= 60 && valuePerc >= 20 && valuePerc < 40) loopBulletsAnimation(3, 2, bullet, valuePerc);
+        if (previousValue >= 40 && previousValue <= 60 && valuePerc >= 40 && valuePerc < 60) loopBulletsAnimation(3, 3, bullet, valuePerc);
+        if (previousValue >= 60 && previousValue <= 80 && valuePerc >= 0 && valuePerc < 20) loopBulletsAnimation(4, 1, bullet, valuePerc);
+        if (previousValue >= 60 && previousValue <= 80 && valuePerc >= 20 && valuePerc < 40) loopBulletsAnimation(4, 2, bullet, valuePerc);
+        if (previousValue >= 60 && previousValue <= 80 && valuePerc >= 40 && valuePerc < 60) loopBulletsAnimation(4, 3, bullet, valuePerc);
+        if (previousValue >= 60 && previousValue <= 80 && valuePerc >= 60 && valuePerc < 80) loopBulletsAnimation(4, 4, bullet, valuePerc);
+        if (previousValue >= 80 && previousValue <= 100 && valuePerc >= 0 && valuePerc < 20) loopBulletsAnimation(5, 1, bullet, valuePerc);
+        if (previousValue >= 80 && previousValue <= 100 && valuePerc >= 20 && valuePerc < 40) loopBulletsAnimation(5, 2, bullet, valuePerc);
+        if (previousValue >= 80 && previousValue <= 100 && valuePerc >= 40 && valuePerc < 60) loopBulletsAnimation(5, 3, bullet, valuePerc);
+        if (previousValue >= 80 && previousValue <= 100 && valuePerc >= 60 && valuePerc < 80) loopBulletsAnimation(5, 4, bullet, valuePerc);
+        if (previousValue >= 80 && previousValue <= 100 && valuePerc >= 80 && valuePerc <= 100) loopBulletsAnimation(5, 5, bullet, valuePerc);
+    } else {
+        // CRESCE
+        if (valuePerc > 0 && valuePerc < 20) bullet[0].style.width = `${valuePerc / 2 * 10}%`;
+        if (valuePerc >= 20 && valuePerc < 40) {
+            bullet[0].style.width = "100%";
+            setTimeout(()=>{
+                bullet[1].style.width = `${(valuePerc - 20) / 2 * 10}%`;
+            }, 200);
+        }
+        if (valuePerc >= 40 && valuePerc < 60) {
+            bullet[0].style.width = `100%`;
+            setTimeout(()=>{
+                bullet[1].style.width = `100%`;
+            }, 200);
+            setTimeout(()=>{
+                bullet[2].style.width = `${(valuePerc - 40) / 2 * 10}%`;
+            }, 400);
+        }
+        if (valuePerc >= 60 && valuePerc < 80) {
+            bullet[0].style.width = `100%`;
+            setTimeout(()=>{
+                bullet[1].style.width = `100%`;
+            }, 200);
+            setTimeout(()=>{
+                bullet[2].style.width = `100%`;
+            }, 400);
+            setTimeout(()=>{
+                bullet[3].style.width = `${(valuePerc - 60) / 2 * 10}%`;
+            }, 600);
+        }
+        if (valuePerc >= 80) {
+            bullet[0].style.width = `100%`;
+            setTimeout(()=>{
+                bullet[1].style.width = `100%`;
+            }, 200);
+            setTimeout(()=>{
+                bullet[2].style.width = `100%`;
+            }, 400);
+            setTimeout(()=>{
+                bullet[3].style.width = `100%`;
+            }, 600);
+            setTimeout(()=>{
+                bullet[4].style.width = `${(valuePerc - 80) / 2 * 10}%`;
+            }, 800);
+        }
     }
 };
 exports.default = animateBullets;
+const loopBulletsAnimation = (bulletStart, bulletEnd, bullet, value, previous)=>{
+    for(let i = bulletStart; i >= bulletEnd; i--){
+        // 3 - 1
+        let mulTime = bulletStart - i;
+        setTimeout(()=>{
+            console.log(bulletEnd !== i ? `0%` : `${(value - (bulletEnd - 1) * 20) / 2 * 10}%`, value - (bulletEnd - 1) * 20);
+            bullet[i - 1].style.width = bulletEnd !== i ? `0%` : `${(value - (bulletEnd - 1) * 20) / 2 * 10}%`;
+        }, mulTime * 200);
+    }
+};
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7JNwt":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -1293,10 +1319,10 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 const headerSummary = {
     percValues: [
-        30
+        1
     ],
     realValues: [
-        30
+        1
     ],
     valueLabels: [
         "%"
@@ -1358,6 +1384,28 @@ const gmb2 = {
     format: "type1"
 };
 exports.default = gmb2;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lN0fn":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+const headerSummary = {
+    percValues: [
+        100
+    ],
+    realValues: [
+        100
+    ],
+    valueLabels: [
+        "%"
+    ],
+    type: "header-summary",
+    valueRangeColors: [
+        74,
+        84
+    ],
+    format: "type2"
+};
+exports.default = headerSummary;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["2bKuS","fj5J1"], "fj5J1", "parcelRequired657")
 

@@ -31,6 +31,7 @@ class Generatechartsadv {
   bullet!: any;
   rowType!: any;
   headerTextValue!: HTMLElement;
+  previousValue: number | null;
 
   constructor(){
     // @ts-ignore
@@ -41,6 +42,7 @@ class Generatechartsadv {
     this.percValue= []
     this.titlePercValue = []
     this.precValueHeaderTitleValue = null
+    this.previousValue = null
   }
 
   loading(loading: boolean, el?: HTMLElement | any){
@@ -53,13 +55,13 @@ class Generatechartsadv {
     this.typedCard = (this.chartCard as any | Element[]).filter(
       (elem: any)  => elem.dataset['type'] === obj.type
     ) 
-    console.log('init', this.update)
+    
     this.iterateMainElement(this.typedCard)
   }
 
   reload(obj: ObjAdv) {
     this.update = true;
-    console.log('reload', this.update)
+    
     this.init(obj);
   }
 
@@ -129,6 +131,7 @@ class Generatechartsadv {
         this.rowType = document.querySelector(`[data-type=${this.objAdv.type}]`)
         this.bullet = this.rowType.querySelectorAll('.overlay__full')
         let valuePerc = this.objAdv.percValues[this.objAdv.percValues.length - 1] as number
+        this.previousValue = this.previousValue === null ? this.objAdv.percValues[this.objAdv.percValues.length - 1] as number :  this.previousValue
 
 
         this.loading(false, this.rowType)
@@ -138,13 +141,7 @@ class Generatechartsadv {
             el.style.background = `${status}`
           })
 
-          // if (this.update) {
-          //   // @ts-ignore
-          //   animateBullets(this.bullet, valuePerc, this.precValueHeaderTitleValue)
-          // } else {
-          //   this.precValueHeaderTitleValue = valuePerc
-          // }
-          animateBullets(this.bullet, valuePerc)
+          animateBullets(this.bullet, valuePerc, this.previousValue)
         
         
   
@@ -235,7 +232,7 @@ class Generatechartsadv {
         if (previousValue?.innerHTML !==  `${this.objAdv.realValues[indexRow]}${this.objAdv.valueLabels[indexRow]}`) {
 
         
-          console.log('update', this.update)
+          
             if (this.update) {
               let updateCount: {id: string, data: any} =  this.percValueText.find((element: {id: string, data: any})=> element.id === `${this.objAdv.type}-${indexRow}`) as any
               
