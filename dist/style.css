@@ -1,5 +1,6 @@
 body {
   background-color: azure;
+  font-weight: 700;
 }
 
 .d-inline-flex {
@@ -141,6 +142,8 @@ body {
 }
 .chart-card[data-format*=type1] .chart-card__content .content__row .perc {
   width: 20%;
+  margin-right: 10px;
+  text-align: right;
 }
 .chart-card[data-format*=type1] .chart-card__footer {
   display: flex;

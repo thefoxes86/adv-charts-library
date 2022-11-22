@@ -21,6 +21,7 @@ var Generatechartsadv = /** @class */ (function () {
         this.percValue = [];
         this.titlePercValue = [];
         this.precValueHeaderTitleValue = null;
+        this.previousValue = null;
     }
     Generatechartsadv.prototype.loading = function (loading, el) {
         this.setLoading = loading;
@@ -59,7 +60,6 @@ var Generatechartsadv = /** @class */ (function () {
                         // @ts-ignore
                         var updateCound = _this.percValue.find(function (element) { return element.id === _this.objAdv.type; });
                         (_a = updateCound === null || updateCound === void 0 ? void 0 : updateCound.data) === null || _a === void 0 ? void 0 : _a.update(_this.objAdv.realValues[_this.objAdv.realValues.length - 1]);
-                        _this.update = false;
                     }
                     else {
                         var checkDecimals = (_this.objAdv.realValues[_this.objAdv.realValues.length - 1] - Math.floor(_this.objAdv.realValues[_this.objAdv.realValues.length - 1])) !== 0;
@@ -79,22 +79,15 @@ var Generatechartsadv = /** @class */ (function () {
                 _this.rowType = document.querySelector("[data-type=".concat(_this.objAdv.type, "]"));
                 _this.bullet = _this.rowType.querySelectorAll('.overlay__full');
                 var valuePerc = _this.objAdv.percValues[_this.objAdv.percValues.length - 1];
+                _this.previousValue = _this.previousValue === null ? _this.objAdv.percValues[_this.objAdv.percValues.length - 1] : _this.previousValue;
                 _this.loading(false, _this.rowType);
                 _this.bullet.forEach(function (el) {
                     el.style.background = "".concat(status);
                 });
-                // if (this.update) {
-                //   // @ts-ignore
-                //   animateBullets(this.bullet, valuePerc, this.precValueHeaderTitleValue)
-                // } else {
-                //   this.precValueHeaderTitleValue = valuePerc
-                // }
-                (0, animateBullets_1["default"])(_this.bullet, valuePerc);
+                (0, animateBullets_1["default"])(_this.bullet, valuePerc, _this.previousValue);
                 if (_this.update) {
-                    // @ts-ignore
                     var updateCound = _this.titlePercValue.find(function (element) { return element.id === _this.objAdv.type; });
                     (_b = updateCound === null || updateCound === void 0 ? void 0 : updateCound.data) === null || _b === void 0 ? void 0 : _b.update(_this.objAdv.realValues[_this.objAdv.realValues.length - 1]);
-                    _this.update = false;
                 }
                 else {
                     var checkDecimals = (_this.objAdv.realValues[_this.objAdv.realValues.length - 1] - Math.floor(_this.objAdv.realValues[_this.objAdv.realValues.length - 1])) !== 0;
@@ -149,7 +142,6 @@ var Generatechartsadv = /** @class */ (function () {
             var previousValue = document.getElementById("perc-value-".concat(_this.objAdv.type, "-").concat(index, "-row-").concat(indexRow));
             if ((previousValue === null || previousValue === void 0 ? void 0 : previousValue.innerHTML) !== "".concat(_this.objAdv.realValues[indexRow]).concat(_this.objAdv.valueLabels[indexRow])) {
                 if (_this.update) {
-                    // @ts-ignore
                     var updateCount = _this.percValueText.find(function (element) { return element.id === "".concat(_this.objAdv.type, "-").concat(indexRow); });
                     (_a = updateCount === null || updateCount === void 0 ? void 0 : updateCount.data) === null || _a === void 0 ? void 0 : _a.update(_this.objAdv.realValues[indexRow]);
                 }
