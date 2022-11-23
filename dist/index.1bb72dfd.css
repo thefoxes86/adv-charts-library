@@ -52,6 +52,7 @@ body {
 }
 
 .chart-card[data-format*="type1"] .chart-card__header .chart-card__header__title {
+  height: 50px;
   color: #fff;
   flex-direction: column;
   justify-content: center;
@@ -61,7 +62,7 @@ body {
 }
 
 .chart-card[data-format*="type1"] .chart-card__header .chart-card__header__title h3 {
-  margin: 0;
+  margin: 0 0 auto;
   font-size: 20px;
   font-weight: 700;
 }
