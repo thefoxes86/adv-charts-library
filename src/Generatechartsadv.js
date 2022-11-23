@@ -84,7 +84,13 @@ var Generatechartsadv = /** @class */ (function () {
                 _this.bullet.forEach(function (el) {
                     el.style.background = "".concat(status);
                 });
-                (0, animateBullets_1["default"])(_this.bullet, valuePerc, _this.previousValue);
+                if (_this.previousValue > valuePerc) {
+                    (0, animateBullets_1["default"])(_this.bullet, valuePerc, _this.previousValue);
+                    _this.previousValue = null;
+                }
+                else {
+                    (0, animateBullets_1["default"])(_this.bullet, valuePerc, _this.previousValue);
+                }
                 if (_this.update) {
                     var updateCound = _this.titlePercValue.find(function (element) { return element.id === _this.objAdv.type; });
                     (_b = updateCound === null || updateCound === void 0 ? void 0 : updateCound.data) === null || _b === void 0 ? void 0 : _b.update(_this.objAdv.realValues[_this.objAdv.realValues.length - 1]);

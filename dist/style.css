@@ -55,10 +55,12 @@ body {
   align-items: flex-start;
   justify-content: center;
   gap: 15px;
+  height: 50px;
   color: white;
 }
 .chart-card[data-format*=type1] .chart-card__header .chart-card__header__title h3 {
   margin: 0;
+  margin-bottom: auto;
   font-size: 20px;
   font-weight: 700;
 }

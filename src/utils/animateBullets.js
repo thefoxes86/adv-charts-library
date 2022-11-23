@@ -3,7 +3,7 @@ exports.__esModule = true;
 var animateBullets = function (bullet, valuePerc, previousValue) {
     if (previousValue === void 0) { previousValue = 0; }
     if (previousValue > valuePerc) {
-        console.info('DIFF', previousValue, valuePerc);
+        console.log('Entro qua ', previousValue, valuePerc);
         // DECRESCE
         if (previousValue >= 0 && previousValue <= 20 && valuePerc >= 0 && valuePerc < 20) {
             loopBulletsAnimation(1, 1, bullet, valuePerc);
