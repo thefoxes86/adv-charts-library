@@ -555,6 +555,8 @@ var _headerSummary = require("./api/headerSummary");
 var _headerSummaryDefault = parcelHelpers.interopDefault(_headerSummary);
 var _headerSummary2 = require("./api/headerSummary2");
 var _headerSummary2Default = parcelHelpers.interopDefault(_headerSummary2);
+var _headerSummary3 = require("./api/headerSummary3");
+var _headerSummary3Default = parcelHelpers.interopDefault(_headerSummary3);
 window.addEventListener("DOMContentLoaded", ()=>{
     const chart = new (0, _generatechartsadvTsDefault.default)();
     const type2 = new (0, _generatechartsadvTsDefault.default)();
@@ -580,7 +582,10 @@ window.addEventListener("DOMContentLoaded", ()=>{
     }, 1000);
     setTimeout(()=>{
         chart.reload((0, _headerSummary2Default.default));
-    }, 4000);
+    }, 3000);
+    setTimeout(()=>{
+        chart.reload((0, _headerSummary3Default.default));
+    }, 5000);
     setTimeout(()=>{
         // result
         type2_copy.init((0, _header2Default.default));
@@ -588,7 +593,7 @@ window.addEventListener("DOMContentLoaded", ()=>{
     }, 5000);
 });
 
-},{"./api/advert":"4FESA","./api/advert2":"fdmO0","./api/home":"eyNb7","./api/gmb":"1xfqy","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../src/Generatechartsadv.ts":"7WdTZ","./api/header":"7JNwt","./api/header2":"9LjPJ","./api/header-reload":"hMg6y","./api/headerSummary":"97ey7","./api/gmb2":"hUuRo","./api/headerSummary2":"lN0fn"}],"4FESA":[function(require,module,exports) {
+},{"./api/advert":"4FESA","./api/advert2":"fdmO0","./api/home":"eyNb7","./api/gmb":"1xfqy","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../src/Generatechartsadv.ts":"7WdTZ","./api/header":"7JNwt","./api/header2":"9LjPJ","./api/header-reload":"hMg6y","./api/headerSummary":"97ey7","./api/gmb2":"hUuRo","./api/headerSummary2":"lN0fn","./api/headerSummary3":"8XI9K"}],"4FESA":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 const advert = {
@@ -921,7 +926,10 @@ class Generatechartsadv {
                 this.bullet.forEach((el)=>{
                     el.style.background = `${status}`;
                 });
-                (0, _animateBulletsDefault.default)(this.bullet, valuePerc, this.previousValue);
+                if (this.previousValue > valuePerc) {
+                    (0, _animateBulletsDefault.default)(this.bullet, valuePerc, this.previousValue);
+                    this.previousValue = null;
+                } else (0, _animateBulletsDefault.default)(this.bullet, valuePerc, this.previousValue);
                 if (this.update) {
                     let updateCound1 = this.titlePercValue.find((element)=>element.id === this.objAdv.type);
                     updateCound1?.data?.update(this.objAdv.realValues[this.objAdv.realValues.length - 1]);
@@ -1112,7 +1120,7 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 const animateBullets = (bullet, valuePerc, previousValue = 0)=>{
     if (previousValue > valuePerc) {
-        console.info("DIFF", previousValue, valuePerc);
+        console.log("Entro qua ", previousValue, valuePerc);
         // DECRESCE
         if (previousValue >= 0 && previousValue <= 20 && valuePerc >= 0 && valuePerc < 20) loopBulletsAnimation(1, 1, bullet, valuePerc);
         if (previousValue >= 20 && previousValue <= 40 && valuePerc >= 0 && valuePerc < 20) loopBulletsAnimation(2, 1, bullet, valuePerc);
@@ -1319,10 +1327,10 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 const headerSummary = {
     percValues: [
-        1
+        80
     ],
     realValues: [
-        1
+        80
     ],
     valueLabels: [
         "%"
@@ -1388,12 +1396,12 @@ exports.default = gmb2;
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lN0fn":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-const headerSummary = {
+const headerSummary2 = {
     percValues: [
-        100
+        10
     ],
     realValues: [
-        100
+        10
     ],
     valueLabels: [
         "%"
@@ -1405,7 +1413,29 @@ const headerSummary = {
     ],
     format: "type2"
 };
-exports.default = headerSummary;
+exports.default = headerSummary2;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8XI9K":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+const headerSummary3 = {
+    percValues: [
+        65
+    ],
+    realValues: [
+        65
+    ],
+    valueLabels: [
+        "%"
+    ],
+    type: "header-summary",
+    valueRangeColors: [
+        74,
+        84
+    ],
+    format: "type2"
+};
+exports.default = headerSummary3;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["2bKuS","fj5J1"], "fj5J1", "parcelRequired657")
 

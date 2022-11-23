@@ -141,7 +141,13 @@ class Generatechartsadv {
             el.style.background = `${status}`
           })
 
-          animateBullets(this.bullet, valuePerc, this.previousValue)
+          if (this.previousValue > valuePerc) {
+
+            animateBullets(this.bullet, valuePerc, this.previousValue)
+            this.previousValue = null
+          } else {
+            animateBullets(this.bullet, valuePerc, this.previousValue)
+          }
         
         
   

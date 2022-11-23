@@ -9,6 +9,7 @@ import Generatechartsadv from '../src/Generatechartsadv.ts'
 import headerReload from './api/header-reload'
 import headerSummary from './api/headerSummary'
 import headerSummary2 from './api/headerSummary2'
+import headerSummary3 from './api/headerSummary3'
 
 window.addEventListener('DOMContentLoaded', () => {
   const chart = new Generatechartsadv()
@@ -39,7 +40,11 @@ window.addEventListener('DOMContentLoaded', () => {
 
   setTimeout(() => {
     chart.reload(headerSummary2)
-  }, 4000)
+  }, 3000)
+
+  setTimeout(() => {
+    chart.reload(headerSummary3)
+  }, 5000)
 
   setTimeout(() => {
     // result

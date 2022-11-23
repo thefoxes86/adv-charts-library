@@ -1,8 +1,9 @@
 const animateBullets = (bullet: [] | any, valuePerc: number, previousValue: number = 0) =>{
+
     
     if (previousValue > valuePerc) {
 
-        console.info('DIFF', previousValue, valuePerc)
+        console.log('Entro qua ', previousValue, valuePerc)
 
         // DECRESCE
         if (previousValue >= 0 && previousValue <= 20 && valuePerc >= 0 && valuePerc < 20) {
@@ -56,7 +57,6 @@ const animateBullets = (bullet: [] | any, valuePerc: number, previousValue: numb
         if (previousValue >= 80 && previousValue <= 100 && valuePerc >= 80 && valuePerc <= 100) {
             loopBulletsAnimation(5,5, bullet, valuePerc)
         } 
-
 
 
     } else {
