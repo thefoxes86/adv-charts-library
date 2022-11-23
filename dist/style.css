@@ -27,8 +27,8 @@ body {
   margin: 10px;
   background-color: #f0f0f0;
   width: 100%;
-  height: auto;
-  min-height: 100px;
+  max-width: 370px;
+  height: 400px;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
@@ -39,7 +39,7 @@ body {
   width: 100%;
   height: auto;
   position: relative;
-  min-height: 30px;
+  min-height: 100px;
   border-radius: 20px;
   display: flex;
   align-items: center;
@@ -147,10 +147,10 @@ body {
 }
 .chart-card[data-format*=type1] .chart-card__footer {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
-  height: 80px;
-  margin: 0 10px;
+  height: 100%;
+  margin: 0px 10px 20px 10px;
   border-top: grey dashed 1px;
 }
 .chart-card[data-format*=type1] .chart-card__footer button {
@@ -209,41 +209,42 @@ button:disabled {
   animation-iteration-count: infinite;
 }
 
-.chart-card[data-format*=type2] {
+.chart-card:not(.row__header)[data-format*=type2] {
   font-family: "Lato";
   position: relative;
   margin: 10px;
   background-color: #f0f0f0;
   width: 100%;
-  height: auto;
+  max-width: 370px;
+  height: 400px;
   min-height: 100px;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
 }
-.chart-card[data-format*=type2] .chart-card__content {
+.chart-card:not(.row__header)[data-format*=type2] .chart-card__content {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
-.chart-card[data-format*=type2] .chart-card__content .content__row:nth-child(1) {
+.chart-card:not(.row__header)[data-format*=type2] .chart-card__content .content__row:nth-child(1) {
   margin-top: 10px;
 }
-.chart-card[data-format*=type2] .chart-card__content .content__row:last-child {
+.chart-card:not(.row__header)[data-format*=type2] .chart-card__content .content__row:last-child {
   border-bottom: none;
 }
-.chart-card[data-format*=type2] .chart-card__content .content__row {
+.chart-card:not(.row__header)[data-format*=type2] .chart-card__content .content__row {
   margin: 0px 10px;
   padding: 10px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 15px;
-  font-size: 19px;
+  font-size: 14px;
   border-bottom: grey dashed 1px;
   font-size: 18px !important;
 }
-.chart-card[data-format*=type2] .chart-card__content .content__row .content__title {
+.chart-card:not(.row__header)[data-format*=type2] .chart-card__content .content__row .content__title {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -251,46 +252,49 @@ button:disabled {
   width: 100%;
   padding: 0px 10px;
 }
-.chart-card[data-format*=type2] .chart-card__content .content__row .content__title .text {
+.chart-card:not(.row__header)[data-format*=type2] .chart-card__content .content__row .content__title .text {
+  font-size: 14px;
   font-weight: 400;
   text-align: left;
 }
-.chart-card[data-format*=type2] .chart-card__content .content__row .content__title .subtitile {
-  font-size: 14px;
+.chart-card:not(.row__header)[data-format*=type2] .chart-card__content .content__row .content__title .subtitile {
+  font-weight: 400;
+  font-size: 13px;
+  font-style: italic;
 }
-.chart-card[data-format*=type2] .chart-card__content .content__row .chart-card__content {
+.chart-card:not(.row__header)[data-format*=type2] .chart-card__content .content__row .chart-card__content {
   min-width: 100px;
   height: 70px;
 }
-.chart-card[data-format*=type2] .chart-card__content .content__row .circle__result {
+.chart-card:not(.row__header)[data-format*=type2] .chart-card__content .content__row .circle__result {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.chart-card[data-format*=type2] .chart-card__content .content__row .circle__result .circle-chart__background {
+.chart-card:not(.row__header)[data-format*=type2] .chart-card__content .content__row .circle__result .circle-chart__background {
   stroke: white;
   stroke-width: 3px;
 }
-.chart-card[data-format*=type2] .chart-card__content .content__row .circle__result .circle-chart__circle {
+.chart-card:not(.row__header)[data-format*=type2] .chart-card__content .content__row .circle__result .circle-chart__circle {
   transform-origin: center;
   stroke-width: 3px;
   stroke: #efefef;
   transition: all 1s ease-out;
   transform: rotate(-90deg);
 }
-.chart-card[data-format*=type2] .chart-card__content .content__row .bar {
+.chart-card:not(.row__header)[data-format*=type2] .chart-card__content .content__row .bar {
   width: 30%;
   text-align: right;
   position: relative;
 }
-.chart-card[data-format*=type2] .chart-card__content .content__row .bar .bar__background {
+.chart-card:not(.row__header)[data-format*=type2] .chart-card__content .content__row .bar .bar__background {
   display: block;
   position: relative;
   width: 100%;
   height: 4px;
   background-color: #efefef;
 }
-.chart-card[data-format*=type2] .chart-card__content .content__row .bar .bar__background .bar__content {
+.chart-card:not(.row__header)[data-format*=type2] .chart-card__content .content__row .bar .bar__background .bar__content {
   position: absolute;
   top: 0;
   left: 0;
@@ -298,19 +302,19 @@ button:disabled {
   width: 0;
   transition: all 1s ease-out;
 }
-.chart-card[data-format*=type2] .chart-card__content .content__row .perc {
+.chart-card:not(.row__header)[data-format*=type2] .chart-card__content .content__row .perc {
   width: 20%;
 }
-.chart-card[data-format*=type2] .chart-card__footer {
+.chart-card:not(.row__header)[data-format*=type2] .chart-card__footer {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
-  height: 80px;
-  margin: 0 10px;
+  height: 100%;
+  margin: 0px 10px 20px 10px;
   border-top: grey dashed 1px;
 }
-.chart-card[data-format*=type2] .chart-card__footer button {
-  background-color: red;
+.chart-card:not(.row__header)[data-format*=type2] .chart-card__footer button {
+  background-color: #78829b;
   outline: 0;
   border: 0;
   border-radius: 20px;
@@ -318,8 +322,8 @@ button:disabled {
   font-size: 12px;
   padding: 6px 15px;
 }
-.chart-card[data-format*=type2] .chart-card__footer button:hover {
-  background-color: black;
+.chart-card:not(.row__header)[data-format*=type2] .chart-card__footer button:hover {
+  background-color: green;
 }
 
 .red {
