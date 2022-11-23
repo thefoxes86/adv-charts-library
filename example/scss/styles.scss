@@ -64,6 +64,7 @@ body {
                 margin-bottom: auto;
                 font-size: 20px;
                 font-weight: 700;
+                text-align: left;
             }
             button {
                 background-color: white;
@@ -128,10 +129,10 @@ body {
             font-size: 14px;
 
             & .text {
-                width: 50%;
+                width: 60%;
                 font-weight: 400;
                 text-align: left;
-                padding: 0px 20px;
+                padding: 0px 10px 0 20px;
             }
 
 
@@ -433,15 +434,16 @@ button:disabled {
 }
 
 .row__title {
-    font-size: 34px;
+    font-size: 28px;
     font-weight: 700;
     margin-bottom: 0;
+    text-align: left;
 }
 .bullet {
     display: inline-block ;
     position: relative;
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
     background-color: #efefef;
     border-radius: 100%;
     overflow: hidden;
@@ -476,25 +478,59 @@ button:disabled {
     }
 }
 
-
-// .bullet:nth-child(1) .overlay__full {
-//     transition-delay: 0;
-// }
-// .bullet:nth-child(2) .overlay__full {
-//     transition-delay: 0.2s;
-// }
-// .bullet:nth-child(3) .overlay__full {
-//     transition-delay: 0.4s;
-// }
-// .bullet:nth-child(4) .overlay__full {
-//     transition-delay: 0.6s;
-// }
-// .bullet:nth-child(5) .overlay__full {
-//     transition-delay: 0.8s;
-// }
-
 .perc__title {
-    font-size: 28px;
+    font-size: 24px;
+}
+
+div[data-format*="type2"]:not(.chart-card) {
+    .row__title {
+        font-size: 24px;
+        font-weight: 700;
+        margin-bottom: 0;
+        text-align: left;
+    }
+    .bullet {
+        display: inline-block ;
+        position: relative;
+        width: 20px;
+        height: 20px;
+        background-color: #efefef;
+        border-radius: 100%;
+        overflow: hidden;
+    
+        .overlay__full {
+            height: inherit;
+            width: 0;
+            position: absolute;
+            left: 0;
+            top: 0;
+            transition: width 0.2s ease-out;
+        }
+    }
+    
+    .button__modal {
+        background-color: white;
+        border: 1px solid #78829b;
+        border-radius: 10px;
+        color: black;
+        padding: 2px 10px;
+        font-size: 11px;
+        font-weight: 400;
+        outline: none;
+    
+        & a {
+            color: black;
+            text-decoration: none;
+        }
+    
+        &:hover {
+            background-color: #e2e2e2;
+        }
+    }
+    
+    .perc__title {
+        font-size: 20px;
+    }
 }
 
 
