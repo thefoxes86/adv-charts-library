@@ -6,6 +6,7 @@ body {
 .d-inline-flex {
   display: inline-flex !important;
   gap: 10px;
+  align-items: end;
 }
 
 .row__header {
