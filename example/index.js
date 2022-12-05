@@ -10,6 +10,8 @@ import headerReload from './api/header-reload'
 import headerSummary from './api/headerSummary'
 import headerSummary2 from './api/headerSummary2'
 import headerSummary3 from './api/headerSummary3'
+import resultados from './api/resultados'
+import resultados2 from './api/resultados2'
 
 window.addEventListener('DOMContentLoaded', () => {
   const chart = new Generatechartsadv()
@@ -19,6 +21,16 @@ window.addEventListener('DOMContentLoaded', () => {
     // result
     chart.init(advert)
   }, 1000)
+
+  setTimeout(() => {
+    // result
+    chart.init(resultados)
+  }, 3000)
+
+  setTimeout(() => {
+    // result
+    chart.init(resultados2)
+  }, 5000)
 
   setTimeout(() => {
     // result

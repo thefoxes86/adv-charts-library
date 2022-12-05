@@ -42,9 +42,9 @@ var Generatechartsadv = /** @class */ (function () {
             var _a, _b;
             _this.header = el.querySelector('.chart-card__header');
             _this.loading(false, el);
-            var status = _this.objAdv.percValues[_this.objAdv.percValues.length - 1] >= 0 && _this.objAdv.percValues[_this.objAdv.percValues.length - 1] < _this.objAdv.valueRangeColors[0] ? 'red' : _this.objAdv.percValues[_this.objAdv.percValues.length - 1] >= _this.objAdv.valueRangeColors[0] && _this.objAdv.percValues[_this.objAdv.percValues.length - 1] < _this.objAdv.valueRangeColors[1] ? 'orange' : 'green';
             // HEADER TYPE 1
             if (_this.objAdv.format === 'type1') {
+                var status = _this.objAdv.percValues[_this.objAdv.percValues.length - 1] >= 0 && _this.objAdv.percValues[_this.objAdv.percValues.length - 1] < _this.objAdv.valueRangeColors[0] ? 'red' : _this.objAdv.percValues[_this.objAdv.percValues.length - 1] >= _this.objAdv.valueRangeColors[0] && _this.objAdv.percValues[_this.objAdv.percValues.length - 1] < _this.objAdv.valueRangeColors[1] ? 'orange' : 'green';
                 _this.circle = el.querySelector('.circle-chart__circle');
                 if (_this.header) {
                     _this.header.classList.contains('red') && _this.header.classList.remove('red');
@@ -66,7 +66,8 @@ var Generatechartsadv = /** @class */ (function () {
                         var initTitleCount = new countup_js_1.CountUp("mainValuePerc-".concat(_this.objAdv.type, "-").concat(index), _this.objAdv.realValues[_this.objAdv.realValues.length - 1], {
                             suffix: _this.objAdv.valueLabels[_this.objAdv.valueLabels.length - 1],
                             decimalPlaces: checkDecimals ? 1 : 0,
-                            decimal: '.'
+                            decimal: ',',
+                            separator: '.'
                         });
                         // @ts-ignore
                         _this.percValue.push({ id: _this.objAdv.type, data: initTitleCount });
@@ -76,6 +77,7 @@ var Generatechartsadv = /** @class */ (function () {
             }
             // HEADER TYPE 2
             if (_this.objAdv.format === 'type2') {
+                var status = _this.objAdv.percValues[_this.objAdv.percValues.length - 1] >= 0 && _this.objAdv.percValues[_this.objAdv.percValues.length - 1] < _this.objAdv.valueRangeColors[0] ? 'red' : _this.objAdv.percValues[_this.objAdv.percValues.length - 1] >= _this.objAdv.valueRangeColors[0] && _this.objAdv.percValues[_this.objAdv.percValues.length - 1] < _this.objAdv.valueRangeColors[1] ? 'orange' : 'green';
                 _this.rowType = document.querySelector("[data-type=".concat(_this.objAdv.type, "]"));
                 _this.bullet = _this.rowType.querySelectorAll('.overlay__full');
                 var valuePerc = _this.objAdv.percValues[_this.objAdv.percValues.length - 1];
@@ -100,7 +102,8 @@ var Generatechartsadv = /** @class */ (function () {
                     var initTitleCount = new countup_js_1.CountUp("perc-title-".concat(_this.objAdv.type), _this.objAdv.realValues[_this.objAdv.realValues.length - 1], {
                         suffix: _this.objAdv.valueLabels[_this.objAdv.valueLabels.length - 1],
                         decimalPlaces: checkDecimals ? 1 : 0,
-                        decimal: '.'
+                        decimal: ',',
+                        separator: '.'
                     });
                     // @ts-ignore
                     _this.titlePercValue.push({ id: _this.objAdv.type, data: initTitleCount });
@@ -123,7 +126,10 @@ var Generatechartsadv = /** @class */ (function () {
         var _this = this;
         contentRow.forEach(function (row, indexRow) {
             var _a;
-            var status = _this.objAdv.overrideDefaultColors ? _this.objAdv.valueColors[indexRow] : _this.objAdv.percValues[indexRow] >= 0 && _this.objAdv.percValues[indexRow] < _this.objAdv.valueRangeColors[0] ? 'red' : _this.objAdv.percValues[indexRow] >= _this.objAdv.valueRangeColors[0] && _this.objAdv.percValues[indexRow] < _this.objAdv.valueRangeColors[1] ? 'orange' : 'green';
+            var status = null;
+            if (_this.objAdv.format === 'type1' || _this.objAdv.format === 'type2') {
+                status = _this.objAdv.overrideDefaultColors ? _this.objAdv.valueColors[indexRow] : _this.objAdv.percValues[indexRow] >= 0 && _this.objAdv.percValues[indexRow] < _this.objAdv.valueRangeColors[0] ? 'red' : _this.objAdv.percValues[indexRow] >= _this.objAdv.valueRangeColors[0] && _this.objAdv.percValues[indexRow] < _this.objAdv.valueRangeColors[1] ? 'orange' : 'green';
+            }
             // ROW TYPE 1
             if (_this.objAdv.format === 'type1') {
                 _this.barContent = row.querySelector('.bar__content');
@@ -145,6 +151,9 @@ var Generatechartsadv = /** @class */ (function () {
                     circle.style['stroke-dasharray'] = "".concat(_this.objAdv.percValues[indexRow], " 100");
                 });
             }
+            // ROW TYPE 3
+            if (_this.objAdv.format === 'type3') {
+            }
             var previousValue = document.getElementById("perc-value-".concat(_this.objAdv.type, "-").concat(index, "-row-").concat(indexRow));
             if ((previousValue === null || previousValue === void 0 ? void 0 : previousValue.innerHTML) !== "".concat(_this.objAdv.realValues[indexRow]).concat(_this.objAdv.valueLabels[indexRow])) {
                 if (_this.update) {
@@ -156,7 +165,8 @@ var Generatechartsadv = /** @class */ (function () {
                     var initCountJs = new countup_js_1.CountUp("perc-value-".concat(_this.objAdv.type, "-").concat(index, "-row-").concat(indexRow), _this.objAdv.realValues[indexRow], {
                         suffix: _this.objAdv.valueLabels[indexRow],
                         decimalPlaces: checkDecimals ? 1 : 0,
-                        decimal: '.'
+                        decimal: ',',
+                        separator: '.'
                     });
                     // @ts-ignore
                     _this.percValueText.push({ id: "".concat(_this.objAdv.type, "-").concat(indexRow), data: initCountJs });

@@ -70,12 +70,10 @@ class Generatechartsadv {
       
       this.header = el.querySelector('.chart-card__header')
       this.loading(false, el)
-      
-      let status = this.objAdv.percValues[this.objAdv.percValues.length - 1] >= 0 && this.objAdv.percValues[this.objAdv.percValues.length - 1] < this.objAdv.valueRangeColors[0] ? 'red' : this.objAdv.percValues[this.objAdv.percValues.length - 1] >= this.objAdv.valueRangeColors[0] && this.objAdv.percValues[this.objAdv.percValues.length - 1] < this.objAdv.valueRangeColors[1] ? 'orange' : 'green'
-      
+    
       // HEADER TYPE 1
       if (this.objAdv.format === 'type1') {
-        
+        var status = this.objAdv.percValues[this.objAdv.percValues.length - 1] >= 0 && this.objAdv.percValues[this.objAdv.percValues.length - 1] < this.objAdv.valueRangeColors[0] ? 'red' : this.objAdv.percValues[this.objAdv.percValues.length - 1] >= this.objAdv.valueRangeColors[0] && this.objAdv.percValues[this.objAdv.percValues.length - 1] < this.objAdv.valueRangeColors[1] ? 'orange' : 'green'
         this.circle = el.querySelector('.circle-chart__circle')
         
         if (this.header) {
@@ -116,7 +114,8 @@ class Generatechartsadv {
                     suffix:
                     this.objAdv.valueLabels[this.objAdv.valueLabels.length - 1],
                     decimalPlaces: checkDecimals ? 1 : 0 ,
-                    decimal: '.'
+                    decimal: ',',
+                    separator: '.'
                   }
                   )
                   // @ts-ignore
@@ -128,6 +127,7 @@ class Generatechartsadv {
           }
       // HEADER TYPE 2
       if (this.objAdv.format === 'type2') {
+        var status = this.objAdv.percValues[this.objAdv.percValues.length - 1] >= 0 && this.objAdv.percValues[this.objAdv.percValues.length - 1] < this.objAdv.valueRangeColors[0] ? 'red' : this.objAdv.percValues[this.objAdv.percValues.length - 1] >= this.objAdv.valueRangeColors[0] && this.objAdv.percValues[this.objAdv.percValues.length - 1] < this.objAdv.valueRangeColors[1] ? 'orange' : 'green'
         this.rowType = document.querySelector(`[data-type=${this.objAdv.type}]`)
         this.bullet = this.rowType.querySelectorAll('.overlay__full')
         let valuePerc = this.objAdv.percValues[this.objAdv.percValues.length - 1] as number
@@ -150,7 +150,7 @@ class Generatechartsadv {
           }
         
         
-  
+          
           if (this.update) { 
 
              
@@ -169,7 +169,8 @@ class Generatechartsadv {
               {
                 suffix: this.objAdv.valueLabels[this.objAdv.valueLabels.length - 1],
                 decimalPlaces: checkDecimals ? 1 : 0 ,
-                    decimal: '.'
+                    decimal: ',',
+                    separator: '.'
               }
               )
               // @ts-ignore
@@ -194,9 +195,9 @@ class Generatechartsadv {
 
 
       }
+
           
       this.contentRow = [...el.querySelectorAll('.content__row')]
-
       this.iterateRow(this.contentRow, index)
 
       el.classList.add('active')
@@ -205,7 +206,10 @@ class Generatechartsadv {
 
   iterateRow(contentRow: Element[], index: number){
     contentRow.forEach((row, indexRow) => {
-      let status = this.objAdv.overrideDefaultColors ? this.objAdv.valueColors[indexRow] : this.objAdv.percValues[indexRow] >= 0 && this.objAdv.percValues[indexRow] < this.objAdv.valueRangeColors[0] ? 'red' : this.objAdv.percValues[indexRow] >= this.objAdv.valueRangeColors[0] && this.objAdv.percValues[indexRow] < this.objAdv.valueRangeColors[1] ? 'orange' : 'green' 
+      var status: any = null
+      if (this.objAdv.format === 'type1' || this.objAdv.format === 'type2') {
+        status = this.objAdv.overrideDefaultColors ? this.objAdv.valueColors[indexRow] : this.objAdv.percValues[indexRow] >= 0 && this.objAdv.percValues[indexRow] < this.objAdv.valueRangeColors[0] ? 'red' : this.objAdv.percValues[indexRow] >= this.objAdv.valueRangeColors[0] && this.objAdv.percValues[indexRow] < this.objAdv.valueRangeColors[1] ? 'orange' : 'green' 
+      }
       // ROW TYPE 1
       if (this.objAdv.format === 'type1') {
         this.barContent = row.querySelector('.bar__content')
@@ -233,6 +237,11 @@ class Generatechartsadv {
         })
       }
 
+      // ROW TYPE 3
+      if (this.objAdv.format === 'type3') {
+        
+      }
+
       let previousValue = document.getElementById(`perc-value-${this.objAdv.type}-${index}-row-${indexRow}`)
 
         if (previousValue?.innerHTML !==  `${this.objAdv.realValues[indexRow]}${this.objAdv.valueLabels[indexRow]}`) {
@@ -249,13 +258,15 @@ class Generatechartsadv {
             } else {
               
                 let checkDecimals = (this.objAdv.realValues[indexRow] as number - Math.floor(this.objAdv.realValues[indexRow] as number)) !== 0
+                
                 let initCountJs = new CountUp(
                   `perc-value-${this.objAdv.type}-${index}-row-${indexRow}`,
                   this.objAdv.realValues[indexRow] as number,
                   {
                     suffix: this.objAdv.valueLabels[indexRow],
                     decimalPlaces: checkDecimals ? 1 : 0 ,
-                    decimal: '.'
+                    decimal: ',',
+                    separator: '.'
                   }
                   )
                   // @ts-ignore
