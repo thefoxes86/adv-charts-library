@@ -177,7 +177,7 @@ body {
   background-color: transparent;
   width: 100%;
   max-width: 370px;
-  height: 400px;
+  height: auto;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
