@@ -17,7 +17,7 @@ body {
     width: 100%;
     height: auto;
     min-height: auto !important;
-    border-radius: 20px;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     
@@ -30,7 +30,7 @@ body {
     width: 100%;
     max-width: 370px;
     height: 400px;
-    border-radius: 20px;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
 
@@ -42,7 +42,7 @@ body {
         height: auto;
         position: relative;
         min-height: 100px;
-        border-radius: 20px;
+        border-radius: 10px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -181,7 +181,7 @@ body {
             background-color: green; 
             outline: 0;
             border: 0;
-            border-radius: 20px;
+            border-radius: 10px;
             color: white;
             font-size: 12px;
             padding: 6px 15px;
@@ -356,6 +356,22 @@ body {
       
 }
 
+.button-adv-green {
+    background-color: #e3e4e5;
+    outline: 0;
+    border: 1px solid #b5b5b5;
+    width: 60%;
+    margin-top: 15px;
+    border-radius: 10px;
+    color: black;
+    font-size: 14px;
+    padding: 6px 15px;
+
+    &:hover {
+        background-color: #BEBC46;
+        color: white;
+    }
+}
 
 button:disabled {
     pointer-events: none;
@@ -413,7 +429,7 @@ button:disabled {
     max-width: 370px;
     height: 400px;
     min-height: 100px;
-    border-radius: 20px;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
 
@@ -532,7 +548,7 @@ button:disabled {
             background-color: green;
             outline: 0;
             border: 0;
-            border-radius: 20px;
+            border-radius: 10px;
             color: white;
             font-size: 12px;
             padding: 6px 15px;
