@@ -216,7 +216,7 @@ class Generatechartsadv {
             {
               suffix: this.objAdv.valueLabels[0],
               decimalPlaces: 1 ,
-              decimal: '.',
+              decimal: ',',
               separator: '.'
             }
           )
@@ -228,7 +228,7 @@ class Generatechartsadv {
             {
               suffix: this.objAdv.valueLabels[1],
               decimalPlaces: 0 ,
-              decimal: '.',
+              decimal: ',',
               separator: '.'
             }
           )

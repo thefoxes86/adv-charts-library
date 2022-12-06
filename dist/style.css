@@ -176,7 +176,7 @@ body {
   margin: 10px;
   background-color: transparent;
   width: 100%;
-  max-width: 370px;
+  max-width: 300px;
   height: auto;
   border-radius: 20px;
   display: flex;
@@ -227,22 +227,23 @@ body {
   background-color: #f3f3f3;
   border: #78829b 1px solid;
   border-radius: 10px;
-  padding: 10px 20px;
+  padding: 20px;
   justify-content: space-between;
   align-items: center;
   gap: 15px;
   font-size: 14px;
 }
-.chart-card[data-format*=type3] .chart-card__content .content__row .text {
+.chart-card[data-format*=type3] .chart-card__content .content__row .content__title .text {
   font-weight: 700;
   font-size: 32px;
   text-align: left;
   padding: 0px;
 }
-.chart-card[data-format*=type3] .chart-card__content .content__row .subtitle {
+.chart-card[data-format*=type3] .chart-card__content .content__row .content__title .subtitile {
   font-weight: 400;
   text-align: left;
-  padding: 0px 10px 0 20px;
+  padding: 0px 10px 0 0px;
+  margin-top: -10px !important;
 }
 .chart-card[data-format*=type3] .chart-card__footer {
   display: flex;
@@ -252,18 +253,19 @@ body {
   margin: 5px 0px;
 }
 .chart-card[data-format*=type3] .chart-card__footer button {
-  background-color: transparent;
+  background-color: #e3e4e5;
   outline: 0;
-  border: 1px solid blueviolet;
-  width: 100%;
+  border: 1px solid #b5b5b5;
+  width: 60%;
   margin-top: 15px;
-  border-radius: 15px;
+  border-radius: 10px;
   color: black;
-  font-size: 18px;
+  font-size: 14px;
   padding: 6px 15px;
 }
 .chart-card[data-format*=type3] .chart-card__footer button:hover {
-  background-color: green;
+  background-color: #BEBC46;
+  color: white;
 }
 .chart-card[data-format*=type3] .reviews_star {
   display: flex;
@@ -297,7 +299,8 @@ body {
 .chart-card[data-format*=type3] .reviews_star .star .overlay__full_star {
   position: absolute;
   height: 100%;
-  z-index: 999;
+  z-index: 20;
+  left: 0;
   background-color: gold;
   width: 0;
   transition: width 0.2s ease-out;
@@ -317,7 +320,7 @@ button:disabled {
   left: 0;
   animation: 1s loading-pulse alternate;
   animation-iteration-count: infinite;
-  z-index: 9999;
+  z-index: 20;
 }
 .loading .chart-card__content .content__row .bar::after {
   content: "";
@@ -328,7 +331,7 @@ button:disabled {
   left: 0;
   animation: 1s loading-pulse alternate;
   animation-iteration-count: infinite;
-  z-index: 9999;
+  z-index: 20;
 }
 .loading .bullet::after {
   content: "";
@@ -339,7 +342,7 @@ button:disabled {
   left: 0;
   animation: 1s loading-pulse alternate;
   animation-iteration-count: infinite;
-  z-index: 9999;
+  z-index: 20;
 }
 .loading .circle-chart__background {
   animation: 1s loading-pulse-stroke alternate;
@@ -397,6 +400,7 @@ button:disabled {
 .chart-card:not(.row__header)[data-format*=type2] .chart-card__content .content__row .content__title .subtitile {
   font-weight: 400;
   font-size: 13px;
+  text-align: left;
   font-style: italic;
 }
 .chart-card:not(.row__header)[data-format*=type2] .chart-card__content .content__row .chart-card__content {
@@ -479,20 +483,36 @@ button:disabled {
   background-color: orange !important;
 }
 
-.dv-lightgreen-bg {
+.dv-lightgreen-bg-transparency {
   background-color: rgba(190, 188, 70, 0.2) !important;
 }
 
-.dv-green-bg {
+.dv-green-bg-transparency {
   background-color: rgba(118, 126, 56, 0.2) !important;
 }
 
-.dv-orange-bg {
+.dv-orange-bg-transparency {
   background-color: rgba(189, 131, 56, 0.2) !important;
 }
 
-.dv-blue-bg {
+.dv-blue-bg-transparency {
   background-color: rgba(120, 130, 155, 0.2) !important;
+}
+
+.dv-lightgreen-bg {
+  background-color: #bebc46 !important;
+}
+
+.dv-green-bg {
+  background-color: #767e38 !important;
+}
+
+.dv-orange-bg {
+  background-color: #bd8338 !important;
+}
+
+.dv-blue-bg {
+  background-color: #78829b !important;
 }
 
 .red-text {

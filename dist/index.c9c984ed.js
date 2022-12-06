@@ -985,14 +985,14 @@ class Generatechartsadv {
                     let numberStars = new (0, _countupJs.CountUp)(`number_stars`, this.objAdv.realValues[0], {
                         suffix: this.objAdv.valueLabels[0],
                         decimalPlaces: 1,
-                        decimal: ".",
+                        decimal: ",",
                         separator: "."
                     });
                     numberStars.start();
                     let numberReviews = new (0, _countupJs.CountUp)(`number_reviews`, this.objAdv.realValues[1], {
                         suffix: this.objAdv.valueLabels[1],
                         decimalPlaces: 0,
-                        decimal: ".",
+                        decimal: ",",
                         separator: "."
                     });
                     numberReviews.start();
@@ -1504,7 +1504,7 @@ const resultados = {
         ""
     ],
     realValues: [
-        4.7,
+        4.0,
         61,
         69,
         61,
@@ -1512,7 +1512,7 @@ const resultados = {
         90
     ],
     percValues: [
-        85,
+        80,
         61,
         69,
         100,
@@ -1546,7 +1546,7 @@ const resultados2 = {
         90
     ],
     percValues: [
-        45,
+        3.2,
         61,
         69,
         700,

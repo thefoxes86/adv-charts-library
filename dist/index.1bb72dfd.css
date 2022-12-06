@@ -191,7 +191,7 @@ body {
 
 .chart-card[data-format*="type3"] {
   width: 100%;
-  max-width: 370px;
+  max-width: 300px;
   height: auto;
   background-color: #0000;
   border-radius: 20px;
@@ -254,22 +254,23 @@ body {
   justify-content: space-between;
   align-items: center;
   gap: 15px;
-  padding: 10px 20px;
+  padding: 20px;
   font-size: 14px;
   display: flex;
 }
 
-.chart-card[data-format*="type3"] .chart-card__content .content__row .text {
+.chart-card[data-format*="type3"] .chart-card__content .content__row .content__title .text {
   text-align: left;
   padding: 0;
   font-size: 32px;
   font-weight: 700;
 }
 
-.chart-card[data-format*="type3"] .chart-card__content .content__row .subtitle {
+.chart-card[data-format*="type3"] .chart-card__content .content__row .content__title .subtitile {
   text-align: left;
-  padding: 0 10px 0 20px;
+  padding: 0 10px 0 0;
   font-weight: 400;
+  margin-top: -10px !important;
 }
 
 .chart-card[data-format*="type3"] .chart-card__footer {
@@ -281,19 +282,20 @@ body {
 }
 
 .chart-card[data-format*="type3"] .chart-card__footer button {
-  width: 100%;
+  width: 60%;
   color: #000;
-  background-color: #0000;
-  border: 1px solid #8a2be2;
-  border-radius: 15px;
+  background-color: #e3e4e5;
+  border: 1px solid #b5b5b5;
+  border-radius: 10px;
   outline: 0;
   margin-top: 15px;
   padding: 6px 15px;
-  font-size: 18px;
+  font-size: 14px;
 }
 
 .chart-card[data-format*="type3"] .chart-card__footer button:hover {
-  background-color: green;
+  color: #fff;
+  background-color: #bebc46;
 }
 
 .chart-card[data-format*="type3"] .reviews_star {
@@ -332,11 +334,12 @@ body {
 
 .chart-card[data-format*="type3"] .reviews_star .star .overlay__full_star {
   height: 100%;
-  z-index: 999;
+  z-index: 20;
   width: 0;
   background-color: gold;
   transition: width .2s ease-out;
   position: absolute;
+  left: 0;
 }
 
 button:disabled {
@@ -348,7 +351,7 @@ button:disabled {
   content: "";
   width: 100%;
   height: 100%;
-  z-index: 9999;
+  z-index: 20;
   animation: 1s infinite alternate loading-pulse;
   position: absolute;
   top: 0;
@@ -415,6 +418,7 @@ button:disabled {
 }
 
 .chart-card:not(.row__header)[data-format*="type2"] .chart-card__content .content__row .content__title .subtitile {
+  text-align: left;
   font-size: 13px;
   font-style: italic;
   font-weight: 400;
@@ -510,20 +514,36 @@ button:disabled {
   background-color: orange !important;
 }
 
-.dv-lightgreen-bg {
+.dv-lightgreen-bg-transparency {
   background-color: #bebc4633 !important;
 }
 
-.dv-green-bg {
+.dv-green-bg-transparency {
   background-color: #767e3833 !important;
 }
 
-.dv-orange-bg {
+.dv-orange-bg-transparency {
   background-color: #bd833833 !important;
 }
 
-.dv-blue-bg {
+.dv-blue-bg-transparency {
   background-color: #78829b33 !important;
+}
+
+.dv-lightgreen-bg {
+  background-color: #bebc46 !important;
+}
+
+.dv-green-bg {
+  background-color: #767e38 !important;
+}
+
+.dv-orange-bg {
+  background-color: #bd8338 !important;
+}
+
+.dv-blue-bg {
+  background-color: #78829b !important;
 }
 
 .red-text {

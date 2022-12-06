@@ -199,7 +199,7 @@ body {
     margin: 10px;
     background-color: transparent;
     width: 100%;
-    max-width: 370px;
+    max-width: 300px;
     height: auto;
     border-radius: 20px;
     display: flex;
@@ -260,22 +260,25 @@ body {
             background-color: #f3f3f3;
             border: #78829b 1px solid;
             border-radius: 10px;
-            padding: 10px 20px;
+            padding: 20px;
             justify-content: space-between;
             align-items: center;
             gap: 15px;
             font-size: 14px;
+            & .content__title {
 
-            & .text {
-                font-weight: 700;
-                font-size: 32px;
-                text-align: left;
-                padding: 0px;
-            }
-            & .subtitle {
-                font-weight: 400;
-                text-align: left;
-                padding: 0px 10px 0 20px;
+                & .text {
+                    font-weight: 700;
+                    font-size: 32px;
+                    text-align: left;
+                    padding: 0px;
+                }
+                & .subtitile {
+                    font-weight: 400;
+                    text-align: left;
+                    padding: 0px 10px 0 0px;
+                    margin-top: -10px !important;
+                }
             }
         }
     }
@@ -288,18 +291,19 @@ body {
         margin: 5px 0px;
 
         & button {
-            background-color: transparent;
+            background-color: #e3e4e5;
             outline: 0;
-            border: 1px solid blueviolet;
-            width: 100%;
+            border: 1px solid #b5b5b5;
+            width: 60%;
             margin-top: 15px;
-            border-radius: 15px;
+            border-radius: 10px;
             color: black;
-            font-size: 18px;
+            font-size: 14px;
             padding: 6px 15px;
 
             &:hover {
-                background-color: green;
+                background-color: #BEBC46;
+                color: white;
             }
         }
     }
@@ -339,7 +343,8 @@ body {
             .overlay__full_star {
                 position: absolute;
                 height: 100%;
-                z-index: 999;
+                z-index: 20;
+                left: 0;
                 background-color: gold;
                 width: 0;
                 transition: width 0.2s ease-out;
@@ -368,7 +373,7 @@ button:disabled {
         left: 0;
         animation: 1s loading-pulse alternate;
         animation-iteration-count: infinite;
-        z-index: 9999;
+        z-index: 20;
     }
     .chart-card__content .content__row .bar::after {
         content: '';
@@ -379,7 +384,7 @@ button:disabled {
         left: 0;
         animation: 1s loading-pulse alternate;
         animation-iteration-count: infinite;
-        z-index: 9999;
+        z-index: 20;
     }
     .bullet::after {
         content: '';
@@ -390,7 +395,7 @@ button:disabled {
         left: 0;
         animation: 1s loading-pulse alternate;
         animation-iteration-count: infinite;
-        z-index: 9999;
+        z-index: 20;
 
     } 
     .circle-chart__background {
@@ -456,6 +461,7 @@ button:disabled {
                 & .subtitile {
                     font-weight: 400;
                     font-size: 13px;
+                    text-align: left;
                     font-style: italic;
                 }
             }
@@ -551,18 +557,32 @@ button:disabled {
 .orange {
     background-color: orange !important;
 }
-.dv-lightgreen-bg {
+.dv-lightgreen-bg-transparency {
     background-color: rgba(#BEBC46, 0.2) !important;
 }
-.dv-green-bg {
+.dv-green-bg-transparency {
     background-color: rgba(#767e38, 0.2) !important;
 }
 
-.dv-orange-bg {
+.dv-orange-bg-transparency {
     background-color: rgba(#bd8338, 0.2) !important;
 }
-.dv-blue-bg {
+.dv-blue-bg-transparency {
     background-color: rgba(#78829b, 0.2) !important;
+}
+
+.dv-lightgreen-bg {
+    background-color: rgba(#BEBC46, 1) !important;
+}
+.dv-green-bg {
+    background-color: rgba(#767e38, 1) !important;
+}
+
+.dv-orange-bg {
+    background-color: rgba(#bd8338, 1) !important;
+}
+.dv-blue-bg {
+    background-color: rgba(#78829b, 1) !important;
 }
 
 .red-text {

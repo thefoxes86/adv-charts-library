@@ -129,14 +129,14 @@ var Generatechartsadv = /** @class */ (function () {
                     var numberStars = new countup_js_1.CountUp("number_stars", _this.objAdv.realValues[0], {
                         suffix: _this.objAdv.valueLabels[0],
                         decimalPlaces: 1,
-                        decimal: '.',
+                        decimal: ',',
                         separator: '.'
                     });
                     numberStars.start();
                     var numberReviews = new countup_js_1.CountUp("number_reviews", _this.objAdv.realValues[1], {
                         suffix: _this.objAdv.valueLabels[1],
                         decimalPlaces: 0,
-                        decimal: '.',
+                        decimal: ',',
                         separator: '.'
                     });
                     numberReviews.start();
