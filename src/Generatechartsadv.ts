@@ -32,6 +32,9 @@ class Generatechartsadv {
   rowType!: any;
   headerTextValue!: HTMLElement;
   previousValue: number | null;
+  numberStars!: number;
+  isReviewPresent: boolean;
+
 
   constructor(){
     // @ts-ignore
@@ -43,6 +46,7 @@ class Generatechartsadv {
     this.titlePercValue = []
     this.precValueHeaderTitleValue = null
     this.previousValue = null
+    this.isReviewPresent = false
   }
 
   loading(loading: boolean, el?: HTMLElement | any){
@@ -196,6 +200,52 @@ class Generatechartsadv {
 
       }
 
+      // HEADER TYPE 3
+      if (this.objAdv.format === 'type3') {
+        var checkStarsReviews = el.querySelector('.reviews_star') as HTMLElement
+
+        if (checkStarsReviews) {
+          this.isReviewPresent = true
+          this.bullet = document.querySelectorAll('.overlay__full_star')
+          let valuePerc = this.objAdv.percValues[index] as number
+          this.previousValue = this.previousValue === null ? this.objAdv.percValues[index] as number :  this.previousValue
+         
+          let numberStars = new CountUp(
+            `number_stars`,
+            this.objAdv.realValues[0] as number,
+            {
+              suffix: this.objAdv.valueLabels[0],
+              decimalPlaces: 1 ,
+              decimal: '.',
+              separator: '.'
+            }
+          )
+          numberStars.start()
+
+          let numberReviews = new CountUp(
+            `number_reviews`,
+            this.objAdv.realValues[1] as number,
+            {
+              suffix: this.objAdv.valueLabels[1],
+              decimalPlaces: 0 ,
+              decimal: '.',
+              separator: '.'
+            }
+          )
+          numberReviews.start()
+          console.log('test', this.bullet, valuePerc)
+
+          if (this.previousValue > valuePerc) {
+
+            animateBullets(this.bullet, valuePerc, this.previousValue)
+            this.previousValue = null
+          } else {
+            animateBullets(this.bullet, valuePerc, this.previousValue)
+          }
+          
+        }
+      }
+
           
       this.contentRow = [...el.querySelectorAll('.content__row')]
       this.iterateRow(this.contentRow, index)
@@ -206,6 +256,7 @@ class Generatechartsadv {
 
   iterateRow(contentRow: Element[], index: number){
     contentRow.forEach((row, indexRow) => {
+      let indexRowVar = indexRow
       var status: any = null
       if (this.objAdv.format === 'type1' || this.objAdv.format === 'type2') {
         status = this.objAdv.overrideDefaultColors ? this.objAdv.valueColors[indexRow] : this.objAdv.percValues[indexRow] >= 0 && this.objAdv.percValues[indexRow] < this.objAdv.valueRangeColors[0] ? 'red' : this.objAdv.percValues[indexRow] >= this.objAdv.valueRangeColors[0] && this.objAdv.percValues[indexRow] < this.objAdv.valueRangeColors[1] ? 'orange' : 'green' 
@@ -239,32 +290,31 @@ class Generatechartsadv {
 
       // ROW TYPE 3
       if (this.objAdv.format === 'type3') {
-        
+        indexRowVar = this.isReviewPresent ?  indexRow + 2 : indexRow
+        animateBullets
       }
 
-      let previousValue = document.getElementById(`perc-value-${this.objAdv.type}-${index}-row-${indexRow}`)
+      let previousValue = document.getElementById(`perc-value-${this.objAdv.type}-${index}-row-${indexRowVar}`)
 
-        if (previousValue?.innerHTML !==  `${this.objAdv.realValues[indexRow]}${this.objAdv.valueLabels[indexRow]}`) {
+        if (previousValue?.innerHTML !==  `${this.objAdv.realValues[indexRowVar]}${this.objAdv.valueLabels[indexRowVar]}`) {
 
         
           
             if (this.update) {
-              let updateCount: {id: string, data: any} =  this.percValueText.find((element: {id: string, data: any})=> element.id === `${this.objAdv.type}-${indexRow}`) as any
+              let updateCount: {id: string, data: any} =  this.percValueText.find((element: {id: string, data: any})=> element.id === `${this.objAdv.type}-${indexRowVar}`) as any
               
-              updateCount?.data?.update(this.objAdv.realValues[indexRow])
+              updateCount?.data?.update(this.objAdv.realValues[indexRowVar])
 
               
               
             } else {
-              
-                let checkDecimals = (this.objAdv.realValues[indexRow] as number - Math.floor(this.objAdv.realValues[indexRow] as number)) !== 0
                 
                 let initCountJs = new CountUp(
                   `perc-value-${this.objAdv.type}-${index}-row-${indexRow}`,
-                  this.objAdv.realValues[indexRow] as number,
+                  this.objAdv.realValues[indexRowVar] as number,
                   {
-                    suffix: this.objAdv.valueLabels[indexRow],
-                    decimalPlaces: checkDecimals ? 1 : 0 ,
+                    suffix: this.objAdv.valueLabels[indexRowVar],
+                    decimalPlaces: 0 ,
                     decimal: ',',
                     separator: '.'
                   }

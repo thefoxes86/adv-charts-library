@@ -22,6 +22,7 @@ var Generatechartsadv = /** @class */ (function () {
         this.titlePercValue = [];
         this.precValueHeaderTitleValue = null;
         this.previousValue = null;
+        this.isReviewPresent = false;
     }
     Generatechartsadv.prototype.loading = function (loading, el) {
         this.setLoading = loading;
@@ -117,6 +118,38 @@ var Generatechartsadv = /** @class */ (function () {
                     _this.headerTextValue.classList.add("".concat(status, "-text"));
                 }
             }
+            // HEADER TYPE 3
+            if (_this.objAdv.format === 'type3') {
+                var checkStarsReviews = el.querySelector('.reviews_star');
+                if (checkStarsReviews) {
+                    _this.isReviewPresent = true;
+                    _this.bullet = document.querySelectorAll('.overlay__full_star');
+                    var valuePerc = _this.objAdv.percValues[index];
+                    _this.previousValue = _this.previousValue === null ? _this.objAdv.percValues[index] : _this.previousValue;
+                    var numberStars = new countup_js_1.CountUp("number_stars", _this.objAdv.realValues[0], {
+                        suffix: _this.objAdv.valueLabels[0],
+                        decimalPlaces: 1,
+                        decimal: '.',
+                        separator: '.'
+                    });
+                    numberStars.start();
+                    var numberReviews = new countup_js_1.CountUp("number_reviews", _this.objAdv.realValues[1], {
+                        suffix: _this.objAdv.valueLabels[1],
+                        decimalPlaces: 0,
+                        decimal: '.',
+                        separator: '.'
+                    });
+                    numberReviews.start();
+                    console.log('test', _this.bullet, valuePerc);
+                    if (_this.previousValue > valuePerc) {
+                        (0, animateBullets_1["default"])(_this.bullet, valuePerc, _this.previousValue);
+                        _this.previousValue = null;
+                    }
+                    else {
+                        (0, animateBullets_1["default"])(_this.bullet, valuePerc, _this.previousValue);
+                    }
+                }
+            }
             _this.contentRow = __spreadArray([], el.querySelectorAll('.content__row'), true);
             _this.iterateRow(_this.contentRow, index);
             el.classList.add('active');
@@ -126,6 +159,7 @@ var Generatechartsadv = /** @class */ (function () {
         var _this = this;
         contentRow.forEach(function (row, indexRow) {
             var _a;
+            var indexRowVar = indexRow;
             var status = null;
             if (_this.objAdv.format === 'type1' || _this.objAdv.format === 'type2') {
                 status = _this.objAdv.overrideDefaultColors ? _this.objAdv.valueColors[indexRow] : _this.objAdv.percValues[indexRow] >= 0 && _this.objAdv.percValues[indexRow] < _this.objAdv.valueRangeColors[0] ? 'red' : _this.objAdv.percValues[indexRow] >= _this.objAdv.valueRangeColors[0] && _this.objAdv.percValues[indexRow] < _this.objAdv.valueRangeColors[1] ? 'orange' : 'green';
@@ -153,18 +187,19 @@ var Generatechartsadv = /** @class */ (function () {
             }
             // ROW TYPE 3
             if (_this.objAdv.format === 'type3') {
+                indexRowVar = _this.isReviewPresent ? indexRow + 2 : indexRow;
+                animateBullets_1["default"];
             }
-            var previousValue = document.getElementById("perc-value-".concat(_this.objAdv.type, "-").concat(index, "-row-").concat(indexRow));
-            if ((previousValue === null || previousValue === void 0 ? void 0 : previousValue.innerHTML) !== "".concat(_this.objAdv.realValues[indexRow]).concat(_this.objAdv.valueLabels[indexRow])) {
+            var previousValue = document.getElementById("perc-value-".concat(_this.objAdv.type, "-").concat(index, "-row-").concat(indexRowVar));
+            if ((previousValue === null || previousValue === void 0 ? void 0 : previousValue.innerHTML) !== "".concat(_this.objAdv.realValues[indexRowVar]).concat(_this.objAdv.valueLabels[indexRowVar])) {
                 if (_this.update) {
-                    var updateCount = _this.percValueText.find(function (element) { return element.id === "".concat(_this.objAdv.type, "-").concat(indexRow); });
-                    (_a = updateCount === null || updateCount === void 0 ? void 0 : updateCount.data) === null || _a === void 0 ? void 0 : _a.update(_this.objAdv.realValues[indexRow]);
+                    var updateCount = _this.percValueText.find(function (element) { return element.id === "".concat(_this.objAdv.type, "-").concat(indexRowVar); });
+                    (_a = updateCount === null || updateCount === void 0 ? void 0 : updateCount.data) === null || _a === void 0 ? void 0 : _a.update(_this.objAdv.realValues[indexRowVar]);
                 }
                 else {
-                    var checkDecimals = (_this.objAdv.realValues[indexRow] - Math.floor(_this.objAdv.realValues[indexRow])) !== 0;
-                    var initCountJs = new countup_js_1.CountUp("perc-value-".concat(_this.objAdv.type, "-").concat(index, "-row-").concat(indexRow), _this.objAdv.realValues[indexRow], {
-                        suffix: _this.objAdv.valueLabels[indexRow],
-                        decimalPlaces: checkDecimals ? 1 : 0,
+                    var initCountJs = new countup_js_1.CountUp("perc-value-".concat(_this.objAdv.type, "-").concat(index, "-row-").concat(indexRow), _this.objAdv.realValues[indexRowVar], {
+                        suffix: _this.objAdv.valueLabels[indexRowVar],
+                        decimalPlaces: 0,
                         decimal: ',',
                         separator: '.'
                     });

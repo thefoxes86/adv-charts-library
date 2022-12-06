@@ -1,8 +1,8 @@
 const resultados = {
   result: 'ok',
-  valueLabels: ['', '', '', ''],
-  realValues: [4000, 61, 16, 90],
-  percValues: [4000, 100, 16, 100],
+  valueLabels: ['', '', '', '', '', ''],
+  realValues: [4.7, 61, 69, 61, 16, 90],
+  percValues: [85, 61, 69, 100, 16, 100],
   type: 'resultados',
   format: 'type3',
 }

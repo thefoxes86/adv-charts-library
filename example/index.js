@@ -12,6 +12,7 @@ import headerSummary2 from './api/headerSummary2'
 import headerSummary3 from './api/headerSummary3'
 import resultados from './api/resultados'
 import resultados2 from './api/resultados2'
+import resultadosWhithoutStar from './api/resultadosWhituoutStar'
 
 window.addEventListener('DOMContentLoaded', () => {
   const chart = new Generatechartsadv()
@@ -25,6 +26,7 @@ window.addEventListener('DOMContentLoaded', () => {
   setTimeout(() => {
     // result
     chart.init(resultados)
+    type2.init(resultadosWhithoutStar)
   }, 3000)
 
   setTimeout(() => {

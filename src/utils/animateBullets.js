@@ -3,7 +3,6 @@ exports.__esModule = true;
 var animateBullets = function (bullet, valuePerc, previousValue) {
     if (previousValue === void 0) { previousValue = 0; }
     if (previousValue > valuePerc) {
-        console.log('Entro qua ', previousValue, valuePerc);
         // DECRESCE
         if (previousValue >= 0 && previousValue <= 20 && valuePerc >= 0 && valuePerc < 20) {
             loopBulletsAnimation(1, 1, bullet, valuePerc);
@@ -106,7 +105,6 @@ var loopBulletsAnimation = function (bulletStart, bulletEnd, bullet, value, prev
         // 3 - 1
         var mulTime = bulletStart - i;
         setTimeout(function () {
-            console.log(bulletEnd !== i ? "0%" : "".concat(((value - ((bulletEnd - 1) * 20)) / 2) * 10, "%"), (value - ((bulletEnd - 1) * 20)));
             bullet[i - 1].style.width = bulletEnd !== i ? "0%" : "".concat(((value - ((bulletEnd - 1) * 20)) / 2) * 10, "%");
         }, mulTime * 200);
     };

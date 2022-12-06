@@ -3,8 +3,6 @@ const animateBullets = (bullet: [] | any, valuePerc: number, previousValue: numb
     
     if (previousValue > valuePerc) {
 
-        console.log('Entro qua ', previousValue, valuePerc)
-
         // DECRESCE
         if (previousValue >= 0 && previousValue <= 20 && valuePerc >= 0 && valuePerc < 20) {
             loopBulletsAnimation(1,1, bullet, valuePerc)
@@ -119,7 +117,6 @@ const loopBulletsAnimation = (bulletStart: number, bulletEnd: number, bullet: []
             // 3 - 1
             let mulTime = bulletStart - i
             setTimeout(()=>{
-                console.log(bulletEnd !== i ? `0%` : `${((value - ((bulletEnd  - 1) * 20)) / 2) * 10}%`, (value - ((bulletEnd  - 1) * 20)))
                 bullet[i -1].style.width = bulletEnd !== i ? `0%` : `${((value - ((bulletEnd  - 1) * 20)) / 2) * 10}%`
             },mulTime * 200)
     }
