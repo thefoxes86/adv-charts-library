@@ -315,10 +315,12 @@ body {
   color: black;
   font-size: 14px;
   padding: 6px 15px;
+  text-decoration: none;
 }
 .button-adv-green:hover {
   background-color: #BEBC46;
   color: white;
+  text-decoration: none;
 }
 
 button:disabled {
