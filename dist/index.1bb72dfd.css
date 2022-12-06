@@ -270,7 +270,6 @@ body {
   text-align: left;
   padding: 0 10px 0 0;
   font-weight: 400;
-  margin-top: -10px !important;
 }
 
 .chart-card[data-format*="type3"] .chart-card__footer {
