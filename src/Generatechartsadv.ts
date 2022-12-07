@@ -106,11 +106,13 @@ class Generatechartsadv {
 
               updateCound?.data?.update(this.objAdv.realValues[this.objAdv.realValues.length - 1])
 
-            
-          
-                
               } else {
                 let checkDecimals = (this.objAdv.realValues[this.objAdv.realValues.length - 1] as number - Math.floor(this.objAdv.realValues[this.objAdv.realValues.length - 1] as number)) !== 0
+                if (this.objAdv.realValues[this.objAdv.realValues.length - 1] === 'nd' || this.objAdv.realValues[this.objAdv.realValues.length - 1] === null) {
+                  let ndString: InputEvent | any =  document.getElementById(`mainValuePerc-${this.objAdv.type}-${index}`)
+                  ndString.innerHTML = 'N.d.'
+              } else {
+                
                 let initTitleCount = new CountUp(
                   `mainValuePerc-${this.objAdv.type}-${index}`,
                   this.objAdv.realValues[this.objAdv.realValues.length - 1] as number,
@@ -125,7 +127,8 @@ class Generatechartsadv {
                   // @ts-ignore
                   this.percValue.push({id: this.objAdv.type ,data: initTitleCount})
                
-                initTitleCount.start()
+                  initTitleCount.start()
+                }
               }
             } 
           }
@@ -308,22 +311,27 @@ class Generatechartsadv {
               
               
             } else {
-                
-                let initCountJs = new CountUp(
-                  `perc-value-${this.objAdv.type}-${index}-row-${indexRow}`,
-                  this.objAdv.realValues[indexRowVar] as number,
-                  {
-                    suffix: this.objAdv.valueLabels[indexRowVar],
-                    decimalPlaces: 0 ,
-                    decimal: ',',
-                    separator: '.'
+                if (this.objAdv.realValues[indexRowVar] === 'nd' || this.objAdv.realValues[indexRowVar] === null) {
+                    let ndString: InputEvent | any =  document.getElementById(`perc-value-${this.objAdv.type}-${index}-row-${indexRow}`)
+                    ndString.innerHTML = 'N.d.'
+                } else {
+
+                  let initCountJs = new CountUp(
+                    `perc-value-${this.objAdv.type}-${index}-row-${indexRow}`,
+                    this.objAdv.realValues[indexRowVar] as number,
+                    {
+                      suffix: this.objAdv.valueLabels[indexRowVar],
+                      decimalPlaces: 0 ,
+                      decimal: ',',
+                      separator: '.'
+                    }
+                    )
+                    // @ts-ignore
+                    this.percValueText.push({id: `${this.objAdv.type}-${indexRow}` ,data:initCountJs})
+                    
+                    initCountJs.start()
                   }
-                  )
-                  // @ts-ignore
-                  this.percValueText.push({id: `${this.objAdv.type}-${indexRow}` ,data:initCountJs})
-                
-                initCountJs.start()
-       
+                    
             }
           }
           

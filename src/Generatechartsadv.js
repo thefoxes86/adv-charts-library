@@ -64,15 +64,21 @@ var Generatechartsadv = /** @class */ (function () {
                     }
                     else {
                         var checkDecimals = (_this.objAdv.realValues[_this.objAdv.realValues.length - 1] - Math.floor(_this.objAdv.realValues[_this.objAdv.realValues.length - 1])) !== 0;
-                        var initTitleCount = new countup_js_1.CountUp("mainValuePerc-".concat(_this.objAdv.type, "-").concat(index), _this.objAdv.realValues[_this.objAdv.realValues.length - 1], {
-                            suffix: _this.objAdv.valueLabels[_this.objAdv.valueLabels.length - 1],
-                            decimalPlaces: checkDecimals ? 1 : 0,
-                            decimal: ',',
-                            separator: '.'
-                        });
-                        // @ts-ignore
-                        _this.percValue.push({ id: _this.objAdv.type, data: initTitleCount });
-                        initTitleCount.start();
+                        if (_this.objAdv.realValues[_this.objAdv.realValues.length - 1] === 'nd' || _this.objAdv.realValues[_this.objAdv.realValues.length - 1] === null) {
+                            var ndString = document.getElementById("mainValuePerc-".concat(_this.objAdv.type, "-").concat(index));
+                            ndString.innerHTML = 'N.d.';
+                        }
+                        else {
+                            var initTitleCount = new countup_js_1.CountUp("mainValuePerc-".concat(_this.objAdv.type, "-").concat(index), _this.objAdv.realValues[_this.objAdv.realValues.length - 1], {
+                                suffix: _this.objAdv.valueLabels[_this.objAdv.valueLabels.length - 1],
+                                decimalPlaces: checkDecimals ? 1 : 0,
+                                decimal: ',',
+                                separator: '.'
+                            });
+                            // @ts-ignore
+                            _this.percValue.push({ id: _this.objAdv.type, data: initTitleCount });
+                            initTitleCount.start();
+                        }
                     }
                 }
             }
@@ -197,15 +203,21 @@ var Generatechartsadv = /** @class */ (function () {
                     (_a = updateCount === null || updateCount === void 0 ? void 0 : updateCount.data) === null || _a === void 0 ? void 0 : _a.update(_this.objAdv.realValues[indexRowVar]);
                 }
                 else {
-                    var initCountJs = new countup_js_1.CountUp("perc-value-".concat(_this.objAdv.type, "-").concat(index, "-row-").concat(indexRow), _this.objAdv.realValues[indexRowVar], {
-                        suffix: _this.objAdv.valueLabels[indexRowVar],
-                        decimalPlaces: 0,
-                        decimal: ',',
-                        separator: '.'
-                    });
-                    // @ts-ignore
-                    _this.percValueText.push({ id: "".concat(_this.objAdv.type, "-").concat(indexRow), data: initCountJs });
-                    initCountJs.start();
+                    if (_this.objAdv.realValues[indexRowVar] === 'nd' || _this.objAdv.realValues[indexRowVar] === null) {
+                        var ndString = document.getElementById("perc-value-".concat(_this.objAdv.type, "-").concat(index, "-row-").concat(indexRow));
+                        ndString.innerHTML = 'N.d.';
+                    }
+                    else {
+                        var initCountJs = new countup_js_1.CountUp("perc-value-".concat(_this.objAdv.type, "-").concat(index, "-row-").concat(indexRow), _this.objAdv.realValues[indexRowVar], {
+                            suffix: _this.objAdv.valueLabels[indexRowVar],
+                            decimalPlaces: 0,
+                            decimal: ',',
+                            separator: '.'
+                        });
+                        // @ts-ignore
+                        _this.percValueText.push({ id: "".concat(_this.objAdv.type, "-").concat(indexRow), data: initCountJs });
+                        initCountJs.start();
+                    }
                 }
             }
             _this.textValue = document.getElementById("perc-value-".concat(_this.objAdv.type, "-").concat(index, "-row-").concat(indexRow));
