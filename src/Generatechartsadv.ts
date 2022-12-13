@@ -321,7 +321,7 @@ class Generatechartsadv {
                     this.objAdv.realValues[indexRowVar] as number,
                     {
                       suffix: this.objAdv.valueLabels[indexRowVar],
-                      decimalPlaces: 0 ,
+                      decimalPlaces: this.objAdv.realValues[indexRowVar] as number % 1 === 0 ||  this.objAdv.realValues[indexRowVar] as number % 2 === 0 ? 0 : 1 ,
                       decimal: ',',
                       separator: '.'
                     }

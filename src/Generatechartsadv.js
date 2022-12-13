@@ -210,7 +210,7 @@ var Generatechartsadv = /** @class */ (function () {
                     else {
                         var initCountJs = new countup_js_1.CountUp("perc-value-".concat(_this.objAdv.type, "-").concat(index, "-row-").concat(indexRow), _this.objAdv.realValues[indexRowVar], {
                             suffix: _this.objAdv.valueLabels[indexRowVar],
-                            decimalPlaces: 0,
+                            decimalPlaces: _this.objAdv.realValues[indexRowVar] % 1 === 0 || _this.objAdv.realValues[indexRowVar] % 2 === 0 ? 0 : 1,
                             decimal: ',',
                             separator: '.'
                         });

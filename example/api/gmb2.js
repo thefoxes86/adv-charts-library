@@ -1,7 +1,7 @@
 const gmb2 = {
   result: 'ok',
   valueLabels: ['', '', '%', ' days', '%'],
-  realValues: [4.7, 61.0, 16.0, 0.01, 90],
+  realValues: [4.7, 61.0, 16.0, 2.1, 90],
   percValues: [94, 100, 16, 100, 90],
   type: 'gmb-reviews',
   valueColors: ['green', 'green', 'red', 'green', 'orange'],
