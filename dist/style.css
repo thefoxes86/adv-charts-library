@@ -32,6 +32,7 @@ body {
   border-radius: 10px;
   display: flex;
   flex-direction: column;
+  font-weight: 700;
 }
 .chart-card[data-format*=type1] .chart-card__header {
   overflow: hidden;
@@ -180,6 +181,7 @@ body {
   border-radius: 20px;
   display: flex;
   flex-direction: column;
+  font-weight: 700;
 }
 .chart-card[data-format*=type3] .chart-card__header {
   overflow: hidden;
@@ -377,6 +379,7 @@ button:disabled {
   border-radius: 10px;
   display: flex;
   flex-direction: column;
+  font-weight: 700;
 }
 .chart-card:not(.row__header)[data-format*=type2] .chart-card__content {
   display: flex;
